@@ -1,0 +1,24 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add “Site Soundtrack” label above YouTube Music links",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Add a neon lime green “Site Soundtrack.” label directly above the existing YouTube Music access hyperlinks in the hero soundtrack section.",
+      "acceptanceCriteria": [
+        "The text \"Site Soundtrack\" appears immediately above the existing YouTube Music access hyperlinks (no other content inserted between them).",
+        "The label uses a medium-sized font (e.g., Tailwind `text-lg` or `text-xl`) and is visually distinct from surrounding text.",
+        "The label text color is neon lime green (e.g., Tailwind `text-[#39FF14]` or an equivalent neon-lime value) and renders correctly in the app theme(s).",
+        "No other copy is changed and the YouTube Music hyperlinks continue to function as before."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Hero.tsx",
+          "operation": "modify",
+          "description": "In the existing “Play Soundtrack Section” container (the section that renders the three YouTube links), insert a single-line label element with exact text \"Site Soundtrack.\" directly above the hyperlink grid; style it with a medium font size (e.g., Tailwind text-lg/text-xl) and a rich neon lime green color (e.g., Tailwind text-[#39FF14]) without changing any link URLs or surrounding layout beyond the label."
+        }
+      ]
+    }
+  ]
+}

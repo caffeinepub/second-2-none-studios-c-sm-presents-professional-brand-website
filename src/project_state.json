@@ -1,0 +1,301 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 4,
+  "summary": "An Internet Computer (ICP) canister-backed professional brand website for Dr. Shane J. Charbonnet, providing a single-page marketing/personal site with publications, training videos and downloadable training documents, membership gating for premium areas (media/store/booking), and payment flows via Stripe Checkout (canister HTTP outcalls) plus prominent PayPal/Venmo/Cash App donation/payment links. The frontend is a React + Tailwind (shadcn/ui-style) SPA that authenticates users via Internet Identity, manages canister calls with a cached actor and TanStack React Query, and includes admin-only tooling for configuring Stripe and managing authorization roles/membership activation on the backend.",
+  "existing_features": [
+    {
+      "id": "IF-1",
+      "title": "Internet Identity authentication context",
+      "synonyms": [
+        "II login",
+        "AuthClient provider"
+      ],
+      "description": "Provides an application-wide React context for Internet Identity authentication, including initialization from local storage, login/logout actions, delegation validity checks, and detailed login status flags.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-2",
+      "title": "Per-identity ICP actor creation and caching",
+      "synonyms": [
+        "useActor",
+        "actor lifecycle"
+      ],
+      "description": "Creates an anonymous or authenticated canister actor based on Internet Identity, caches it via React Query with infinite stale time, initializes access control using a secret parameter, and invalidates/refetches dependent queries when the actor changes.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-3",
+      "title": "Role-based access control (admin/user/guest)",
+      "synonyms": [
+        "AccessControl",
+        "authorization mixin"
+      ],
+      "description": "Implements user roles and permissions in Motoko; supports initialization with an admin secret (first successful caller becomes admin), querying caller role, admin checks, and admin-only role assignment.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-4",
+      "title": "User profile storage and retrieval",
+      "synonyms": [
+        "profile setup",
+        "getCallerUserProfile"
+      ],
+      "description": "Allows registered users to save and retrieve a per-principal profile (name, email, optional phone, membership flag). Admins can retrieve other users’ profiles; access is restricted by role checks.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-5",
+      "title": "Profile setup modal for new authenticated users",
+      "synonyms": [
+        "ProfileSetupModal",
+        "onboarding"
+      ],
+      "description": "Frontend modal prompts logged-in users without a stored profile to enter required name/email and optional phone, then saves the profile via the backend (defaulting hasMembership to false).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-6",
+      "title": "Membership plans and membership status checks",
+      "synonyms": [
+        "membership system",
+        "isUserMember"
+      ],
+      "description": "Backend exposes fixed monthly/yearly membership plans, supports checking whether the caller is an active member, and provides admin-only membership activation/deactivation which flips the user profile membership flag.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-7",
+      "title": "Access gates for member-only areas",
+      "synonyms": [
+        "checkVideoAccess",
+        "checkStoreAccess",
+        "checkBookingAccess"
+      ],
+      "description": "Backend provides boolean access checks for videos/media, store, and booking based on membership; frontend components use these checks to display member-only messaging and calls-to-action.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-8",
+      "title": "Stripe configuration management (admin-only)",
+      "synonyms": [
+        "StripeSetupModal",
+        "setStripeConfiguration"
+      ],
+      "description": "Backend stores Stripe secret key and allowed shipping countries; frontend provides an admin-only modal to configure Stripe when the payment system is not configured.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-9",
+      "title": "Stripe Checkout session creation for cart items",
+      "synonyms": [
+        "createCheckoutSession",
+        "Stripe payment redirect"
+      ],
+      "description": "Backend creates Stripe Checkout sessions via IC HTTP outcalls; frontend CartDrawer converts cart items into ShoppingItem objects and redirects the browser to the Stripe-hosted Checkout URL.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-10",
+      "title": "Stripe session status lookup",
+      "synonyms": [
+        "getStripeSessionStatus"
+      ],
+      "description": "Backend can query a Stripe Checkout session and extract `client_reference_id` (intended to associate the session to a user principal) returning a completed/failed status variant.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-11",
+      "title": "Publications catalog (fixed verified set)",
+      "synonyms": [
+        "books list",
+        "getPublications"
+      ],
+      "description": "Backend serves a strict, hard-coded set of 5 verified publications with metadata and Amazon links; frontend renders them with sequential numbering and outbound purchase links.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-12",
+      "title": "Training videos directory (verified list)",
+      "synonyms": [
+        "getTrainingVideos",
+        "training content links"
+      ],
+      "description": "Backend serves a verified list of training video entries; frontend displays them with numbering and external watch links.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-13",
+      "title": "Training documents directory (verified list)",
+      "synonyms": [
+        "getTrainingDocuments",
+        "PDF downloads"
+      ],
+      "description": "Backend serves a verified list of training document entries; frontend renders downloadable PDF links from the site’s static assets path.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-14",
+      "title": "Public apparel listing (Bonfire links + QR codes)",
+      "synonyms": [
+        "Apparel store section",
+        "merch"
+      ],
+      "description": "Frontend Store section shows three apparel items in a consistent three-line layout (title, order button linking to Bonfire, QR code image). Backend also exposes a verified apparel API endpoint.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-15",
+      "title": "Shopping cart drawer UI",
+      "synonyms": [
+        "CartDrawer",
+        "cart sidebar"
+      ],
+      "description": "Provides a slide-in cart drawer with item list, remove/clear actions, total calculation, and a checkout button that initiates Stripe checkout when configured.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-16",
+      "title": "Payment success/failure routing via URL params",
+      "synonyms": [
+        "PaymentSuccess",
+        "PaymentFailure"
+      ],
+      "description": "Frontend detects `?payment=success` or `?payment=cancelled`, shows dedicated success/failure pages, clears the URL, and invalidates relevant queries (membership and profile) on success.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-17",
+      "title": "Contact info display",
+      "synonyms": [
+        "getContactInfo",
+        "contact section"
+      ],
+      "description": "Backend returns static phone/email/location; frontend displays this information in a card UI with tel/mailto links.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-18",
+      "title": "Contact form submission storage (backend)",
+      "synonyms": [
+        "submitContactForm",
+        "contact submissions"
+      ],
+      "description": "Backend supports public submission of contact messages and admin-only retrieval of stored contact submissions.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-19",
+      "title": "Appointment booking API (members-only)",
+      "synonyms": [
+        "bookAppointment",
+        "appointments admin list"
+      ],
+      "description": "Backend supports member-only appointment booking with session type and time, plus admin-only retrieval of all appointments.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-20",
+      "title": "Credentials media section",
+      "synonyms": [
+        "diplomas gallery"
+      ],
+      "description": "Frontend displays Ph.D. diploma, Master’s diploma, and a portrait image with consistent themed styling; backend also exposes a credentials record with the expected filenames.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-21",
+      "title": "Support & donations section (Venmo/Cash App)",
+      "synonyms": [
+        "donations",
+        "support"
+      ],
+      "description": "Frontend provides donation/support cards linking to Venmo and Cash App with embedded QR images and responsive layout.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-22",
+      "title": "Theme and design system (Tailwind + OKLCH tokens)",
+      "synonyms": [
+        "22nd-century Renaissance theme",
+        "glow animations"
+      ],
+      "description": "Centralized Tailwind theme configuration and global CSS define OKLCH color tokens, glow/neon/copper accents, and reusable animation utilities for the site’s visual identity.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-23",
+      "title": "Blob storage gateway authorization and dead-blob management (backend)",
+      "synonyms": [
+        "caffeine storage mixin",
+        "dead blob pruning"
+      ],
+      "description": "Includes a storage mixin that can sync authorized gateway principals, expose dead blobs for deletion, confirm deletion, and trigger GC; includes a cashier refill flow guarded by an environment-configured principal.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-frontend-section-that-currently-displays-the-youtube-music-access-hyperlinks-add-a-single-line-label-directly-above-those-hyperlinks-with-the-exact-text-site-soundtrack-style-the-label-with-a-medium-sized-font-and-a-rich-brilliant-neon-lime-green-font-color",
+      "title": "In the frontend section that currently displays the YouTube Music access hyperlinks, add a single-line label directly above those hyperlinks with the exact text: \"Site Soundtrack.\" Style the label with a medium-sized font and a rich, brilliant neon lime green font color.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add a \"Site Soundtrack\" label above the YouTube music/soundtrack links, using a medium font size and rich neon lime green text color.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "architectural_notes": [
+    "ICP architecture: Motoko canister (backend/main.mo) exposes query/shared methods; frontend creates an authenticated actor using Internet Identity.",
+    "Authorization implemented as a reusable Motoko module (authorization/access-control.mo) and included via a mixin (authorization/MixinAuthorization.mo); first initializer with correct secret becomes admin, others become users.",
+    "Backend integrates Stripe via IC management canister HTTP outcalls (ic:aaaaa-aa) with a response transform function to strip headers (backend/http-outcalls/outcall.mo, backend/stripe/stripe.mo).",
+    "Frontend data-fetching is centralized via TanStack React Query hooks (frontend/src/hooks/useQueries.ts), with an actor lifecycle hook (frontend/src/hooks/useActor.ts) that invalidates/refetches dependent queries on identity changes.",
+    "UI is organized as section components in a one-page layout (Hero, Biography, Publications, TrainingVideos, Membership, Booking, Store, Media, Contact, SupportDonations, Credentials) and uses Tailwind with OKLCH theme tokens and custom glow/renaissance-themed animations.",
+    "Admin configuration UX: StripeSetupModal is rendered when Stripe is not configured and the caller is admin (checked via useIsCallerAdmin).",
+    "Blob-storage mixin exists for integration with Caffeine storage gateway principals and dead-blob pruning flows (backend/blob-storage/Mixin.mo, Storage.mo), though the current UI primarily serves static /assets files."
+  ],
+  "known_issues": [
+    "Motoko canister state is held in non-stable variables (Maps/vars are not declared stable); upgrades will reset user profiles, contact submissions, Stripe configuration, appointments, etc.",
+    "Environment variable name typos likely break deployment: Storage expects \"CAFFFEINE_STORAGE_CASHIER_PRINCIPAL\" (triple 'F'); authorization expects \"CAFFEINE_ADMIN_TOKEN\". A mismatch will trap at runtime.",
+    "Stripe checkout body builder incorrectly sets shipping allowed countries using index [0] for every country, overwriting/duplicating the same parameter key; it should increment the index per country.",
+    "URL encoding in Stripe module is simplistic (only replaces space, &, =); it does not fully implement percent-encoding and may break for other characters.",
+    "Training document filenames include spaces and a colon (e.g., \"Distinction Codex: ... .pdf\"); the frontend forms URLs as `/assets/${document.documentUrl}` without URI encoding, which can fail depending on hosting/static server behavior.",
+    "Frontend membership purchase UX currently redirects to PayPal directly (Membership.tsx) rather than using the implemented canister Stripe membership purchase flow (purchaseMembership hook exists but is not used there).",
+    "Membership activation is manual (PaymentSuccess text says admin will activate). Backend has activateMembership but there is no automated webhook/poller tying Stripe session completion to activation.",
+    "Some backend structures appear unused or incomplete (e.g., checkoutSessions Map is declared but not used; trainingDocumentIdCounter is unused).",
+    "Backend includes member-only product/video/appointment creation endpoints, but the current UI sections for Booking/Media show access gates without implementing booking forms or premium media playback.",
+    "frontend/src/components/VideoModal.tsx and frontend/src/components/DnsStatusChecker.tsx are present in the file list but empty in this snapshot, indicating missing or incomplete implementations compared to referenced summaries."
+  ],
+  "isFixRequest": false,
+  "gameProjectType": "none",
+  "projectName": "Dr. Shane J Charbonnet Professional Brand Website",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

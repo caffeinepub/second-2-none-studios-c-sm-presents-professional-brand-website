@@ -1,0 +1,38 @@
+{
+  "kind": "build_request",
+  "title": "Add “Site Soundtrack” label above YouTube Music links",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "In the frontend section that currently displays the YouTube Music access hyperlinks, add a single-line label directly above those hyperlinks with the exact text: \"Site Soundtrack.\" Style the label with a medium-sized font and a rich, brilliant neon lime green font color.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-20"
+        ],
+        "quotes": [
+          "First thing to do on today, right above the youtube music access hyperlinks, I want to add the word \"Site Soundtrack.\" Middle-sized fonts to be used. Also, the Font color should be a rich and brilliante Neon Lime Green!"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The text \"Site Soundtrack\" appears immediately above the existing YouTube Music access hyperlinks (no other content inserted between them).",
+        "The label uses a medium-sized font (e.g., Tailwind `text-lg` or `text-xl`) and is visually distinct from surrounding text.",
+        "The label text color is neon lime green (e.g., Tailwind `text-[#39FF14]` or an equivalent neon-lime value) and renders correctly in the app theme(s).",
+        "No other copy is changed and the YouTube Music hyperlinks continue to function as before."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend files under frontend.immutablePaths must not be modified (compose existing hooks/components instead).",
+    "Do not change any backend canister code for this UI-only request."
+  ],
+  "nonGoals": [
+    "Do not add, remove, or change the YouTube Music hyperlink URLs.",
+    "Do not redesign the surrounding section beyond inserting and styling this single label."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
