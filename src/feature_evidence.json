@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-in-the-frontend-section-that-currently-displays-the-youtube-music-access-hyperlinks-add-a-single-line-label-directly-above-those-hyperlinks-with-the-exact-text-site-soundtrack-style-the-label-with-a-medium-sized-font-and-a-rich-brilliant-neon-lime-green-font-color",
-      "featureTitle": "In the frontend section that currently displays the YouTube Music access hyperlinks, add a single-line label directly above those hyperlinks with the exact text: \"Site Soundtrack.\" Style the label with a medium-sized font and a rich, brilliant neon lime green font color.",
+      "featureId": "feature-add-an-intro-audio-player-to-the-top-of-the-homepage-within-the-existing-hero-section-positioned-directly-under-the-large-portrait-image-and-directly-above-the-simply-shane-designs-c-sm-presents-headings",
+      "featureTitle": "Add an intro audio player to the top of the homepage within the existing Hero section, positioned directly under the large portrait image and directly above the “Simply Shane Designs (c)sm” / “-- PRESENTS --” headings.",
       "files": [
         "frontend/src/components/Hero.tsx"
       ],
@@ -19,7 +19,29 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-1"
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-store-the-uploaded-audio-file-as-a-frontend-static-asset-and-wire-the-hero-audio-player-to-that-exact-file-use-the-original-uploaded-filename-do-not-add-placeholder-or-sample-media",
+      "featureTitle": "Store the uploaded audio file as a frontend static asset and wire the Hero audio player to that exact file (use the original uploaded filename; do not add placeholder or sample media).",
+      "files": [
+        "frontend/src/components/Hero.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
       ],
       "confidence": "high"
     }

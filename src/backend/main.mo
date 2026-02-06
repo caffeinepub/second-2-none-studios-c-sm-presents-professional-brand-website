@@ -12,7 +12,8 @@ import AccessControl "authorization/access-control";
 import MixinAuthorization "authorization/MixinAuthorization";
 import MixinStorage "blob-storage/Mixin";
 
-// Data migration to add the second training document
+// IMPORTANT: Data migration if you modify types or values in stateful variables. Use includes, maps, etc.
+
 
 actor {
   // ==== Authorization & Store ====
@@ -373,6 +374,14 @@ actor {
           shortDescription = "Comprehensive guide for identifying authentic mastery in various disciplines. Covers key markers, strategies, and best practices for achieving distinction and excellence.";
         };
       };
+      case (3) {
+        ?{
+          id = 3;
+          title = "Transforming Adversity into Lasting Professional and Personal Maturity.";
+          documentUrl = "Transforming Adversity into Lasting Professional and Personal Maturity.pdf";
+          shortDescription = "The attached PDF file (11,939 KB)";
+        };
+      };
       case (_) { null };
     };
   };
@@ -381,6 +390,7 @@ actor {
     [
       getVerifiedTrainingDocument(1),
       getVerifiedTrainingDocument(2),
+      getVerifiedTrainingDocument(3),
     ].filterMap(func(d) { d });
   };
 

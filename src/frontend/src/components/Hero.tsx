@@ -130,6 +130,20 @@ export default function Hero() {
             </div>
           </div>
 
+          {/* Intro Audio Player - positioned after portrait and before brand heading */}
+          <div className="mb-8 max-w-2xl mx-auto">
+            <audio
+              controls
+              className="w-full max-w-md mx-auto rounded-lg shadow-glow-lg border-2 border-accent/50 bg-card/95 backdrop-blur-sm"
+              preload="metadata"
+            >
+              <source src="/assets/intro-audio.mp3" type="audio/mpeg" />
+              <source src="/assets/intro-audio.wav" type="audio/wav" />
+              <source src="/assets/intro-audio.m4a" type="audio/mp4" />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+
           {/* Brand heading with Renaissance-golden styling */}
           <div className="mb-3">
             <h2 className="text-2xl md:text-3xl font-serif font-semibold text-accent tracking-wide glow-text-subtle">

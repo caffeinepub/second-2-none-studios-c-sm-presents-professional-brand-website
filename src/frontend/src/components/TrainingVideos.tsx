@@ -1,5 +1,5 @@
 import { useGetTrainingVideos, useGetTrainingDocuments } from '../hooks/useQueries';
-import { Video, Loader2, ExternalLink, Download, FileText } from 'lucide-react';
+import { Video, Loader2, ExternalLink, FileText } from 'lucide-react';
 import { SiPaypal } from 'react-icons/si';
 import { Button } from './ui/button';
 
@@ -92,28 +92,25 @@ export default function TrainingVideos() {
               </div>
             </div>
 
-            {/* Training Documents (PDFs) */}
+            {/* Training Documents (PDFs) - Strict Two-Line Format */}
             {trainingDocuments && trainingDocuments.length > 0 ? (
               trainingDocuments.map((document) => (
-                <div key={document.id} className="text-center space-y-4">
+                <div key={document.id} className="text-center space-y-3">
+                  {/* Line 1: Title only */}
                   <h3 className="text-xl md:text-2xl font-serif text-amber-300 leading-relaxed">
                     {document.title}
                   </h3>
-                  {document.documentUrl && (
+                  {/* Line 2: Clickable shortDescription text (no button, no extra label) */}
+                  {document.documentUrl && document.shortDescription && (
                     <div>
-                      <Button
-                        asChild
-                        className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-semibold px-8 py-6 text-lg shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 transition-all duration-300"
+                      <a
+                        href={`/assets/${document.documentUrl}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-amber-400 hover:text-amber-300 transition-colors duration-300 underline text-base md:text-lg"
                       >
-                        <a
-                          href={`/assets/${document.documentUrl}`}
-                          download
-                          className="inline-flex items-center gap-2"
-                        >
-                          <Download className="w-5 h-5" />
-                          Download PDF
-                        </a>
-                      </Button>
+                        {document.shortDescription}
+                      </a>
                     </div>
                   )}
                 </div>

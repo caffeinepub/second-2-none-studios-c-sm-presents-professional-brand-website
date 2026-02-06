@@ -1,20 +1,32 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-03T21:02:51.172Z",
+  "generatedAt": "2026-02-06T02:28:53.603Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
-        "id": "REQ-1",
-        "summary": "In the frontend section that currently displays the YouTube Music access hyperlinks, add a single-line label directly above those hyperlinks with the exact text: \"Site Soundtrack.\" Style the label with a medium-sized font and a rich, brilliant neon lime green font color.",
+        "id": "REQ-3",
+        "summary": "Add an intro audio player to the top of the homepage within the existing Hero section, positioned directly under the large portrait image and directly above the “Simply Shane Designs (c)sm” / “-- PRESENTS --” headings.",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/src/components/Hero.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Hero.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Store the uploaded audio file as a frontend static asset and wire the Hero audio player to that exact file (use the original uploaded filename; do not add placeholder or sample media).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/INTRO_AUDIO_UPLOADED_FILENAME.ext",
           "frontend/src/components/Hero.tsx"
         ],
         "matchedFiles": [
@@ -25,19 +37,11 @@
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/Dockerfile",
-    "build-template/LICENSE",
-    "build-template/README.md",
-    "build-template/deploy.sh",
-    "build-template/icp.yaml",
-    "build-template/src/backend/canister.yaml",
-    "build-template/src/frontend/canister.yaml",
     "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/src/components/Hero.tsx",
-    "frontend/src/hooks/useInternetIdentity.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

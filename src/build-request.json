@@ -1,38 +1,68 @@
 {
   "kind": "build_request",
-  "title": "Add “Site Soundtrack” label above YouTube Music links",
+  "title": "Embed uploaded intro audio under hero portrait on homepage",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "In the frontend section that currently displays the YouTube Music access hyperlinks, add a single-line label directly above those hyperlinks with the exact text: \"Site Soundtrack.\" Style the label with a medium-sized font and a rich, brilliant neon lime green font color.",
+      "id": "REQ-3",
+      "text": "Add an intro audio player to the top of the homepage within the existing Hero section, positioned directly under the large portrait image and directly above the “Simply Shane Designs (c)sm” / “-- PRESENTS --” headings.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-20"
+          "msg-1"
         ],
         "quotes": [
-          "First thing to do on today, right above the youtube music access hyperlinks, I want to add the word \"Site Soundtrack.\" Middle-sized fonts to be used. Also, the Font color should be a rich and brilliante Neon Lime Green!"
+          "Thanks for your patience, Aura. And, without more unnecessary delay, here is the audio file to integrate within the website.",
+          "Next, I want to upload a short introduction video to the site. To be placed at the top of site and right-under my quite large photo!",
+          "Right above 'Simply Shane Designs (c)sm -- PRESENTS --"
         ]
       },
       "acceptanceCriteria": [
-        "The text \"Site Soundtrack\" appears immediately above the existing YouTube Music access hyperlinks (no other content inserted between them).",
-        "The label uses a medium-sized font (e.g., Tailwind `text-lg` or `text-xl`) and is visually distinct from surrounding text.",
-        "The label text color is neon lime green (e.g., Tailwind `text-[#39FF14]` or an equivalent neon-lime value) and renders correctly in the app theme(s).",
-        "No other copy is changed and the YouTube Music hyperlinks continue to function as before."
+        "On the homepage, an audio player is visible in the Hero area directly below the portrait and above the “Simply Shane Designs (c)sm” / “-- PRESENTS --” text.",
+        "The audio player can play/pause the uploaded intro audio and shows standard controls (at minimum: play/pause and seek).",
+        "The new audio player does not break or remove the existing Hero content, including the portrait, headings, subtitle, and the “Site Soundtrack” section."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Store the uploaded audio file as a frontend static asset and wire the Hero audio player to that exact file (use the original uploaded filename; do not add placeholder or sample media).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "here is the audio file to integrate within the website."
+        ]
+      },
+      "acceptanceCriteria": [
+        "The uploaded audio file exists in the frontend static assets (served under the /assets/ path) and is referenced by the Hero audio player.",
+        "No other audio/video files are added as placeholders.",
+        "A fresh load of the site can play the intro audio without requiring authentication or membership."
       ]
     }
   ],
   "constraints": [
-    "Frontend files under frontend.immutablePaths must not be modified (compose existing hooks/components instead).",
-    "Do not change any backend canister code for this UI-only request."
+    "Frontend files under frontend/immutablePaths must not be modified.",
+    "Do not introduce additional backend services or external storage; use frontend static assets for the uploaded audio file."
   ],
   "nonGoals": [
-    "Do not add, remove, or change the YouTube Music hyperlink URLs.",
-    "Do not redesign the surrounding section beyond inserting and styling this single label."
+    "Do not implement audio-to-video conversion.",
+    "Do not add new authentication, membership gating, or payment requirements for the intro audio.",
+    "Do not redesign the overall Hero section beyond inserting the requested intro audio player in the specified location."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

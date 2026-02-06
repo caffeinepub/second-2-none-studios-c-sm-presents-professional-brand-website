@@ -1,22 +1,42 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add “Site Soundtrack” label above YouTube Music links",
+  "title": "Add intro audio player under hero portrait on homepage",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Add a neon lime green “Site Soundtrack.” label directly above the existing YouTube Music access hyperlinks in the hero soundtrack section.",
+      "id": "REQ-3",
+      "summary": "Insert an intro audio player inside the existing Hero section, directly below the portrait and directly above the brand/PRESENTS headings, without disrupting existing Hero content.",
       "acceptanceCriteria": [
-        "The text \"Site Soundtrack\" appears immediately above the existing YouTube Music access hyperlinks (no other content inserted between them).",
-        "The label uses a medium-sized font (e.g., Tailwind `text-lg` or `text-xl`) and is visually distinct from surrounding text.",
-        "The label text color is neon lime green (e.g., Tailwind `text-[#39FF14]` or an equivalent neon-lime value) and renders correctly in the app theme(s).",
-        "No other copy is changed and the YouTube Music hyperlinks continue to function as before."
+        "On the homepage, an audio player is visible in the Hero area directly below the portrait and above the “Simply Shane Designs (c)sm” / “-- PRESENTS --” text.",
+        "The audio player can play/pause the uploaded intro audio and shows standard controls (at minimum: play/pause and seek).",
+        "The new audio player does not break or remove the existing Hero content, including the portrait, headings, subtitle, and the “Site Soundtrack” section."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Hero.tsx",
           "operation": "modify",
-          "description": "In the existing “Play Soundtrack Section” container (the section that renders the three YouTube links), insert a single-line label element with exact text \"Site Soundtrack.\" directly above the hyperlink grid; style it with a medium font size (e.g., Tailwind text-lg/text-xl) and a rich neon lime green color (e.g., Tailwind text-[#39FF14]) without changing any link URLs or surrounding layout beyond the label."
+          "description": "Add a native HTML audio player (with controls enabled) within the Hero content block, positioned after the portrait image block and before the brand/PRESENTS headings; ensure layout spacing matches the existing design and that the rest of the Hero (subtitle, description, buttons, and “Site Soundtrack” section) remains intact."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add the uploaded intro audio file as a frontend static asset and wire the Hero audio player to reference that exact filename.",
+      "acceptanceCriteria": [
+        "The uploaded audio file exists in the frontend static assets (served under the /assets/ path) and is referenced by the Hero audio player.",
+        "No other audio/video files are added as placeholders.",
+        "A fresh load of the site can play the intro audio without requiring authentication or membership."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/INTRO_AUDIO_UPLOADED_FILENAME.ext",
+          "operation": "create",
+          "description": "Add the uploaded intro audio file to frontend static assets using the original uploaded filename exactly (replace this file path with the real uploaded filename and extension before committing)."
+        },
+        {
+          "path": "frontend/src/components/Hero.tsx",
+          "operation": "modify",
+          "description": "Wire the Hero audio player src to the static asset at frontend/public/assets/INTRO_AUDIO_UPLOADED_FILENAME.ext (served under the /assets/ path) and ensure no authentication/membership checks gate playback."
         }
       ]
     }
