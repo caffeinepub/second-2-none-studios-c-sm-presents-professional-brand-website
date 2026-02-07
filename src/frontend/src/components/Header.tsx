@@ -68,7 +68,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           <button
             onClick={() => scrollToSection('hero')}
-            className="inline-block px-4 py-2 bg-black/85 rounded-lg backdrop-blur-sm hover:bg-black/90 transition-all duration-300"
+            className="inline-block px-4 py-2 bg-card border-2 border-border rounded-lg backdrop-blur-sm hover:border-primary/50 hover:shadow-md transition-all duration-300"
           >
             <span className="text-xl font-serif font-bold text-orange-500 animate-orange-radiance hover:scale-105 transition-transform duration-300 inline-block">
               Second‑2‑None Studios (c)sm.

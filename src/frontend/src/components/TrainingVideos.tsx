@@ -2,6 +2,7 @@ import { useGetTrainingVideos, useGetTrainingDocuments } from '../hooks/useQueri
 import { Video, Loader2, ExternalLink, FileText } from 'lucide-react';
 import { SiPaypal } from 'react-icons/si';
 import { Button } from './ui/button';
+import { getStaticAssetUrl } from '../utils/staticAssetUrl';
 
 export default function TrainingVideos() {
   const { data: trainingVideos, isLoading: videosLoading } = useGetTrainingVideos();
@@ -104,7 +105,7 @@ export default function TrainingVideos() {
                   {document.documentUrl && document.shortDescription && (
                     <div>
                       <a
-                        href={`/assets/${document.documentUrl}`}
+                        href={getStaticAssetUrl(document.documentUrl)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-amber-400 hover:text-amber-300 transition-colors duration-300 underline text-base md:text-lg"

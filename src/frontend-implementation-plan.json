@@ -1,42 +1,46 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add intro audio player under hero portrait on homepage",
+  "title": "Force light theme and update dark UI surfaces for readability",
   "requirements": [
     {
-      "id": "REQ-3",
-      "summary": "Insert an intro audio player inside the existing Hero section, directly below the portrait and directly above the brand/PRESENTS headings, without disrupting existing Hero content.",
+      "id": "REQ-12",
+      "summary": "Force the app to always render in light theme (white background) regardless of the user’s system theme.",
       "acceptanceCriteria": [
-        "On the homepage, an audio player is visible in the Hero area directly below the portrait and above the “Simply Shane Designs (c)sm” / “-- PRESENTS --” text.",
-        "The audio player can play/pause the uploaded intro audio and shows standard controls (at minimum: play/pause and seek).",
-        "The new audio player does not break or remove the existing Hero content, including the portrait, headings, subtitle, and the “Site Soundtrack” section."
+        "On a device/browser set to dark mode, the app still renders with a light/white background.",
+        "The root page background (body/app shell) appears white/light rather than black/dark across all routes (normal, payment success, payment failure, loading state)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Hero.tsx",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Add a native HTML audio player (with controls enabled) within the Hero content block, positioned after the portrait image block and before the brand/PRESENTS headings; ensure layout spacing matches the existing design and that the rest of the Hero (subtitle, description, buttons, and “Site Soundtrack” section) remains intact."
+          "description": "Update the next-themes ThemeProvider configuration to force the light theme (e.g., forcedTheme=\"light\" and disable system theming) so the app never applies the dark theme classes/variables, including for loading and payment success/failure renders."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Add a small startup safeguard to ensure any persisted/previously-applied dark theme class is removed from the root element before the app renders, ensuring a consistently white/light background on initial load."
         }
       ]
     },
     {
-      "id": "REQ-4",
-      "summary": "Add the uploaded intro audio file as a frontend static asset and wire the Hero audio player to reference that exact filename.",
+      "id": "REQ-13",
+      "summary": "Replace explicitly dark UI surfaces (Header brand pill and Hero intro box) with light/neutral fills so text remains highly readable on the white background.",
       "acceptanceCriteria": [
-        "The uploaded audio file exists in the frontend static assets (served under the /assets/ path) and is referenced by the Hero audio player.",
-        "No other audio/video files are added as placeholders.",
-        "A fresh load of the site can play the intro audio without requiring authentication or membership."
+        "The Header brand area no longer uses a black background that reduces readability against the white/light page (e.g., replace with a light/neutral surface using existing theme tokens).",
+        "The Hero intro text block (neon green bordered box) uses a light/white (or very light) fill so the paragraph text is easy to read on the white-themed page.",
+        "Text contrast meets a clearly readable standard in the Hero intro block, Header, and other primary copy areas (no dark-on-dark or low-contrast combinations introduced by the theme switch)."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/INTRO_AUDIO_UPLOADED_FILENAME.ext",
-          "operation": "create",
-          "description": "Add the uploaded intro audio file to frontend static assets using the original uploaded filename exactly (replace this file path with the real uploaded filename and extension before committing)."
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Update the Header brand pill/button styling to remove the explicit dark/black background and replace it with a light/neutral surface (e.g., card/background + border + subtle shadow) while preserving the existing layout and hover/scroll behavior."
         },
         {
-          "path": "frontend/src/components/Hero.tsx",
+          "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Wire the Hero audio player src to the static asset at frontend/public/assets/INTRO_AUDIO_UPLOADED_FILENAME.ext (served under the /assets/ path) and ensure no authentication/membership checks gate playback."
+          "description": "Update the .neon-green-intro-box utility class to use a light/white (or very light) background fill (keeping the neon green border) and ensure foreground text remains high-contrast and readable on the new light theme."
         }
       ]
     }

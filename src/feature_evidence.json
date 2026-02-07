@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-an-intro-audio-player-to-the-top-of-the-homepage-within-the-existing-hero-section-positioned-directly-under-the-large-portrait-image-and-directly-above-the-simply-shane-designs-c-sm-presents-headings",
-      "featureTitle": "Add an intro audio player to the top of the homepage within the existing Hero section, positioned directly under the large portrait image and directly above the “Simply Shane Designs (c)sm” / “-- PRESENTS --” headings.",
+      "featureId": "feature-force-the-site-to-render-in-the-light-theme-so-the-global-background-is-white-not-dark-black-regardless-of-the-user-s-system-theme-settings",
+      "featureTitle": "Force the site to render in the light theme so the global background is white (not dark/black), regardless of the user’s system theme settings.",
       "files": [
-        "frontend/src/components/Hero.tsx"
+        "frontend/src/App.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -19,15 +19,16 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-3"
+        "REQ-12"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-store-the-uploaded-audio-file-as-a-frontend-static-asset-and-wire-the-hero-audio-player-to-that-exact-file-use-the-original-uploaded-filename-do-not-add-placeholder-or-sample-media",
-      "featureTitle": "Store the uploaded audio file as a frontend static asset and wire the Hero audio player to that exact file (use the original uploaded filename; do not add placeholder or sample media).",
+      "featureId": "feature-update-any-explicitly-dark-ui-surfaces-that-conflict-with-the-new-white-background-so-text-remains-highly-readable-including-the-header-brand-pill-button-background-and-the-hero-intro-text-container-background",
+      "featureTitle": "Update any explicitly dark UI surfaces that conflict with the new white background so text remains highly readable, including the Header brand pill/button background and the Hero intro text container background.",
       "files": [
-        "frontend/src/components/Hero.tsx"
+        "frontend/src/components/Header.tsx",
+        "frontend/src/index.css"
       ],
       "components": [
         "authorization@4.0.0",
@@ -41,7 +42,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-4"
+        "REQ-13"
       ],
       "confidence": "high"
     }

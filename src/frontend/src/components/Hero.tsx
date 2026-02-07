@@ -130,18 +130,15 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Intro Audio Player - positioned after portrait and before brand heading */}
-          <div className="mb-8 max-w-2xl mx-auto">
-            <audio
-              controls
-              className="w-full max-w-md mx-auto rounded-lg shadow-glow-lg border-2 border-accent/50 bg-card/95 backdrop-blur-sm"
-              preload="metadata"
-            >
-              <source src="/assets/intro-audio.mp3" type="audio/mpeg" />
-              <source src="/assets/intro-audio.wav" type="audio/wav" />
-              <source src="/assets/intro-audio.m4a" type="audio/mp4" />
-              Your browser does not support the audio element.
-            </audio>
+          {/* Intro Text Block - Neon Green Border */}
+          <div className="mb-8 max-w-3xl mx-auto neon-green-intro-box">
+            {/* Double spacing before content */}
+            <div className="h-8" />
+            <div className="h-8" />
+            
+            <p className="text-base md:text-lg text-foreground leading-relaxed whitespace-pre-wrap px-4">
+              Hello there, and welcome to my site. I am the Doctor of UDesign, owner, founder of '[[ Simply Shane Designs ]] (c)sm'  I just wanted to take a few moments to welcome you to this site, to tell you how thrilled and electrified I am that you're actually here with us, and it is my desire, deepest desire, that the content that flows, that's attached, that's uploaded to this site will greatly benefit you. So stay connected, join the community. If you have any questions, feel free. Thank you very much. Let's begin.
+            </p>
           </div>
 
           {/* Brand heading with Renaissance-golden styling */}

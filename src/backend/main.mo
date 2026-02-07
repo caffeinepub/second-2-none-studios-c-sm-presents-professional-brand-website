@@ -14,7 +14,6 @@ import MixinStorage "blob-storage/Mixin";
 
 // IMPORTANT: Data migration if you modify types or values in stateful variables. Use includes, maps, etc.
 
-
 actor {
   // ==== Authorization & Store ====
   let accessControlState = AccessControl.initState();
@@ -370,7 +369,7 @@ actor {
         ?{
           id = 2;
           title = "Distinction Codex: Unveiling the Markers of Authentic Mastery.";
-          documentUrl = "Distinction Codex: Unveiling the Markers of Authentic Mastery.pdf";
+          documentUrl = "Distinction Codex Unveiling the Markers of Authentic Mastery.pdf";
           shortDescription = "Comprehensive guide for identifying authentic mastery in various disciplines. Covers key markers, strategies, and best practices for achieving distinction and excellence.";
         };
       };

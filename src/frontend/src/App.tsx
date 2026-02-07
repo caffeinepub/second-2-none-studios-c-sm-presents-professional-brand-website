@@ -47,7 +47,7 @@ export default function App() {
 
   if (isInitializing) {
     return (
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <ThemeProvider attribute="class" forcedTheme="light">
         <div className="flex min-h-screen items-center justify-center bg-background">
           <div className="text-center">
             <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent mx-auto" />
@@ -60,7 +60,7 @@ export default function App() {
 
   if (paymentStatus === 'success') {
     return (
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <ThemeProvider attribute="class" forcedTheme="light">
         <div className="min-h-screen bg-background">
           <Header />
           <PaymentSuccess onClose={() => setPaymentStatus(null)} />
@@ -74,7 +74,7 @@ export default function App() {
 
   if (paymentStatus === 'failure') {
     return (
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <ThemeProvider attribute="class" forcedTheme="light">
         <div className="min-h-screen bg-background">
           <Header />
           <PaymentFailure onClose={() => setPaymentStatus(null)} />
@@ -87,7 +87,7 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+    <ThemeProvider attribute="class" forcedTheme="light">
       <div className="min-h-screen bg-background">
         <Header />
         <main>

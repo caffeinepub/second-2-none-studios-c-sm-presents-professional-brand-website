@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 22,
+  "projectStateVersion": 28,
   "summary": "An Internet Computer (ICP) canister-backed professional brand website for Dr. Shane J. Charbonnet, providing a one-page React + Tailwind SPA with Internet Identity auth, member gating, Stripe Checkout (HTTP outcalls) and prominent PayPal payment portal links, plus content sections for publications/books (Amazon links), training videos (YouTube links), and training documents (PDF downloads) with clear \"Training Documents\" separation under Training Videos. The site also includes a soundtrack area with a \"Play Soundtrack\" control and a neon-lime \"Site Soundtrack\" label above three left/center/right YouTube items, and a bottom credentials area showcasing diplomas and related images; ongoing work is constrained by recurring Caffeine credit-sync/lockout and deployment reservation failures.",
   "architectural_notes": [
     "ICP architecture: Motoko canister (backend/main.mo) exposes query/shared methods; frontend creates an authenticated actor using Internet Identity.",
@@ -26,7 +26,7 @@
     "Backend includes member-only product/video/appointment creation endpoints, but the current UI sections for Booking/Media show access gates without implementing booking forms or premium media playback.",
     "Training Documents section intermittently showed unintended/unauthorized PDF entries; needs strict control so only user-provided PDFs are displayed, with correct public vs member-only placement."
   ],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "IF-1",
@@ -317,6 +317,70 @@
         "REQ-4"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-fix-the-training-documents-entries-2-and-3-so-that-clicking-their-pdf-links-opens-the-correct-pdf-file-instead-of-returning-the-visitor-back-to-the-main-website-page",
+      "title": "Fix the Training Documents entries #2 and #3 so that clicking their PDF links opens the correct PDF file (instead of returning the visitor back to the main website page).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-training-documents-link-generation-in-the-trainingvideos-ui-to-safely-handle-filenames-containing-spaces-and-special-characters-by-properly-url-encoding-the-documenturl-portion-when-building-assets-links",
+      "title": "Update the Training Documents link generation in the TrainingVideos UI to safely handle filenames containing spaces and special characters by properly URL-encoding the `documentUrl` portion when building `/assets/...` links.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-hero-section-add-a-text-based-site-introduction-at-the-very-top-of-the-homepage-content-stack-positioned-directly-under-the-large-portrait-image-and-directly-above-the-simply-shane-designs-c-sm-and-presents-headings",
+      "title": "In the Hero section, add a text-based site introduction at the very top of the homepage content stack, positioned directly under the large portrait image and directly above the “Simply Shane Designs (c)sm” and “-- PRESENTS --” headings.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-the-intro-text-exactly-as-provided-verbatim-and-apply-the-requested-spacing-insert-two-sentence-double-spacing-two-line-breaks-equivalent-vertical-spacing-before-the-start-of-the-intro-content-within-the-intro-block",
+      "title": "Render the intro text exactly as provided (verbatim), and apply the requested spacing: insert two-sentence/double-spacing (two line breaks / equivalent vertical spacing) before the start of the intro content within the intro block.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-visually-encase-the-intro-text-content-in-a-square-shaped-neon-green-border-not-rounded-ensuring-the-border-color-is-neon-green-and-the-overall-container-reads-as-a-square-box-framing-the-text",
+      "title": "Visually encase the intro text content in a square-shaped neon green border (not rounded), ensuring the border color is neon green and the overall container reads as a square/box framing the text.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-because-the-intro-text-is-a-temporary-replacement-for-the-intro-audio-upload-update-the-hero-section-so-that-the-current-intro-audio-player-does-not-appear-at-the-same-time-as-the-new-intro-text-block-in-that-position",
+      "title": "Because the intro text is a temporary replacement for the intro audio upload, update the Hero section so that the current intro audio player does not appear at the same time as the new intro text block in that position.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-force-the-site-to-render-in-the-light-theme-so-the-global-background-is-white-not-dark-black-regardless-of-the-user-s-system-theme-settings",
+      "title": "Force the site to render in the light theme so the global background is white (not dark/black), regardless of the user’s system theme settings.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-any-explicitly-dark-ui-surfaces-that-conflict-with-the-new-white-background-so-text-remains-highly-readable-including-the-header-brand-pill-button-background-and-the-hero-intro-text-container-background",
+      "title": "Update any explicitly dark UI surfaces that conflict with the new white background so text remains highly readable, including the Header brand pill/button background and the Hero intro text container background.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -393,6 +457,26 @@
     {
       "id": "AR-12",
       "summary": "Add a short site introduction media at the very top of the homepage: place an intro video (or audio-to-video-style embed) directly under the large portrait photo and directly above the “Simply Shane Designs (c)sm -- PRESENTS --” line",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Ensure the backend training documents catalog returns documentUrl values for Training Document #2 and Training Document #3 that exactly match the corresponding PDF static asset filenames shipped in the frontend.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add a top-of-page text-based site introduction (temporary replacement for intro audio upload): place directly above the “Simply Shane Designs (c)sm -- PRESENTS --” line with two-sentence/double-spacing before it, and visually encase the text in a square-shaped neon green border.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Update site styling to use a white background (instead of black) to improve readability",
       "reqIds": [],
       "status": "pending"
     }

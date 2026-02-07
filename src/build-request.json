@@ -1,68 +1,54 @@
 {
   "kind": "build_request",
-  "title": "Embed uploaded intro audio under hero portrait on homepage",
-  "priority": "normal",
+  "title": "Switch site background from black/dark to white for improved readability",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-3",
-      "text": "Add an intro audio player to the top of the homepage within the existing Hero section, positioned directly under the large portrait image and directly above the “Simply Shane Designs (c)sm” / “-- PRESENTS --” headings.",
+      "id": "REQ-12",
+      "text": "Force the site to render in the light theme so the global background is white (not dark/black), regardless of the user’s system theme settings.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "recent-messages"
         ],
         "quotes": [
-          "Thanks for your patience, Aura. And, without more unnecessary delay, here is the audio file to integrate within the website.",
-          "Next, I want to upload a short introduction video to the site. To be placed at the top of site and right-under my quite large photo!",
-          "Right above 'Simply Shane Designs (c)sm -- PRESENTS --"
+          "Unfortunately, the (black) background is too-too hard to read. Instead, make the background (white)."
         ]
       },
       "acceptanceCriteria": [
-        "On the homepage, an audio player is visible in the Hero area directly below the portrait and above the “Simply Shane Designs (c)sm” / “-- PRESENTS --” text.",
-        "The audio player can play/pause the uploaded intro audio and shows standard controls (at minimum: play/pause and seek).",
-        "The new audio player does not break or remove the existing Hero content, including the portrait, headings, subtitle, and the “Site Soundtrack” section."
+        "On a device/browser set to dark mode, the app still renders with a light/white background.",
+        "The root page background (body/app shell) appears white/light rather than black/dark across all routes (normal, payment success, payment failure, loading state)."
       ]
     },
     {
-      "id": "REQ-4",
-      "text": "Store the uploaded audio file as a frontend static asset and wire the Hero audio player to that exact file (use the original uploaded filename; do not add placeholder or sample media).",
+      "id": "REQ-13",
+      "text": "Update any explicitly dark UI surfaces that conflict with the new white background so text remains highly readable, including the Header brand pill/button background and the Hero intro text container background.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "recent-messages"
         ],
         "quotes": [
-          "here is the audio file to integrate within the website."
+          "the (black) background is too-too hard to read. Instead, make the background (white)."
         ]
       },
       "acceptanceCriteria": [
-        "The uploaded audio file exists in the frontend static assets (served under the /assets/ path) and is referenced by the Hero audio player.",
-        "No other audio/video files are added as placeholders.",
-        "A fresh load of the site can play the intro audio without requiring authentication or membership."
+        "The Header brand area no longer uses a black background that reduces readability against the white/light page (e.g., replace with a light/neutral surface using existing theme tokens).",
+        "The Hero intro text block (neon green bordered box) uses a light/white (or very light) fill so the paragraph text is easy to read on the white-themed page.",
+        "Text contrast meets a clearly readable standard in the Hero intro block, Header, and other primary copy areas (no dark-on-dark or low-contrast combinations introduced by the theme switch)."
       ]
     }
   ],
   "constraints": [
-    "Frontend files under frontend/immutablePaths must not be modified.",
-    "Do not introduce additional backend services or external storage; use frontend static assets for the uploaded audio file."
+    "Do not edit files under frontend/src/components/ui (read-only components).",
+    "Keep the existing React + Tailwind + Shadcn + React Query stack; no new frameworks or external styling libraries."
   ],
   "nonGoals": [
-    "Do not implement audio-to-video conversion.",
-    "Do not add new authentication, membership gating, or payment requirements for the intro audio.",
-    "Do not redesign the overall Hero section beyond inserting the requested intro audio player in the specified location."
+    "Do not change backend behavior, schemas, or data catalogs.",
+    "Do not redesign layout or change content/wording of existing sections beyond what is needed to improve readability under a white background."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }
