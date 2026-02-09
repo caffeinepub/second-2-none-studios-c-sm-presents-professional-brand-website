@@ -1,10 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Improve site readability by forcing a light theme with a white background across the entire app, regardless of the user’s system dark mode setting.
+**Goal:** Remove the unintended single leading whitespace before the hero intro paragraph text in `Hero.tsx` while keeping styling and post-message spacing unchanged.
 
 **Planned changes:**
-- Force the frontend to render in light theme so the global background remains white/light on all routes and states (normal pages, payment success/failure, loading).
-- Update any explicitly dark UI surfaces that clash with the new white background (notably the Header brand pill/button background and the Hero intro text container background) to light/neutral surfaces so text remains highly readable.
+- Update `frontend/src/components/Hero.tsx` to eliminate the single leading whitespace character before the intro paragraph that starts with “Hello there, and welcome…”.
+- Preserve the existing intro box styling (background/border/spacing classes) and ensure spacing/layout after the intro block remains unchanged.
 
-**User-visible outcome:** The site consistently displays a white/light background and readable UI surfaces even when the device/browser is set to dark mode, with improved text contrast in the header and hero intro area.
+**User-visible outcome:** The intro paragraph in the hero section starts immediately with “Hello…” (no visible leading space/indent), with the rest of the layout and styling appearing the same as before.

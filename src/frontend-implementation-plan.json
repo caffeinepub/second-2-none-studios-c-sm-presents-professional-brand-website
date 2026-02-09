@@ -1,46 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Force light theme and update dark UI surfaces for readability",
+  "title": "Remove leading whitespace before Hero intro paragraph",
   "requirements": [
     {
-      "id": "REQ-12",
-      "summary": "Force the app to always render in light theme (white background) regardless of the user’s system theme.",
+      "id": "REQ-1",
+      "summary": "Remove the single leading whitespace before the Hero intro paragraph text while preserving the existing intro box styling and downstream spacing.",
       "acceptanceCriteria": [
-        "On a device/browser set to dark mode, the app still renders with a light/white background.",
-        "The root page background (body/app shell) appears white/light rather than black/dark across all routes (normal, payment success, payment failure, loading state)."
+        "The rendered intro paragraph begins immediately with the letter “H” in “Hello”, with no visible leading space/indent before the first character.",
+        "No additional whitespace is added after the intro message; the layout below the intro block remains visually unchanged.",
+        "The intro block’s existing styling (including its background/border/spacing classes) remains unchanged aside from eliminating the leading whitespace artifact."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/components/Hero.tsx",
           "operation": "modify",
-          "description": "Update the next-themes ThemeProvider configuration to force the light theme (e.g., forcedTheme=\"light\" and disable system theming) so the app never applies the dark theme classes/variables, including for loading and payment success/failure renders."
-        },
-        {
-          "path": "frontend/src/main.tsx",
-          "operation": "modify",
-          "description": "Add a small startup safeguard to ensure any persisted/previously-applied dark theme class is removed from the root element before the app renders, ensuring a consistently white/light background on initial load."
-        }
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "summary": "Replace explicitly dark UI surfaces (Header brand pill and Hero intro box) with light/neutral fills so text remains highly readable on the white background.",
-      "acceptanceCriteria": [
-        "The Header brand area no longer uses a black background that reduces readability against the white/light page (e.g., replace with a light/neutral surface using existing theme tokens).",
-        "The Hero intro text block (neon green bordered box) uses a light/white (or very light) fill so the paragraph text is easy to read on the white-themed page.",
-        "Text contrast meets a clearly readable standard in the Hero intro block, Header, and other primary copy areas (no dark-on-dark or low-contrast combinations introduced by the theme switch)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/Header.tsx",
-          "operation": "modify",
-          "description": "Update the Header brand pill/button styling to remove the explicit dark/black background and replace it with a light/neutral surface (e.g., card/background + border + subtle shadow) while preserving the existing layout and hover/scroll behavior."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Update the .neon-green-intro-box utility class to use a light/white (or very light) background fill (keeping the neon green border) and ensure foreground text remains high-contrast and readable on the new light theme."
+          "description": "Update the intro <p> content so that the first character 'H' in “Hello there, and welcome…” is not preceded by a newline/indentation whitespace text node (caused by formatting combined with whitespace-pre-wrap). Keep the neon-green-intro-box wrapper and all existing className styling intact, and ensure spacing after the message and below the intro block is unchanged."
         }
       ]
     }

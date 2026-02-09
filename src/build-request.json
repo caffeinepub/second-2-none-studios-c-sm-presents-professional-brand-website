@@ -1,51 +1,34 @@
 {
   "kind": "build_request",
-  "title": "Switch site background from black/dark to white for improved readability",
-  "priority": "high",
+  "title": "Remove single leading whitespace before hero intro text",
+  "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-12",
-      "text": "Force the site to render in the light theme so the global background is white (not dark/black), regardless of the user’s system theme settings.",
+      "id": "REQ-1",
+      "text": "In `frontend/src/components/Hero.tsx`, remove the single leading whitespace that appears before the intro paragraph text that begins with “Hello there, and welcome…”, while keeping the existing white-background intro box styling and leaving spacing after the message unchanged.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-messages"
+          "msg-1"
         ],
         "quotes": [
-          "Unfortunately, the (black) background is too-too hard to read. Instead, make the background (white)."
+          "Yes, that one-spabe before the words, \"Hello there and welcome....\" Only remove the one-space (before). For the (after) -- with no space, keep it as-is!"
         ]
       },
       "acceptanceCriteria": [
-        "On a device/browser set to dark mode, the app still renders with a light/white background.",
-        "The root page background (body/app shell) appears white/light rather than black/dark across all routes (normal, payment success, payment failure, loading state)."
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "text": "Update any explicitly dark UI surfaces that conflict with the new white background so text remains highly readable, including the Header brand pill/button background and the Hero intro text container background.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "recent-messages"
-        ],
-        "quotes": [
-          "the (black) background is too-too hard to read. Instead, make the background (white)."
-        ]
-      },
-      "acceptanceCriteria": [
-        "The Header brand area no longer uses a black background that reduces readability against the white/light page (e.g., replace with a light/neutral surface using existing theme tokens).",
-        "The Hero intro text block (neon green bordered box) uses a light/white (or very light) fill so the paragraph text is easy to read on the white-themed page.",
-        "Text contrast meets a clearly readable standard in the Hero intro block, Header, and other primary copy areas (no dark-on-dark or low-contrast combinations introduced by the theme switch)."
+        "The rendered intro paragraph begins immediately with the letter “H” in “Hello”, with no visible leading space/indent before the first character.",
+        "No additional whitespace is added after the intro message; the layout below the intro block remains visually unchanged.",
+        "The intro block’s existing styling (including its background/border/spacing classes) remains unchanged aside from eliminating the leading whitespace artifact."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (read-only components).",
-    "Keep the existing React + Tailwind + Shadcn + React Query stack; no new frameworks or external styling libraries."
+    "Do not edit any files under `frontend/src/components/ui` or other paths listed as immutable in SYSTEM_CONTEXT.",
+    "Backend changes are not required for this request."
   ],
   "nonGoals": [
-    "Do not change backend behavior, schemas, or data catalogs.",
-    "Do not redesign layout or change content/wording of existing sections beyond what is needed to improve readability under a white background."
+    "Do not restore or modify the audio player / audio-file setting bar in this change (it is explicitly paused).",
+    "Do not rewrite or reformat the intro message text content beyond removing the single leading whitespace character."
   ],
   "imageRequirements": {
     "required": [],

@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-force-the-site-to-render-in-the-light-theme-so-the-global-background-is-white-not-dark-black-regardless-of-the-user-s-system-theme-settings",
-      "featureTitle": "Force the site to render in the light theme so the global background is white (not dark/black), regardless of the user’s system theme settings.",
+      "featureId": "feature-in-frontend-src-components-hero-tsx-remove-the-single-leading-whitespace-that-appears-before-the-intro-paragraph-text-that-begins-with-hello-there-and-welcome-while-keeping-the-existing-white-background-intro-box-styling-and-leaving-spacing-after-the-message-unchanged",
+      "featureTitle": "In `frontend/src/components/Hero.tsx`, remove the single leading whitespace that appears before the intro paragraph text that begins with “Hello there, and welcome…”, while keeping the existing white-background intro box styling and leaving spacing after the message unchanged.",
       "files": [
-        "frontend/src/App.tsx"
+        "frontend/src/components/Hero.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -19,30 +19,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-12"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-any-explicitly-dark-ui-surfaces-that-conflict-with-the-new-white-background-so-text-remains-highly-readable-including-the-header-brand-pill-button-background-and-the-hero-intro-text-container-background",
-      "featureTitle": "Update any explicitly dark UI surfaces that conflict with the new white background so text remains highly readable, including the Header brand pill/button background and the Hero intro text container background.",
-      "files": [
-        "frontend/src/components/Header.tsx",
-        "frontend/src/index.css"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "http-outcalls@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-13"
+        "REQ-1"
       ],
       "confidence": "high"
     }

@@ -136,9 +136,7 @@ export default function Hero() {
             <div className="h-8" />
             <div className="h-8" />
             
-            <p className="text-base md:text-lg text-foreground leading-relaxed whitespace-pre-wrap px-4">
-              Hello there, and welcome to my site. I am the Doctor of UDesign, owner, founder of '[[ Simply Shane Designs ]] (c)sm'  I just wanted to take a few moments to welcome you to this site, to tell you how thrilled and electrified I am that you're actually here with us, and it is my desire, deepest desire, that the content that flows, that's attached, that's uploaded to this site will greatly benefit you. So stay connected, join the community. If you have any questions, feel free. Thank you very much. Let's begin.
-            </p>
+            <p className="text-base md:text-lg text-foreground leading-relaxed whitespace-pre-wrap px-4">Hello there, and welcome to my site. I am the Doctor of UDesign, owner, founder of '[[ Simply Shane Designs ]] (c)sm'  I just wanted to take a few moments to welcome you to this site, to tell you how thrilled and electrified I am that you're actually here with us, and it is my desire, deepest desire, that the content that flows, that's attached, that's uploaded to this site will greatly benefit you. So stay connected, join the community. If you have any questions, feel free. Thank you very much. Let's begin.</p>
           </div>
 
           {/* Brand heading with Renaissance-golden styling */}
