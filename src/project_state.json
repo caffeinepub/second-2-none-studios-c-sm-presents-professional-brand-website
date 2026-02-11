@@ -1,14 +1,16 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
+  "summary": "Website adjustments: remove unwanted leading space before the INTRO paragraph text under the user photo, and fix Training Document #3 PDF access so the button opens the PDF instead of looping back to the website (PDF reupload and correct linking).",
   "architectural_notes": [],
-  "known_issues": [],
+  "known_issues": [
+    "Training Document #3 PDF access button ('The attached PDF file (11,939 KB)') loops back to the website instead of opening the PDF."
+  ],
   "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-in-frontend-src-components-hero-tsx-remove-the-single-leading-whitespace-that-appears-before-the-intro-paragraph-text-that-begins-with-hello-there-and-welcome-while-keeping-the-existing-white-background-intro-box-styling-and-leaving-spacing-after-the-message-unchanged",
-      "title": "In `frontend/src/components/Hero.tsx`, remove the single leading whitespace that appears before the intro paragraph text that begins with “Hello there, and welcome…”, while keeping the existing white-background intro box styling and leaving spacing after the message unchanged.",
+      "id": "feature-update-training-document-3-title-transforming-adversity-into-lasting-professional-and-personal-maturity-so-the-line-2-link-text-the-attached-pdf-file-11-939-kb-opens-the-correct-pdf-instead-of-looping-back-to-the-website",
+      "title": "Update Training Document #3 (title: \"Transforming Adversity into Lasting Professional and Personal Maturity.\") so the line-2 link text \"The attached PDF file (11,939 KB)\" opens the correct PDF instead of looping back to the website.",
       "reqIds": [
         "REQ-1"
       ],
@@ -18,18 +20,26 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Remove the single leading whitespace before the intro text line beginning with “Hello there and welcome…”, keeping the white background and leaving spacing after the message unchanged.",
+      "summary": "Remove the single unwanted leading space before the INTRO paragraph text under the user photo (\"Hello there, and welcome to my site...\").",
+      "reqIds": [],
+      "status": "in_progress"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Fix Training Document #3 (\"Transforming Adversity into Lasting Professional and Personal Maturity\") access button so it opens the attached PDF instead of looping back to the website; reupload PDF and update link/target.",
       "reqIds": [],
       "status": "pending"
     },
     {
-      "id": "AR-2",
-      "summary": "Restore the audio-file player bar (browser audio controls) directly beneath the portrait image with exactly one blank line of spacing above it.",
-      "reqIds": [],
+      "id": "AR-4",
+      "summary": "Add the reuploaded PDF file for Training Document #3 as a static frontend asset under the app’s /assets/ path, and ensure the backend’s Training Document #3 `documentUrl` exactly matches the stored filename (including spaces/case) so `getStaticAssetUrl(documentUrl)` resolves correctly.",
+      "reqIds": [
+        "REQ-2"
+      ],
       "status": "pending"
     }
   ],
-  "projectName": "Remove single leading whitespace before hero intro text",
+  "projectName": "Fix Training Document #3 PDF link so it opens the reuploaded file",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

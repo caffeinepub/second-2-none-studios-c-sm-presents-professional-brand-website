@@ -4,6 +4,7 @@ import Nat "mo:core/Nat";
 import Principal "mo:core/Principal";
 import Runtime "mo:core/Runtime";
 import Time "mo:core/Time";
+import Migration "migration";
 
 import Storage "blob-storage/Storage";
 import Stripe "stripe/stripe";
@@ -14,6 +15,8 @@ import MixinStorage "blob-storage/Mixin";
 
 // IMPORTANT: Data migration if you modify types or values in stateful variables. Use includes, maps, etc.
 
+// MUST INCLUDE migration function: 
+(with migration = Migration.run)
 actor {
   // ==== Authorization & Store ====
   let accessControlState = AccessControl.initState();

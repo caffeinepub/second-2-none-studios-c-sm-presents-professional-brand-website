@@ -1,21 +1,47 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Remove leading whitespace before Hero intro paragraph",
+  "title": "Fix Training Document #3 PDF link to open the correct reuploaded static asset",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Remove the single leading whitespace before the Hero intro paragraph text while preserving the existing intro box styling and downstream spacing.",
+      "summary": "Ensure Training Document #3 line-2 link opens the correct PDF (not the SPA) and preserves the exact link text.",
       "acceptanceCriteria": [
-        "The rendered intro paragraph begins immediately with the letter “H” in “Hello”, with no visible leading space/indent before the first character.",
-        "No additional whitespace is added after the intro message; the layout below the intro block remains visually unchanged.",
-        "The intro block’s existing styling (including its background/border/spacing classes) remains unchanged aside from eliminating the leading whitespace artifact."
+        "In the Training Documents section, clicking the line-2 link for document #3 opens the PDF in a new tab (browser loads a PDF document, not the SPA home page).",
+        "The PDF URL resolves successfully (no redirect to index.html / no 404).",
+        "The displayed link text remains exactly: \"The attached PDF file (11,939 KB)\"."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Hero.tsx",
+          "path": "frontend/src/utils/staticAssetUrl.ts",
           "operation": "modify",
-          "description": "Update the intro <p> content so that the first character 'H' in “Hello there, and welcome…” is not preceded by a newline/indentation whitespace text node (caused by formatting combined with whitespace-pre-wrap). Keep the neon-green-intro-box wrapper and all existing className styling intact, and ensure spacing after the message and below the intro block is unchanged."
+          "description": "Harden getStaticAssetUrl() so it safely produces a working /assets/ URL without accidentally generating SPA-routed URLs (e.g., correctly handle inputs that already include an /assets/ prefix or absolute http(s) URLs)."
+        },
+        {
+          "path": "frontend/src/components/TrainingVideos.tsx",
+          "operation": "modify",
+          "description": "Ensure the document #3 anchor href resolves to the correct static PDF asset while preserving the exact displayed link text from shortDescription (\"The attached PDF file (11,939 KB)\") and keeping target=_blank + rel attributes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add the reuploaded Training Document #3 PDF as a static frontend asset under /assets and ensure the generated href encodes the filename correctly for document #3.",
+      "acceptanceCriteria": [
+        "The reuploaded PDF exists in the frontend build output under `/assets/` and can be fetched directly via browser.",
+        "`backend/main.mo` returns `documentUrl` for training document id=3 that matches the uploaded PDF filename exactly.",
+        "The generated href in `frontend/src/components/TrainingVideos.tsx` points to a working `/assets/<encoded-filename>.pdf` URL for document #3."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/Transforming Adversity into Lasting Professional and Personal Maturity.pdf",
+          "operation": "create",
+          "description": "Add the reuploaded Training Document #3 PDF as a static asset so it is served from the app’s /assets/ path."
+        },
+        {
+          "path": "frontend/src/components/TrainingVideos.tsx",
+          "operation": "modify",
+          "description": "For training document id=3, ensure the computed href uses getStaticAssetUrl() with the exact stored PDF filename \"Transforming Adversity into Lasting Professional and Personal Maturity.pdf\" (including spaces/case) so the resulting /assets/ URL works even if backend metadata is temporarily stale."
         }
       ]
     }

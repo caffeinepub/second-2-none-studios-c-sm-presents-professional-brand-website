@@ -1,38 +1,46 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-09T20:26:11.032Z",
-  "summary": "Build request targets a single whitespace removal in `frontend/src/components/Hero.tsx`. The provided diff excerpt for `Hero.tsx` is truncated before the relevant intro paragraph content, so the requested change cannot be verified from the evidence shown. Two additional files were modified that are not part of the request.",
+  "generatedAt": "2026-02-11T00:54:02.704Z",
+  "summary": "The diff adds a new URL-encoding helper for static assets and introduces a backend migration module wired into `backend/main.mo`, but it does not show the required PDF asset addition or the specific Training Document #3 `documentUrl` update / frontend link wiring needed to ensure the correct PDF opens.",
   "missing_requirements": [
     {
       "id": "REQ-1",
-      "requirement": "In `frontend/src/components/Hero.tsx`, remove the single leading whitespace before the intro paragraph text that begins with “Hello there, and welcome…”, without changing the intro block styling or spacing after the message.",
-      "reason": "The `Hero.tsx` diff is truncated and does not include the intro paragraph text/content region, so there is no visible evidence that the leading whitespace was removed (or that styling/spacing remained unchanged).",
+      "requirement": "Update Training Document #3 so the line-2 link text \"The attached PDF file (11,939 KB)\" opens the correct PDF (not looping back to the website) and opens in a new tab.",
+      "reason": "No changes are shown to the Training Documents rendering component (e.g., `frontend/src/components/TrainingVideos.tsx`) or to the training document #3 metadata in the backend that would change the actual link target/behavior. Only a generic `getStaticAssetUrl` utility was modified/added.",
       "evidence": [
-        "frontend/src/components/Hero.tsx (truncated)"
+        "frontend/src/utils/staticAssetUrl.ts",
+        "backend/main.mo",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Add the reuploaded PDF under `/assets/` and ensure backend Training Document id=3 `documentUrl` exactly matches the stored filename so `getStaticAssetUrl(documentUrl)` resolves correctly; the generated href in `frontend/src/components/TrainingVideos.tsx` must point to a working `/assets/<encoded-filename>.pdf`.",
+      "reason": "The diff does not show any PDF file added under a frontend `/assets/` path, does not show `backend/main.mo` returning an updated `documentUrl` for training document id=3, and does not show any change to `frontend/src/components/TrainingVideos.tsx` to use the corrected filename/href for document #3.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/utils/staticAssetUrl.ts",
+        "frontend-file-summaries.txt"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Modified `frontend-file-summaries.txt` (documentation/state summary file) even though the request only asked for a whitespace fix in `frontend/src/components/Hero.tsx`.",
-      "reason": "Not requested in BuildRequest; changes outside the specified file are unnecessary for REQ-1.",
+      "description": "Added a backend state migration module and wired migration into the main actor.",
+      "reason": "BuildRequest explicitly said this change should not require migration if only updating hardcoded document metadata and static assets; nevertheless `backend/migration.mo` was added and `backend/main.mo` now imports/uses it.",
       "evidence": [
-        "frontend-file-summaries.txt (truncated)"
-      ]
-    },
-    {
-      "description": "Modified `project_state.json` even though the request did not ask to update project tracking/state files.",
-      "reason": "Not requested in BuildRequest; only a code change in `frontend/src/components/Hero.tsx` was required.",
-      "evidence": [
-        "project_state.json"
+        "backend/migration.mo",
+        "backend/main.mo"
       ]
     }
   ],
-  "confidence": 0.62,
+  "confidence": 0.74,
   "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/components/Hero.tsx",
+    "frontend/src/utils/staticAssetUrl.ts",
     "project_state.json"
   ]
 }

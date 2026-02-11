@@ -1,35 +1,47 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-09T20:26:11.034Z",
+  "generatedAt": "2026-02-11T00:54:02.707Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
+    "total": 2,
     "implemented": 1,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "In `frontend/src/components/Hero.tsx`, remove the single leading whitespace that appears before the intro paragraph text that begins with “Hello there, and welcome…”, while keeping the existing white-background intro box styling and leaving spacing after the message unchanged.",
+        "summary": "Update Training Document #3 (title: \"Transforming Adversity into Lasting Professional and Personal Maturity.\") so the line-2 link text \"The attached PDF file (11,939 KB)\" opens the correct PDF instead of looping back to the website.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/Hero.tsx"
+          "frontend/src/utils/staticAssetUrl.ts",
+          "frontend/src/components/TrainingVideos.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/Hero.tsx"
+          "frontend/src/utils/staticAssetUrl.ts"
         ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Add the reuploaded PDF file for Training Document #3 as a static frontend asset under the app’s /assets/ path, and ensure the backend’s Training Document #3 `documentUrl` exactly matches the stored filename (including spaces/case) so `getStaticAssetUrl(documentUrl)` resolves correctly.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/public/assets/Transforming Adversity into Lasting Professional and Personal Maturity.pdf",
+          "frontend/src/components/TrainingVideos.tsx"
+        ],
+        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/Hero.tsx",
+    "frontend/src/utils/staticAssetUrl.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

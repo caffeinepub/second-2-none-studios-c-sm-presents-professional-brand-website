@@ -1,37 +1,67 @@
 {
   "kind": "build_request",
-  "title": "Remove single leading whitespace before hero intro text",
+  "title": "Fix Training Document #3 PDF link so it opens the reuploaded file",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "In `frontend/src/components/Hero.tsx`, remove the single leading whitespace that appears before the intro paragraph text that begins with “Hello there, and welcome…”, while keeping the existing white-background intro box styling and leaving spacing after the message unchanged.",
-      "target": "frontend",
+      "text": "Update Training Document #3 (title: \"Transforming Adversity into Lasting Professional and Personal Maturity.\") so the line-2 link text \"The attached PDF file (11,939 KB)\" opens the correct PDF instead of looping back to the website.",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-15"
         ],
         "quotes": [
-          "Yes, that one-spabe before the words, \"Hello there and welcome....\" Only remove the one-space (before). For the (after) -- with no space, keep it as-is!"
+          "Next, for training document #3, \"Transforming Adversity into Lasting Professional and Personal Maturity\". When selecting the access button 'The attached PDF file (11,939 KB)', it does not lead to the document. Rather, it does a loop right back to the website. I am reuploading the pdf file for that line-2. So when selecting, the document opens-up!"
         ]
       },
       "acceptanceCriteria": [
-        "The rendered intro paragraph begins immediately with the letter “H” in “Hello”, with no visible leading space/indent before the first character.",
-        "No additional whitespace is added after the intro message; the layout below the intro block remains visually unchanged.",
-        "The intro block’s existing styling (including its background/border/spacing classes) remains unchanged aside from eliminating the leading whitespace artifact."
+        "In the Training Documents section, clicking the line-2 link for document #3 opens the PDF in a new tab (browser loads a PDF document, not the SPA home page).",
+        "The PDF URL resolves successfully (no redirect to index.html / no 404).",
+        "The displayed link text remains exactly: \"The attached PDF file (11,939 KB)\"."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add the reuploaded PDF file for Training Document #3 as a static frontend asset under the app’s /assets/ path, and ensure the backend’s Training Document #3 `documentUrl` exactly matches the stored filename (including spaces/case) so `getStaticAssetUrl(documentUrl)` resolves correctly.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-15"
+        ],
+        "quotes": [
+          "Here is the pdf-file:"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The reuploaded PDF exists in the frontend build output under `/assets/` and can be fetched directly via browser.",
+        "`backend/main.mo` returns `documentUrl` for training document id=3 that matches the uploaded PDF filename exactly.",
+        "The generated href in `frontend/src/components/TrainingVideos.tsx` points to a working `/assets/<encoded-filename>.pdf` URL for document #3."
       ]
     }
   ],
   "constraints": [
-    "Do not edit any files under `frontend/src/components/ui` or other paths listed as immutable in SYSTEM_CONTEXT.",
-    "Backend changes are not required for this request."
+    "Use English for any user-facing text.",
+    "Do not modify files under `frontend/src/components/ui` or other immutable frontend paths listed in SYSTEM_CONTEXT.",
+    "Backend must remain a single Motoko actor in `backend/main.mo`; only add `backend/migration.mo` if state migration is required (this change should not require migration if only updating hardcoded document metadata and static assets)."
   ],
   "nonGoals": [
-    "Do not restore or modify the audio player / audio-file setting bar in this change (it is explicitly paused).",
-    "Do not rewrite or reformat the intro message text content beyond removing the single leading whitespace character."
+    "Do not change the titles, ordering, or formatting of other training documents or training videos.",
+    "Do not change access control/membership gating behavior for training content.",
+    "Do not redesign the Training Documents UI beyond what is necessary to fix the broken link."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-in-frontend-src-components-hero-tsx-remove-the-single-leading-whitespace-that-appears-before-the-intro-paragraph-text-that-begins-with-hello-there-and-welcome-while-keeping-the-existing-white-background-intro-box-styling-and-leaving-spacing-after-the-message-unchanged",
-      "featureTitle": "In `frontend/src/components/Hero.tsx`, remove the single leading whitespace that appears before the intro paragraph text that begins with “Hello there, and welcome…”, while keeping the existing white-background intro box styling and leaving spacing after the message unchanged.",
+      "featureId": "feature-update-training-document-3-title-transforming-adversity-into-lasting-professional-and-personal-maturity-so-the-line-2-link-text-the-attached-pdf-file-11-939-kb-opens-the-correct-pdf-instead-of-looping-back-to-the-website",
+      "featureTitle": "Update Training Document #3 (title: \"Transforming Adversity into Lasting Professional and Personal Maturity.\") so the line-2 link text \"The attached PDF file (11,939 KB)\" opens the correct PDF instead of looping back to the website.",
       "files": [
-        "frontend/src/components/Hero.tsx"
+        "frontend/src/utils/staticAssetUrl.ts"
       ],
       "components": [
         "authorization@4.0.0",

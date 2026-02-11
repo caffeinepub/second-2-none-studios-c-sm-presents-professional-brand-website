@@ -1,10 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Remove the unintended single leading whitespace before the hero intro paragraph text in `Hero.tsx` while keeping styling and post-message spacing unchanged.
+**Goal:** Fix the broken PDF link for Training Document #3 so it opens the reuploaded PDF file instead of looping back to the website.
 
 **Planned changes:**
-- Update `frontend/src/components/Hero.tsx` to eliminate the single leading whitespace character before the intro paragraph that starts with “Hello there, and welcome…”.
-- Preserve the existing intro box styling (background/border/spacing classes) and ensure spacing/layout after the intro block remains unchanged.
+- Add the reuploaded Training Document #3 PDF as a static frontend asset under `/assets/`.
+- Update the backend metadata for training document id=3 so `documentUrl` exactly matches the uploaded PDF filename (including spaces/case) to ensure `getStaticAssetUrl(documentUrl)` resolves correctly.
+- Ensure the Training Documents UI link for document #3 line-2 keeps the exact link text “The attached PDF file (11,939 KB)” and opens the PDF in a new browser tab.
 
-**User-visible outcome:** The intro paragraph in the hero section starts immediately with “Hello…” (no visible leading space/indent), with the rest of the layout and styling appearing the same as before.
+**User-visible outcome:** In the Training Documents section, clicking “The attached PDF file (11,939 KB)” for Training Document #3 opens the correct PDF in a new tab (and the PDF URL loads successfully without redirecting to the SPA home page or 404ing).
