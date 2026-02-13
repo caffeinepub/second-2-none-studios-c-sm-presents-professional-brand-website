@@ -45,23 +45,6 @@ export default function Credentials() {
               </div>
             </div>
           </div>
-
-          {/* Single blank line spacing */}
-          <div className="h-8" />
-
-          {/* Portrait Image */}
-          <div className="text-center space-y-6">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-500" />
-              <div className="relative bg-background/80 backdrop-blur-sm rounded-lg p-4 border border-amber-500/30 shadow-2xl">
-                <img
-                  src="/assets/sjc_1.13.26b.jpg"
-                  alt="Dr. Shane J Charbonnet Portrait"
-                  className="w-full h-auto rounded-md shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

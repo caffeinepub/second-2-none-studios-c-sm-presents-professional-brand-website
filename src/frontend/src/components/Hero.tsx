@@ -45,20 +45,6 @@ export default function Hero() {
           />
         </div>
 
-        {/* Middle layer - Layered background */}
-        <div
-          className="absolute inset-0 parallax-layer"
-          style={{
-            transform: `translate(${mousePosition.x * 0.8}px, ${mousePosition.y * 0.8}px)`,
-          }}
-        >
-          <img
-            src="/assets/generated/layered-background.dim_1920x1080.jpg"
-            alt=""
-            className="w-full h-full object-cover opacity-40"
-          />
-        </div>
-
         {/* Geometric overlay */}
         <div
           className="absolute inset-0 parallax-layer"

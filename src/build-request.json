@@ -1,54 +1,51 @@
 {
   "kind": "build_request",
-  "title": "Fix Training Document #3 PDF link so it opens the reuploaded file",
+  "title": "Remove the second top-of-page hero background image",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update Training Document #3 (title: \"Transforming Adversity into Lasting Professional and Personal Maturity.\") so the line-2 link text \"The attached PDF file (11,939 KB)\" opens the correct PDF instead of looping back to the website.",
-      "target": "both",
+      "text": "Remove the second photo/image shown near the top of the website page by deleting the Hero parallax background layer that renders `/assets/generated/layered-background.dim_1920x1080.jpg` in `frontend/src/components/Hero.tsx`.",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-15"
+          "msg-1"
         ],
         "quotes": [
-          "Next, for training document #3, \"Transforming Adversity into Lasting Professional and Personal Maturity\". When selecting the access button 'The attached PDF file (11,939 KB)', it does not lead to the document. Rather, it does a loop right back to the website. I am reuploading the pdf file for that line-2. So when selecting, the document opens-up!"
+          "Now for the second photo-image from the top of website page! Let's remove that one."
         ]
       },
       "acceptanceCriteria": [
-        "In the Training Documents section, clicking the line-2 link for document #3 opens the PDF in a new tab (browser loads a PDF document, not the SPA home page).",
-        "The PDF URL resolves successfully (no redirect to index.html / no 404).",
-        "The displayed link text remains exactly: \"The attached PDF file (11,939 KB)\"."
+        "When loading the homepage, the hero section no longer requests or displays `/assets/generated/layered-background.dim_1920x1080.jpg`.",
+        "The remaining hero background layers (celestial pattern, geometric overlay, renaissance sketch overlay, gradients) still render without visual breakage (no empty/blank layer artifacts)."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Add the reuploaded PDF file for Training Document #3 as a static frontend asset under the app’s /assets/ path, and ensure the backend’s Training Document #3 `documentUrl` exactly matches the stored filename (including spaces/case) so `getStaticAssetUrl(documentUrl)` resolves correctly.",
-      "target": "both",
+      "text": "If the static asset file exists in the repo, delete the corresponding static image file `/assets/generated/layered-background.dim_1920x1080.jpg` from frontend static assets so it no longer consumes project storage.",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-15"
+          "msg-1"
         ],
         "quotes": [
-          "Here is the pdf-file:"
+          "Now for the second photo-image from the top of website page! Let's remove that one."
         ]
       },
       "acceptanceCriteria": [
-        "The reuploaded PDF exists in the frontend build output under `/assets/` and can be fetched directly via browser.",
-        "`backend/main.mo` returns `documentUrl` for training document id=3 that matches the uploaded PDF filename exactly.",
-        "The generated href in `frontend/src/components/TrainingVideos.tsx` points to a working `/assets/<encoded-filename>.pdf` URL for document #3."
+        "The file `layered-background.dim_1920x1080.jpg` is removed from the frontend static assets (if it exists).",
+        "`npm`/Vite build completes successfully and the site loads without 404s related to the removed asset."
       ]
     }
   ],
   "constraints": [
-    "Use English for any user-facing text.",
-    "Do not modify files under `frontend/src/components/ui` or other immutable frontend paths listed in SYSTEM_CONTEXT.",
-    "Backend must remain a single Motoko actor in `backend/main.mo`; only add `backend/migration.mo` if state migration is required (this change should not require migration if only updating hardcoded document metadata and static assets)."
+    "Do not edit files under `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, or anything in `frontend/src/components/ui` (compose instead).",
+    "Keep all backend logic within the existing single Motoko actor (`backend/main.mo`); no backend changes are required for this request."
   ],
   "nonGoals": [
-    "Do not change the titles, ordering, or formatting of other training documents or training videos.",
-    "Do not change access control/membership gating behavior for training content.",
-    "Do not redesign the Training Documents UI beyond what is necessary to fix the broken link."
+    "Do not remove the main portrait image (`/assets/DrSJC-Grad.jpg`) unless explicitly requested.",
+    "Do not change any other hero background assets besides the specific second layer (`layered-background.dim_1920x1080.jpg`).",
+    "Do not address the missing Training Documents PDFs/storage-limit issues as part of this change."
   ],
   "imageRequirements": {
     "required": [],

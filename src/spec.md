@@ -1,11 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Fix the broken PDF link for Training Document #3 so it opens the reuploaded PDF file instead of looping back to the website.
+**Goal:** Remove the second hero background image layer from the top of the homepage.
 
 **Planned changes:**
-- Add the reuploaded Training Document #3 PDF as a static frontend asset under `/assets/`.
-- Update the backend metadata for training document id=3 so `documentUrl` exactly matches the uploaded PDF filename (including spaces/case) to ensure `getStaticAssetUrl(documentUrl)` resolves correctly.
-- Ensure the Training Documents UI link for document #3 line-2 keeps the exact link text “The attached PDF file (11,939 KB)” and opens the PDF in a new browser tab.
+- Update `frontend/src/components/Hero.tsx` to remove the parallax background layer that renders `/assets/generated/layered-background.dim_1920x1080.jpg`.
+- Delete `/assets/generated/layered-background.dim_1920x1080.jpg` from frontend static assets if it exists, ensuring the build and site load without missing-asset errors.
 
-**User-visible outcome:** In the Training Documents section, clicking “The attached PDF file (11,939 KB)” for Training Document #3 opens the correct PDF in a new tab (and the PDF URL loads successfully without redirecting to the SPA home page or 404ing).
+**User-visible outcome:** The homepage hero no longer displays (or requests) the second background photo image, while the remaining hero background layers continue to render normally.

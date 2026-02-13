@@ -1,18 +1,24 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Website adjustments: remove unwanted leading space before the INTRO paragraph text under the user photo, and fix Training Document #3 PDF access so the button opens the PDF instead of looping back to the website (PDF reupload and correct linking).",
+  "summary": "New project",
   "architectural_notes": [],
-  "known_issues": [
-    "Training Document #3 PDF access button ('The attached PDF file (11,939 KB)') loops back to the website instead of opening the PDF."
-  ],
-  "isFixRequest": true,
+  "known_issues": [],
+  "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-update-training-document-3-title-transforming-adversity-into-lasting-professional-and-personal-maturity-so-the-line-2-link-text-the-attached-pdf-file-11-939-kb-opens-the-correct-pdf-instead-of-looping-back-to-the-website",
-      "title": "Update Training Document #3 (title: \"Transforming Adversity into Lasting Professional and Personal Maturity.\") so the line-2 link text \"The attached PDF file (11,939 KB)\" opens the correct PDF instead of looping back to the website.",
+      "id": "feature-remove-the-second-photo-image-shown-near-the-top-of-the-website-page-by-deleting-the-hero-parallax-background-layer-that-renders-assets-generated-layered-background-dim-1920x1080-jpg-in-frontend-src-components-hero-tsx",
+      "title": "Remove the second photo/image shown near the top of the website page by deleting the Hero parallax background layer that renders `/assets/generated/layered-background.dim_1920x1080.jpg` in `frontend/src/components/Hero.tsx`.",
       "reqIds": [
         "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-if-the-static-asset-file-exists-in-the-repo-delete-the-corresponding-static-image-file-assets-generated-layered-background-dim-1920x1080-jpg-from-frontend-static-assets-so-it-no-longer-consumes-project-storage",
+      "title": "If the static asset file exists in the repo, delete the corresponding static image file `/assets/generated/layered-background.dim_1920x1080.jpg` from frontend static assets so it no longer consumes project storage.",
+      "reqIds": [
+        "REQ-2"
       ],
       "version": 1
     }
@@ -20,26 +26,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Remove the single unwanted leading space before the INTRO paragraph text under the user photo (\"Hello there, and welcome to my site...\").",
+      "summary": "Remove the second photo/image from the top of the website page",
       "reqIds": [],
-      "status": "in_progress"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Fix Training Document #3 (\"Transforming Adversity into Lasting Professional and Personal Maturity\") access button so it opens the attached PDF instead of looping back to the website; reupload PDF and update link/target.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Add the reuploaded PDF file for Training Document #3 as a static frontend asset under the app’s /assets/ path, and ensure the backend’s Training Document #3 `documentUrl` exactly matches the stored filename (including spaces/case) so `getStaticAssetUrl(documentUrl)` resolves correctly.",
-      "reqIds": [
-        "REQ-2"
-      ],
       "status": "pending"
     }
   ],
-  "projectName": "Fix Training Document #3 PDF link so it opens the reuploaded file",
+  "projectName": "Remove the second top-of-page hero background image",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

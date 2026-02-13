@@ -1,46 +1,47 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T00:54:02.704Z",
-  "summary": "The diff adds a new URL-encoding helper for static assets and introduces a backend migration module wired into `backend/main.mo`, but it does not show the required PDF asset addition or the specific Training Document #3 `documentUrl` update / frontend link wiring needed to ensure the correct PDF opens.",
+  "generatedAt": "2026-02-13T05:32:49.909Z",
+  "summary": "REQ-1 appears implemented by removing the Hero parallax layer that referenced `/assets/generated/layered-background.dim_1920x1080.jpg`, but REQ-2 is not implemented (no static asset deletion shown). The diff also includes additional unrelated Hero/UI/content changes and project tracking metadata updates that were not requested.",
   "missing_requirements": [
     {
-      "id": "REQ-1",
-      "requirement": "Update Training Document #3 so the line-2 link text \"The attached PDF file (11,939 KB)\" opens the correct PDF (not looping back to the website) and opens in a new tab.",
-      "reason": "No changes are shown to the Training Documents rendering component (e.g., `frontend/src/components/TrainingVideos.tsx`) or to the training document #3 metadata in the backend that would change the actual link target/behavior. Only a generic `getStaticAssetUrl` utility was modified/added.",
-      "evidence": [
-        "frontend/src/utils/staticAssetUrl.ts",
-        "backend/main.mo",
-        "frontend-file-summaries.txt"
-      ]
-    },
-    {
       "id": "REQ-2",
-      "requirement": "Add the reuploaded PDF under `/assets/` and ensure backend Training Document id=3 `documentUrl` exactly matches the stored filename so `getStaticAssetUrl(documentUrl)` resolves correctly; the generated href in `frontend/src/components/TrainingVideos.tsx` must point to a working `/assets/<encoded-filename>.pdf`.",
-      "reason": "The diff does not show any PDF file added under a frontend `/assets/` path, does not show `backend/main.mo` returning an updated `documentUrl` for training document id=3, and does not show any change to `frontend/src/components/TrainingVideos.tsx` to use the corrected filename/href for document #3.",
+      "requirement": "If the static asset file exists in the repo, delete the corresponding static image file `/assets/generated/layered-background.dim_1920x1080.jpg` from frontend static assets so it no longer consumes project storage.",
+      "reason": "The diff reports `Removed: 0` files and does not show deletion of `/assets/generated/layered-background.dim_1920x1080.jpg` (or any asset file).",
       "evidence": [
-        "backend/main.mo",
-        "frontend/src/utils/staticAssetUrl.ts",
-        "frontend-file-summaries.txt"
+        "<file-diff> summary: \"Removed: 0\"",
+        "No removed files listed under REMOVED FILES"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Added a backend state migration module and wired migration into the main actor.",
-      "reason": "BuildRequest explicitly said this change should not require migration if only updating hardcoded document metadata and static assets; nevertheless `backend/migration.mo` was added and `backend/main.mo` now imports/uses it.",
+      "description": "Substantial Hero redesign/content additions (e.g., luminous halo, neural-glow overlay, soundtrack/YouTube thumbnails/banner, typography/layout changes, additional overlays like data-grid/geometric overlay, glowing orbs) beyond only removing the specific background layer.",
+      "reason": "BuildRequest only asks to remove the single Hero parallax background layer for `layered-background.dim_1920x1080.jpg` and not to change other hero visuals/content besides ensuring remaining layers still render.",
       "evidence": [
-        "backend/migration.mo",
-        "backend/main.mo"
+        "frontend/src/components/Hero.tsx",
+        "frontend-file-summaries.txt (Hero.tsx description includes multiple new visual/content elements)"
+      ]
+    },
+    {
+      "description": "Project tracking/state updates adding new_feature_requests AR-1/AR-2/AR-3 and marking them pending.",
+      "reason": "Not requested in the BuildRequest; request is purely a frontend asset/layer removal.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Edits/descriptions indicating changes to other components (Header/Footer/Biography/Booking/Store/etc.).",
+      "reason": "Not requested; BuildRequest scope is limited to removing the specific Hero background layer and optionally deleting its static asset file.",
+      "evidence": [
+        "frontend-file-summaries.txt"
       ]
     }
   ],
   "confidence": 0.74,
   "changed_files": [
-    "backend/main.mo",
-    "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/utils/staticAssetUrl.ts",
+    "frontend/src/components/Hero.tsx",
     "project_state.json"
   ]
 }
