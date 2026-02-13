@@ -1,47 +1,42 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-13T05:32:49.909Z",
-  "summary": "REQ-1 appears implemented by removing the Hero parallax layer that referenced `/assets/generated/layered-background.dim_1920x1080.jpg`, but REQ-2 is not implemented (no static asset deletion shown). The diff also includes additional unrelated Hero/UI/content changes and project tracking metadata updates that were not requested.",
+  "generatedAt": "2026-02-13T22:53:31.730Z",
+  "summary": "The diff shows a frontend-only workaround that hardcodes Training Document #2 to `/assets/C3.pdf`, but the provided diff summary does not show the required backend `documentUrl` fix nor evidence that the PDF asset exists/serves as `application/pdf`. The Training Documents link rendering/target behavior for #2 is not visible in the truncated component diff, so REQ-1 cannot be confirmed as implemented.",
   "missing_requirements": [
     {
-      "id": "REQ-2",
-      "requirement": "If the static asset file exists in the repo, delete the corresponding static image file `/assets/generated/layered-background.dim_1920x1080.jpg` from frontend static assets so it no longer consumes project storage.",
-      "reason": "The diff reports `Removed: 0` files and does not show deletion of `/assets/generated/layered-background.dim_1920x1080.jpg` (or any asset file).",
+      "id": "REQ-1",
+      "requirement": "Make Training Document #2 (the line-2 clickable text/link in the Training Documents section) open the actual PDF document in a new tab, matching the behavior of Training Document #1, instead of navigating back to the website/SPA.",
+      "reason": "The diff summary for `TrainingVideos.tsx` is truncated before the Training Documents UI/link markup; it only shows a helper `getDocumentUrl` function but no evidence that Training Document #2 line-2 text renders as an external link with `target=\"_blank\"`/no SPA routing, nor that Training Document #1 behavior is unchanged.",
       "evidence": [
-        "<file-diff> summary: \"Removed: 0\"",
-        "No removed files listed under REMOVED FILES"
+        "frontend/src/components/TrainingVideos.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Ensure the Training Document #2 `documentUrl` returned by the backend points to a real, publicly served static PDF asset (under the frontend static `/assets/...` path), so that `getStaticAssetUrl(document.documentUrl)` resolves to an actual PDF response (not `index.html`).",
+      "reason": "No visible change in the provided (truncated) backend diff indicates `getTrainingDocuments()` was updated to return a `/assets/...` PDF for document #2. Also, the diff shows no added/modified static PDF under frontend public assets, so existence and correct PDF serving cannot be verified from the summary.",
+      "evidence": [
+        "backend/main.mo (truncated)",
+        "ADDED FILES: none"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Substantial Hero redesign/content additions (e.g., luminous halo, neural-glow overlay, soundtrack/YouTube thumbnails/banner, typography/layout changes, additional overlays like data-grid/geometric overlay, glowing orbs) beyond only removing the specific background layer.",
-      "reason": "BuildRequest only asks to remove the single Hero parallax background layer for `layered-background.dim_1920x1080.jpg` and not to change other hero visuals/content besides ensuring remaining layers still render.",
+      "description": "Frontend-only hardcoded remapping of Training Document #2 to `/assets/C3.pdf` via `getDocumentUrl(documentId===2n)` instead of relying on the backend-provided `documentUrl` and `getStaticAssetUrl(document.documentUrl)`.",
+      "reason": "REQ-2 specifically requires the backend `documentUrl` to point to a real static PDF asset so that `getStaticAssetUrl(document.documentUrl)` resolves correctly. Implementing a frontend override for doc #2 is not requested and may bypass the intended backend fix.",
       "evidence": [
-        "frontend/src/components/Hero.tsx",
-        "frontend-file-summaries.txt (Hero.tsx description includes multiple new visual/content elements)"
-      ]
-    },
-    {
-      "description": "Project tracking/state updates adding new_feature_requests AR-1/AR-2/AR-3 and marking them pending.",
-      "reason": "Not requested in the BuildRequest; request is purely a frontend asset/layer removal.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "description": "Edits/descriptions indicating changes to other components (Header/Footer/Biography/Booking/Store/etc.).",
-      "reason": "Not requested; BuildRequest scope is limited to removing the specific Hero background layer and optionally deleting its static asset file.",
-      "evidence": [
-        "frontend-file-summaries.txt"
+        "frontend/src/components/TrainingVideos.tsx (truncated): `if (documentId === 2n) { return '/assets/C3.pdf'; }`",
+        "frontend/src/components/TrainingVideos.tsx (truncated): imports `getStaticAssetUrl` but shown logic returns a raw string"
       ]
     }
   ],
-  "confidence": 0.74,
+  "confidence": 0.64,
   "changed_files": [
+    "backend/main.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/components/Hero.tsx",
+    "frontend/src/components/TrainingVideos.tsx",
     "project_state.json"
   ]
 }

@@ -1,46 +1,45 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-13T05:32:49.911Z",
+  "generatedAt": "2026-02-13T22:53:31.733Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
     "total": 2,
-    "implemented": 2,
+    "implemented": 1,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Remove the second photo/image shown near the top of the website page by deleting the Hero parallax background layer that renders `/assets/generated/layered-background.dim_1920x1080.jpg` in `frontend/src/components/Hero.tsx`.",
+        "summary": "Make Training Document #2 (the line-2 clickable text/link in the Training Documents section) open the actual PDF document in a new tab, matching the behavior of Training Document #1, instead of navigating back to the website/SPA.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/Hero.tsx"
+          "frontend/src/components/TrainingVideos.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/Hero.tsx"
+          "frontend/src/components/TrainingVideos.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "If the static asset file exists in the repo, delete the corresponding static image file `/assets/generated/layered-background.dim_1920x1080.jpg` from frontend static assets so it no longer consumes project storage.",
-        "status": "implemented",
+        "summary": "Ensure the Training Document #2 `documentUrl` returned by the backend points to a real, publicly served static PDF asset (under the frontend static `/assets/...` path), so that `getStaticAssetUrl(document.documentUrl)` resolves to an actual PDF response (not `index.html`).",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/public/assets/generated/layered-background.dim_1920x1080.jpg"
+          "frontend/public/assets/training-documents/C3.pdf",
+          "frontend/src/utils/staticAssetUrl.ts"
         ],
-        "matchedFiles": [
-          "frontend/public/assets/generated/layered-background.dim_1920x1080.jpg"
-        ]
+        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/layered-background.dim_1920x1080.jpg",
-    "frontend/src/components/Hero.tsx",
+    "frontend/src/components/TrainingVideos.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

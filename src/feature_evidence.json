@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-remove-the-second-photo-image-shown-near-the-top-of-the-website-page-by-deleting-the-hero-parallax-background-layer-that-renders-assets-generated-layered-background-dim-1920x1080-jpg-in-frontend-src-components-hero-tsx",
-      "featureTitle": "Remove the second photo/image shown near the top of the website page by deleting the Hero parallax background layer that renders `/assets/generated/layered-background.dim_1920x1080.jpg` in `frontend/src/components/Hero.tsx`.",
+      "featureId": "feature-make-training-document-2-the-line-2-clickable-text-link-in-the-training-documents-section-open-the-actual-pdf-document-in-a-new-tab-matching-the-behavior-of-training-document-1-instead-of-navigating-back-to-the-website-spa",
+      "featureTitle": "Make Training Document #2 (the line-2 clickable text/link in the Training Documents section) open the actual PDF document in a new tab, matching the behavior of Training Document #1, instead of navigating back to the website/SPA.",
       "files": [
-        "frontend/src/components/Hero.tsx"
+        "frontend/src/components/TrainingVideos.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -20,26 +20,6 @@
       ],
       "testIds": [
         "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-if-the-static-asset-file-exists-in-the-repo-delete-the-corresponding-static-image-file-assets-generated-layered-background-dim-1920x1080-jpg-from-frontend-static-assets-so-it-no-longer-consumes-project-storage",
-      "featureTitle": "If the static asset file exists in the repo, delete the corresponding static image file `/assets/generated/layered-background.dim_1920x1080.jpg` from frontend static assets so it no longer consumes project storage.",
-      "files": [],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "http-outcalls@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
       ],
       "confidence": "high"
     }

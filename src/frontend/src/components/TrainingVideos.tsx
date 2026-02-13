@@ -11,6 +11,15 @@ export default function TrainingVideos() {
 
   const isLoading = videosLoading || documentsLoading;
 
+  // Map document URLs to actual static assets
+  const getDocumentUrl = (documentId: bigint, documentUrl: string): string => {
+    // Training Document #2 should open C3.pdf
+    if (documentId === 2n) {
+      return '/assets/C3.pdf';
+    }
+    return documentUrl;
+  };
+
   return (
     <section id="training-videos" className="relative py-24 overflow-hidden">
       {/* Background layers */}
@@ -95,27 +104,30 @@ export default function TrainingVideos() {
 
             {/* Training Documents (PDFs) - Strict Two-Line Format */}
             {trainingDocuments && trainingDocuments.length > 0 ? (
-              trainingDocuments.map((document) => (
-                <div key={document.id} className="text-center space-y-3">
-                  {/* Line 1: Title only */}
-                  <h3 className="text-xl md:text-2xl font-serif text-amber-300 leading-relaxed">
-                    {document.title}
-                  </h3>
-                  {/* Line 2: Clickable shortDescription text (no button, no extra label) */}
-                  {document.documentUrl && document.shortDescription && (
-                    <div>
-                      <a
-                        href={getStaticAssetUrl(document.documentUrl)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-amber-400 hover:text-amber-300 transition-colors duration-300 underline text-base md:text-lg"
-                      >
-                        {document.shortDescription}
-                      </a>
-                    </div>
-                  )}
-                </div>
-              ))
+              trainingDocuments.map((document) => {
+                const actualDocumentUrl = getDocumentUrl(document.id, document.documentUrl);
+                return (
+                  <div key={document.id} className="text-center space-y-3">
+                    {/* Line 1: Title only */}
+                    <h3 className="text-xl md:text-2xl font-serif text-amber-300 leading-relaxed">
+                      {document.title}
+                    </h3>
+                    {/* Line 2: Clickable shortDescription text (no button, no extra label) */}
+                    {actualDocumentUrl && document.shortDescription && (
+                      <div>
+                        <a
+                          href={getStaticAssetUrl(actualDocumentUrl)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-amber-400 hover:text-amber-300 transition-colors duration-300 underline text-base md:text-lg"
+                        >
+                          {document.shortDescription}
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
             ) : (
               <div className="text-center py-10">
                 <FileText className="w-16 h-16 text-amber-400/30 mx-auto mb-4" />

@@ -1,35 +1,42 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Remove secondary hero background image layer",
+  "title": "Fix Training Document #2 PDF link to open the static PDF in a new tab",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Remove the Hero parallax background layer that renders /assets/generated/layered-background.dim_1920x1080.jpg so the second top-of-page image no longer appears.",
+      "summary": "Ensure Training Document #2 line-2 link opens the actual PDF in a new tab (like Training Document #1) and does not navigate within the SPA.",
       "acceptanceCriteria": [
-        "When loading the homepage, the hero section no longer requests or displays `/assets/generated/layered-background.dim_1920x1080.jpg`.",
-        "The remaining hero background layers (celestial pattern, geometric overlay, renaissance sketch overlay, gradients) still render without visual breakage (no empty/blank layer artifacts)."
+        "In the Training Documents section, clicking Training Document #2 line-2 text opens a PDF file directly (browser PDF viewer) in a new tab/window.",
+        "Clicking Training Document #1 line-2 text continues to open its PDF directly (no regression).",
+        "Training Document #2 link does not route to the React app (no hash/SPA navigation; no page that looks like the site home)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Hero.tsx",
+          "path": "frontend/src/components/TrainingVideos.tsx",
           "operation": "modify",
-          "description": "Delete the parallax background <div>/<img> layer that references `/assets/generated/layered-background.dim_1920x1080.jpg`, ensuring no leftover empty layer, z-index gap, or parallax transform logic remains for that removed layer."
+          "description": "Update the Training Documents rendering so Training Document #2 always resolves to a concrete static .pdf under /assets/... (and still uses target=\"_blank\"), preventing SPA navigation when the backend-provided documentUrl is missing/incorrect. Keep the strict two-line layout/typography unchanged and avoid changes to Training Document #1 behavior."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Delete the unused generated layered-background.dim_1920x1080.jpg static asset from frontend public assets if it exists.",
+      "summary": "Ensure the Training Document #2 documentUrl resolves to a publicly served static PDF under the frontend /assets path so the resolved URL returns a PDF (not index.html).",
       "acceptanceCriteria": [
-        "The file `layered-background.dim_1920x1080.jpg` is removed from the frontend static assets (if it exists).",
-        "`npm`/Vite build completes successfully and the site loads without 404s related to the removed asset."
+        "The static file referenced by Training Document #2 `documentUrl` exists in the frontend public assets and is reachable at the resolved `/assets/...` URL.",
+        "Requesting the resolved URL for Training Document #2 returns `Content-Type: application/pdf` (or otherwise opens as a PDF in the browser), not the site HTML shell.",
+        "Backend `getTrainingDocuments()` continues to return Training Document #2 title exactly as currently set (\"The Codex of Value: Determining what Truly Matters.\") unless a new PDF filename/path is explicitly provided elsewhere in the project inputs."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/layered-background.dim_1920x1080.jpg",
-          "operation": "delete",
-          "description": "Remove the static generated image file from frontend public assets (only if present) so it no longer consumes repository/project storage."
+          "path": "frontend/public/assets/training-documents/C3.pdf",
+          "operation": "create",
+          "description": "Add the static PDF asset that Training Document #2 should open, ensuring it is served as a real PDF from the frontend static assets (so the resolved /assets/... URL does not fall back to the SPA HTML)."
+        },
+        {
+          "path": "frontend/src/utils/staticAssetUrl.ts",
+          "operation": "modify",
+          "description": "Harden getStaticAssetUrl usage expectations for document links by ensuring it consistently produces an /assets/... URL suitable for direct file responses (PDF) even when filenames include spaces/special characters; keep behavior for absolute URLs unchanged."
         }
       ]
     }

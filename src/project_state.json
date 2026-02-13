@@ -3,35 +3,31 @@
   "projectStateVersion": 3,
   "summary": "New project",
   "architectural_notes": [],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Training Document-2: line-2 button/link incorrectly loops back to website instead of opening the document (should behave like Training Doc #1)."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-remove-the-second-photo-image-shown-near-the-top-of-the-website-page-by-deleting-the-hero-parallax-background-layer-that-renders-assets-generated-layered-background-dim-1920x1080-jpg-in-frontend-src-components-hero-tsx",
-      "title": "Remove the second photo/image shown near the top of the website page by deleting the Hero parallax background layer that renders `/assets/generated/layered-background.dim_1920x1080.jpg` in `frontend/src/components/Hero.tsx`.",
+      "id": "feature-make-training-document-2-the-line-2-clickable-text-link-in-the-training-documents-section-open-the-actual-pdf-document-in-a-new-tab-matching-the-behavior-of-training-document-1-instead-of-navigating-back-to-the-website-spa",
+      "title": "Make Training Document #2 (the line-2 clickable text/link in the Training Documents section) open the actual PDF document in a new tab, matching the behavior of Training Document #1, instead of navigating back to the website/SPA.",
       "reqIds": [
         "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-if-the-static-asset-file-exists-in-the-repo-delete-the-corresponding-static-image-file-assets-generated-layered-background-dim-1920x1080-jpg-from-frontend-static-assets-so-it-no-longer-consumes-project-storage",
-      "title": "If the static asset file exists in the repo, delete the corresponding static image file `/assets/generated/layered-background.dim_1920x1080.jpg` from frontend static assets so it no longer consumes project storage.",
-      "reqIds": [
-        "REQ-2"
       ],
       "version": 1
     }
   ],
   "new_feature_requests": [
     {
-      "id": "AR-1",
-      "summary": "Remove the second photo/image from the top of the website page",
-      "reqIds": [],
+      "id": "AR-2",
+      "summary": "Ensure the Training Document #2 `documentUrl` returned by the backend points to a real, publicly served static PDF asset (under the frontend static `/assets/...` path), so that `getStaticAssetUrl(document.documentUrl)` resolves to an actual PDF response (not `index.html`).",
+      "reqIds": [
+        "REQ-2"
+      ],
       "status": "pending"
     }
   ],
-  "projectName": "Remove the second top-of-page hero background image",
+  "projectName": "Fix Training Document #2 link to open the PDF instead of looping back to the site",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

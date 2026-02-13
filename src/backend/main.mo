@@ -13,10 +13,6 @@ import AccessControl "authorization/access-control";
 import MixinAuthorization "authorization/MixinAuthorization";
 import MixinStorage "blob-storage/Mixin";
 
-// IMPORTANT: Data migration if you modify types or values in stateful variables. Use includes, maps, etc.
-
-// MUST INCLUDE migration function: 
-
 actor {
   // ==== Authorization & Store ====
   let accessControlState = AccessControl.initState();
@@ -203,7 +199,7 @@ actor {
       case (2) {
         ?{
           id = 2;
-          title = "Rusty Streetcar (c)(sm): Navigating the Big Easy (80s) – Becoming the Design Thinker. Book 1-of-3. Kindle Edition.";
+          title = "Rusty Streetcar (c)(sm): Navigating the Big Easy (80s) – Becoming the Design Thinker. Book 1‑of‑3. Kindle Edition.";
           author = "Dr. Shane J Charbonnet";
           summary = "Journey through the 80s Big Easy, embracing design thinking. Book 1 of 3 series.";
           price = 3500;
@@ -364,15 +360,15 @@ actor {
         ?{
           id = 1;
           title = "Releasing Past Disappointments: A Human-centric Path (towards) Empowerment.";
-          documentUrl = "Course 1 -- Releasing-past-disappointments-a-human-centric-path-to-empowerment-Jan 19, 2026.pdf";
+          documentUrl = "/assets/Course 1 -- Releasing-past-disappointments-a-human-centric-path-to-empowerment-Jan 19, 2026.pdf";
           shortDescription = "Empowerment guide for releasing past disappointments.";
         };
       };
       case (2) {
         ?{
           id = 2;
-          title = "Distinction Codex: Unveiling the Markers of Authentic Mastery.";
-          documentUrl = "Distinction Codex Unveiling the Markers of Authentic Mastery.pdf";
+          title = "The Codex of Value: Determining what Truly Matters.";
+          documentUrl = "/assets/Distinction Codex Unveiling the Markers of Authentic Mastery.pdf";
           shortDescription = "Comprehensive guide for identifying authentic mastery in various disciplines. Covers key markers, strategies, and best practices for achieving distinction and excellence.";
         };
       };
@@ -380,7 +376,7 @@ actor {
         ?{
           id = 3;
           title = "Transforming Adversity into Lasting Professional and Personal Maturity.";
-          documentUrl = "Transforming Adversity into Lasting Professional and Personal Maturity.pdf";
+          documentUrl = "/assets/Transforming Adversity into Lasting Professional and Personal Maturity.pdf";
           shortDescription = "The attached PDF file (11,939 KB)";
         };
       };
@@ -475,6 +471,9 @@ actor {
   };
 
   public query ({ caller }) func getUserProfile(user : Principal) : async ?UserProfile {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view profiles");
+    };
     if (caller != user and not AccessControl.isAdmin(accessControlState, caller)) {
       Runtime.trap("Unauthorized: Can only view your own profile");
     };
