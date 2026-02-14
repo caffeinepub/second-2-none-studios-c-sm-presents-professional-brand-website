@@ -1,52 +1,70 @@
 {
   "kind": "build_request",
-  "title": "Fix Training Document #2 link to open the PDF instead of looping back to the site",
+  "title": "Update Training Document #3 title and attach the uploaded PDF as a static asset",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Make Training Document #2 (the line-2 clickable text/link in the Training Documents section) open the actual PDF document in a new tab, matching the behavior of Training Document #1, instead of navigating back to the website/SPA.",
-      "target": "both",
+      "text": "Update Training Document #3 (id=3) to use the new line-1 title exactly as provided: \"Distinction Codex: Unveling the Markers of Authentic Mastery.\"",
+      "target": "backend",
       "source": {
         "messageIds": [
           "msg-1"
         ],
         "quotes": [
-          "For line-2, however, when 'selecting' the button -- line-2, it should 9open-up0 the document itself. Instead, it loops back to the website itself! Note, it should work just like as in exactly training doc #1. When selecting the button, the document itself opens-up! This should happen also for training doc#2."
+          "Let's continue, Aura. Training doc#3. (a) line-1: \"Distinction Codex: Unveling the Markers of Authentic Mastery.\""
         ]
       },
       "acceptanceCriteria": [
-        "In the Training Documents section, clicking Training Document #2 line-2 text opens a PDF file directly (browser PDF viewer) in a new tab/window.",
-        "Clicking Training Document #1 line-2 text continues to open its PDF directly (no regression).",
-        "Training Document #2 link does not route to the React app (no hash/SPA navigation; no page that looks like the site home)."
+        "Calling getTrainingDocuments() returns a TrainingDocument with id=3 whose title is exactly \"Distinction Codex: Unveling the Markers of Authentic Mastery.\"",
+        "Calling getTrainingDocument(3) returns the same updated title"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Ensure the Training Document #2 `documentUrl` returned by the backend points to a real, publicly served static PDF asset (under the frontend static `/assets/...` path), so that `getStaticAssetUrl(document.documentUrl)` resolves to an actual PDF response (not `index.html`).",
+      "text": "Attach the user-provided Training Document #3 PDF (noted by the user as ~9,546KB) as a publicly served static asset under the frontend /assets/ path, and update Training Document #3 (id=3) to reference that PDF via its documentUrl so the UI link opens the actual PDF file.",
       "target": "both",
       "source": {
         "messageIds": [
           "msg-1"
         ],
         "quotes": [
-          "When 'selecting' the button -- line-2, it should 9open-up0 the document itself. Instead, it loops back to the website itself!"
+          "Note: file size @9,546KB. (b) line-2: actual Pdf File to attach or upload! Proceed!"
         ]
       },
       "acceptanceCriteria": [
-        "The static file referenced by Training Document #2 `documentUrl` exists in the frontend public assets and is reachable at the resolved `/assets/...` URL.",
-        "Requesting the resolved URL for Training Document #2 returns `Content-Type: application/pdf` (or otherwise opens as a PDF in the browser), not the site HTML shell.",
-        "Backend `getTrainingDocuments()` continues to return Training Document #2 title exactly as currently set (\"The Codex of Value: Determining what Truly Matters.\") unless a new PDF filename/path is explicitly provided elsewhere in the project inputs."
+        "The Training Document #3 PDF file is present in the deployed frontend static assets (served from /assets/...).",
+        "The backend returns Training Document #3 (id=3) documentUrl pointing to that real /assets/...pdf path (not a route that serves index.html).",
+        "In the Training Documents section, clicking Training Document #3 line-2 link opens the PDF in a new browser tab (target=_blank) and displays the PDF content (not the SPA)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Ensure the Training Documents UI does not require hard-coded URL overrides for Training Document #3; if a mapping is used (like the existing id=2 mapping), extend/adjust it so Training Document #3 reliably opens the newly attached PDF in a new tab.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Training doc#3... line-2: actual Pdf File to attach or upload!"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Training Document #3 link resolves to the correct PDF URL via getStaticAssetUrl(...) and opens in a new tab.",
+        "No navigation back to the SPA occurs when opening Training Document #3 PDF."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under `frontend/src/components/ui` (compose them only).",
-    "Do not modify any immutable frontend hook files listed in SYSTEM_CONTEXT."
+    "Backend must remain a single Motoko actor with all logic in backend/main.mo; only add a migration file if existing stable state must be upgraded.",
+    "Do not edit any files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or anything under frontend/src/components/ui (compose instead).",
+    "User-facing text must be in English."
   ],
   "nonGoals": [
-    "Do not change the Training Documents two-line layout or typography (line-1 title and line-2 clickable shortDescription) beyond what is required to fix the link behavior.",
-    "Do not add new authentication or membership gating for training documents as part of this fix."
+    "Fixing platform credit/lockout issues.",
+    "Building a new admin upload UI for PDFs (unless required to satisfy the static asset attachment requirement).",
+    "Changing Training Video content or membership logic unrelated to Training Document #3."
   ],
   "imageRequirements": {
     "required": [],

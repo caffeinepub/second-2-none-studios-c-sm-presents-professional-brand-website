@@ -17,6 +17,10 @@ export default function TrainingVideos() {
     if (documentId === 2n) {
       return '/assets/C3.pdf';
     }
+    // Training Document #3 should open the new Distinction Codex PDF
+    if (documentId === 3n) {
+      return '/assets/Rise.Articulate 360 -- Course #5  Distinction Codex - Unveiling the Markers-Course Summary_JAN 18, 2026.pdf';
+    }
     return documentUrl;
   };
 

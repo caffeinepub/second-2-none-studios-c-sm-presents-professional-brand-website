@@ -5,7 +5,6 @@ import Principal "mo:core/Principal";
 import Runtime "mo:core/Runtime";
 import Time "mo:core/Time";
 
-
 import Storage "blob-storage/Storage";
 import Stripe "stripe/stripe";
 import OutCall "http-outcalls/outcall";
@@ -359,7 +358,7 @@ actor {
       case (1) {
         ?{
           id = 1;
-          title = "Releasing Past Disappointments: A Human-centric Path (towards) Empowerment.";
+          title = "Releasing Past Disappointments: A Human-centric Path to Empowerment";
           documentUrl = "/assets/Course 1 -- Releasing-past-disappointments-a-human-centric-path-to-empowerment-Jan 19, 2026.pdf";
           shortDescription = "Empowerment guide for releasing past disappointments.";
         };
@@ -367,7 +366,7 @@ actor {
       case (2) {
         ?{
           id = 2;
-          title = "The Codex of Value: Determining what Truly Matters.";
+          title = "Distinction Codex: Unveling the Markers of Authentic Mastery.";
           documentUrl = "/assets/Distinction Codex Unveiling the Markers of Authentic Mastery.pdf";
           shortDescription = "Comprehensive guide for identifying authentic mastery in various disciplines. Covers key markers, strategies, and best practices for achieving distinction and excellence.";
         };

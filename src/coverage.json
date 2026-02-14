@@ -1,20 +1,28 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-13T22:53:31.733Z",
+  "generatedAt": "2026-02-14T23:50:23.264Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 1,
+    "total": 3,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Make Training Document #2 (the line-2 clickable text/link in the Training Documents section) open the actual PDF document in a new tab, matching the behavior of Training Document #1, instead of navigating back to the website/SPA.",
+        "summary": "Update Training Document #3 (id=3) to use the new line-1 title exactly as provided: \"Distinction Codex: Unveling the Markers of Authentic Mastery.\"",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Attach the user-provided Training Document #3 PDF (noted by the user as ~9,546KB) as a publicly served static asset under the frontend /assets/ path, and update Training Document #3 (id=3) to reference that PDF via its documentUrl so the UI link opens the actual PDF file.",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/public/assets/Rise.Articulate 360 -- Course #5  Distinction Codex - Unveiling the Markers-Course Summary_JAN 18, 2026.pdf",
           "frontend/src/components/TrainingVideos.tsx"
         ],
         "matchedFiles": [
@@ -22,14 +30,16 @@
         ]
       },
       {
-        "id": "REQ-2",
-        "summary": "Ensure the Training Document #2 `documentUrl` returned by the backend points to a real, publicly served static PDF asset (under the frontend static `/assets/...` path), so that `getStaticAssetUrl(document.documentUrl)` resolves to an actual PDF response (not `index.html`).",
-        "status": "missing",
+        "id": "REQ-3",
+        "summary": "Ensure the Training Documents UI does not require hard-coded URL overrides for Training Document #3; if a mapping is used (like the existing id=2 mapping), extend/adjust it so Training Document #3 reliably opens the newly attached PDF in a new tab.",
+        "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/training-documents/C3.pdf",
+          "frontend/src/components/TrainingVideos.tsx",
           "frontend/src/utils/staticAssetUrl.ts"
         ],
-        "matchedFiles": []
+        "matchedFiles": [
+          "frontend/src/components/TrainingVideos.tsx"
+        ]
       }
     ]
   },

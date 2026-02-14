@@ -1,11 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Fix Training Document #2 so its line-2 link opens the actual PDF in a new tab (like Training Document #1) instead of routing back into the site/SPA.
+**Goal:** Update Training Document #3’s title and ensure its PDF link opens the actual uploaded PDF from a publicly served static /assets path.
 
 **Planned changes:**
-- Update the Training Document #2 link behavior so clicking the line-2 text opens a direct PDF URL in a new tab/window (no SPA routing/hash navigation).
-- Ensure the backend returns a `documentUrl` for Training Document #2 that points to an existing, publicly served static PDF under the frontend `/assets/...` path so it resolves to a real PDF response (not `index.html`).
-- Verify Training Document #1 behavior remains unchanged and Training Document #2 title remains exactly as currently set.
+- Update backend Training Document #3 (id=3) title to exactly: "Distinction Codex: Unveling the Markers of Authentic Mastery."
+- Add the user-provided Training Document #3 PDF to the deployed frontend static assets under `/assets/`.
+- Update backend Training Document #3 (id=3) `documentUrl` to point directly to the `/assets/...pdf` file path.
+- Adjust the Training Documents UI linking so Training Document #3 resolves via the existing static-asset URL mechanism (e.g., `getStaticAssetUrl(...)`) and opens in a new tab without routing back to the SPA.
 
-**User-visible outcome:** Clicking Training Document #2’s line-2 text opens its PDF directly in the browser PDF viewer in a new tab, without looping back to the website.
+**User-visible outcome:** In the Training Documents section, Training Document #3 shows the updated title, and clicking its PDF link opens the real PDF in a new browser tab (not the app shell).
