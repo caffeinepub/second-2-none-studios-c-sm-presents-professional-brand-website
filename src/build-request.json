@@ -1,33 +1,36 @@
 {
   "kind": "build_request",
-  "title": "Update biography section heading text",
-  "projectName": "Dr. Shane JC Portal",
+  "title": "Update biography line-2 text to 'The Doctor of UDesign ©sm'",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Change the heading text 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC' in the biography section located above the second profile image",
+      "text": "In the Biography component, update the text on line-2 (currently 'Dr. Shane J Charbonnet') to 'The Doctor of UDesign ©sm'. This text appears directly to the right of the photo-image in the context section.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-10"
+          "msg-6"
         ],
         "quotes": [
-          "Let's change it from 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC.'"
+          "For the line-2 which reads 'Dr. Shane J Charboonet', let's change this/that to 'The Doctor of UDesign (c)sm'"
         ]
       },
       "acceptanceCriteria": [
-        "The Biography section displays 'A Tidbit About Dr. Shane JC' instead of 'About Dr. Charbonnet'",
-        "The heading appears above the second profile image as described",
-        "The text styling and formatting remain consistent with the existing design"
+        "The Biography component displays 'The Doctor of UDesign ©sm' on line-2",
+        "Line-1 ('Simply Shane Designs ©sm') and Line-3 ('Innovator • Educator • Author') remain unchanged",
+        "The text positioning relative to the photo-image is preserved"
       ]
     }
   ],
-  "constraints": [],
+  "constraints": [
+    "Do not modify line-1 ('Simply Shane Designs ©sm')",
+    "Do not modify line-3 ('Innovator • Educator • Author')",
+    "Preserve the existing layout and positioning of the text relative to the photo-image"
+  ],
   "nonGoals": [
-    "Modifying any other text or headings on the page",
-    "Changing the biography content below the heading",
-    "Altering image positioning or styling"
+    "Changing the photo-image itself",
+    "Modifying other sections of the Biography component",
+    "Altering the styling or formatting of the text lines"
   ],
   "imageRequirements": {
     "required": [],

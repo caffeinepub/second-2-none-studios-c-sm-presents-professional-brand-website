@@ -1,17 +1,14 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Members-only portal/community site for Dr. Shane JC with login access control",
-  "architectural_notes": [
-    "Login screen serves as front door to members-only portal",
-    "Access control: paid members only can enter private area"
-  ],
+  "summary": "New project",
+  "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-change-the-heading-text-about-dr-charbonnet-to-a-tidbit-about-dr-shane-jc-in-the-biography-section-located-above-the-second-profile-image",
-      "title": "Change the heading text 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC' in the biography section located above the second profile image",
+      "id": "feature-in-the-biography-component-update-the-text-on-line-2-currently-dr-shane-j-charbonnet-to-the-doctor-of-udesign-sm-this-text-appears-directly-to-the-right-of-the-photo-image-in-the-context-section",
+      "title": "In the Biography component, update the text on line-2 (currently 'Dr. Shane J Charbonnet') to 'The Doctor of UDesign ©sm'. This text appears directly to the right of the photo-image in the context section.",
       "reqIds": [
         "REQ-1"
       ],
@@ -21,12 +18,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Change 'About Dr. Charbonnet' heading to 'A Tidbit About Dr. Shane JC'",
+      "summary": "Change line-2 text from 'Dr. Shane J Charbonnet' to 'The Doctor of UDesign (c)sm'",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Dr. Shane JC Portal",
+  "projectName": "Update biography line-2 text to 'The Doctor of UDesign ©sm'",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

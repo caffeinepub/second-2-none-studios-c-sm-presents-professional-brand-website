@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-change-the-heading-text-about-dr-charbonnet-to-a-tidbit-about-dr-shane-jc-in-the-biography-section-located-above-the-second-profile-image",
-      "featureTitle": "Change the heading text 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC' in the biography section located above the second profile image",
+      "featureId": "feature-in-the-biography-component-update-the-text-on-line-2-currently-dr-shane-j-charbonnet-to-the-doctor-of-udesign-sm-this-text-appears-directly-to-the-right-of-the-photo-image-in-the-context-section",
+      "featureTitle": "In the Biography component, update the text on line-2 (currently 'Dr. Shane J Charbonnet') to 'The Doctor of UDesign ©sm'. This text appears directly to the right of the photo-image in the context section.",
       "files": [
         "frontend/src/components/Biography.tsx"
       ],

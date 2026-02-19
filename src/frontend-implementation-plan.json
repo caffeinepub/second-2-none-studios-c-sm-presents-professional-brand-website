@@ -1,21 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update biography section heading text",
+  "title": "Update biography line-2 text to 'The Doctor of UDesign ©sm'",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Change the Biography section heading from 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC'",
+      "summary": "Update the Biography component's line-2 text from 'Dr. Shane J Charbonnet' to 'The Doctor of UDesign ©sm' while preserving line-1 and line-3",
       "acceptanceCriteria": [
-        "The Biography section displays 'A Tidbit About Dr. Shane JC' instead of 'About Dr. Charbonnet'",
-        "The heading appears above the second profile image as described",
-        "The text styling and formatting remain consistent with the existing design"
+        "The Biography component displays 'The Doctor of UDesign ©sm' on line-2",
+        "Line-1 ('Simply Shane Designs ©sm') and Line-3 ('Innovator • Educator • Author') remain unchanged",
+        "The text positioning relative to the photo-image is preserved"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Biography.tsx",
           "operation": "modify",
-          "description": "Update the heading text in the Biography component from 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC'. Locate the heading element that appears above the second profile image and modify only the text content while preserving all existing styling, layout, and structure."
+          "description": "Update the text content on line-2 (currently 'Dr. Shane J Charbonnet') to 'The Doctor of UDesign ©sm'. This text appears directly to the right of the photo-image in the context section. Ensure line-1 ('Simply Shane Designs ©sm') and line-3 ('Innovator • Educator • Author') remain unchanged, and preserve the existing layout and positioning relative to the photo-image."
         }
       ]
     }

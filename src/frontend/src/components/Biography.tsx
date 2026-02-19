@@ -97,9 +97,9 @@ export default function Biography() {
                 </h3>
               </div>
               
-              {/* Name heading - reduced size and positioned lower */}
+              {/* Name heading - updated to "The Doctor of UDesign ©sm" */}
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-foreground mb-3 glow-text mt-1">
-                Dr. Shane J Charbonnet
+                The Doctor of UDesign <span className="text-base align-super">(c)sm</span>
               </h3>
               
               {/* Enhanced subtitle */}
