@@ -283,6 +283,7 @@ export interface backendInterface {
     }>;
     getContactSubmissions(): Promise<Array<ContactSubmission>>;
     getCredentials(): Promise<Credentials>;
+    getDisplayName(): Promise<string>;
     getDistinguishedServiceProfiles(): Promise<Array<UserProfile>>;
     getMembershipPlans(): Promise<Array<ShoppingItem>>;
     getProducts(): Promise<Array<Product>>;
@@ -295,11 +296,13 @@ export interface backendInterface {
     getTrainingVideos(): Promise<Array<TrainingVideo>>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     getVideos(): Promise<Array<Video>>;
+    hasDisplayName(): Promise<boolean>;
     isCallerAdmin(): Promise<boolean>;
     isStripeConfigured(): Promise<boolean>;
     isUserMember(): Promise<boolean>;
     purchaseMembership(plan: ShoppingItem, successUrl: string, cancelUrl: string): Promise<string>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    setDisplayName(name: string): Promise<void>;
     setStripeConfiguration(config: StripeConfiguration): Promise<void>;
     submitContactForm(name: string, email: string, message: string): Promise<bigint>;
     transform(input: TransformationInput): Promise<TransformationOutput>;
@@ -709,6 +712,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async getDisplayName(): Promise<string> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getDisplayName();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getDisplayName();
+            return result;
+        }
+    }
     async getDistinguishedServiceProfiles(): Promise<Array<UserProfile>> {
         if (this.processError) {
             try {
@@ -877,6 +894,20 @@ export class Backend implements backendInterface {
             return from_candid_vec_n57(this._uploadFile, this._downloadFile, result);
         }
     }
+    async hasDisplayName(): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.hasDisplayName();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.hasDisplayName();
+            return result;
+        }
+    }
     async isCallerAdmin(): Promise<boolean> {
         if (this.processError) {
             try {
@@ -944,6 +975,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.saveCallerUserProfile(to_candid_UserProfile_n60(this._uploadFile, this._downloadFile, arg0));
+            return result;
+        }
+    }
+    async setDisplayName(arg0: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.setDisplayName(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.setDisplayName(arg0);
             return result;
         }
     }

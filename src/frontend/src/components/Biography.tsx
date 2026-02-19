@@ -59,7 +59,7 @@ export default function Biography() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 glow-text">
-              About Dr. Charbonnet
+              A Tidbit About Dr. Shane JC
             </h2>
             <div className="flex items-center justify-center gap-2 mb-8">
               <div className="h-px w-16 bg-gradient-to-r from-transparent via-accent to-copper" />

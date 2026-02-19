@@ -190,6 +190,7 @@ export interface backendInterface {
     }>;
     getContactSubmissions(): Promise<Array<ContactSubmission>>;
     getCredentials(): Promise<Credentials>;
+    getDisplayName(): Promise<string>;
     getDistinguishedServiceProfiles(): Promise<Array<UserProfile>>;
     getMembershipPlans(): Promise<Array<ShoppingItem>>;
     getProducts(): Promise<Array<Product>>;
@@ -202,11 +203,13 @@ export interface backendInterface {
     getTrainingVideos(): Promise<Array<TrainingVideo>>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     getVideos(): Promise<Array<Video>>;
+    hasDisplayName(): Promise<boolean>;
     isCallerAdmin(): Promise<boolean>;
     isStripeConfigured(): Promise<boolean>;
     isUserMember(): Promise<boolean>;
     purchaseMembership(plan: ShoppingItem, successUrl: string, cancelUrl: string): Promise<string>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    setDisplayName(name: string): Promise<void>;
     setStripeConfiguration(config: StripeConfiguration): Promise<void>;
     submitContactForm(name: string, email: string, message: string): Promise<bigint>;
     transform(input: TransformationInput): Promise<TransformationOutput>;

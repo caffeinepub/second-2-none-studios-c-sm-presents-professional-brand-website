@@ -3,6 +3,7 @@ import Iter "mo:core/Iter";
 import Nat "mo:core/Nat";
 import Principal "mo:core/Principal";
 import Runtime "mo:core/Runtime";
+import Text "mo:core/Text";
 import Time "mo:core/Time";
 
 import Storage "blob-storage/Storage";
@@ -11,6 +12,8 @@ import OutCall "http-outcalls/outcall";
 import AccessControl "authorization/access-control";
 import MixinAuthorization "authorization/MixinAuthorization";
 import MixinStorage "blob-storage/Mixin";
+
+
 
 actor {
   // ==== Authorization & Store ====
@@ -159,6 +162,7 @@ actor {
   let pubs = Map.empty<Nat, Publication>();
   let trainingVideos = Map.empty<Nat, TrainingVideo>();
   let checkoutSessions = Map.empty<Text, Principal>();
+  let displayNames = Map.empty<Principal, Text>();
 
   var appointmentIdCounter = 1;
   var productIdCounter = 1;
@@ -486,6 +490,63 @@ actor {
     userProfiles.add(caller, profile);
   };
 
+  // ==== Display Name Management ====
+  public query ({ caller }) func hasDisplayName() : async Bool {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can check display name status");
+    };
+
+    switch (userProfiles.get(caller)) {
+      case (null) { false };
+      case (?profile) {
+        if (not profile.hasMembership) {
+          false;
+        } else {
+          displayNames.containsKey(caller);
+        };
+      };
+    };
+  };
+
+  public shared ({ caller }) func setDisplayName(name : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can set display names");
+    };
+
+    switch (userProfiles.get(caller)) {
+      case (null) { Runtime.trap("User profile not found") };
+      case (?profile) {
+        if (not profile.hasMembership) {
+          Runtime.trap("Unauthorized: Only paid members can set display names");
+        };
+
+        if (name.size() > 25) {
+          Runtime.trap("Display name can be max 25 characters");
+        };
+        displayNames.add(caller, name);
+      };
+    };
+  };
+
+  public query ({ caller }) func getDisplayName() : async Text {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view display names");
+    };
+
+    switch (userProfiles.get(caller)) {
+      case (null) { Runtime.trap("User profile not found") };
+      case (?profile) {
+        if (not profile.hasMembership) {
+          Runtime.trap("Unauthorized: Only paid members can view display names");
+        };
+        switch (displayNames.get(caller)) {
+          case (?name) { name };
+          case (null) { Runtime.trap("No display name found for this account") };
+        };
+      };
+    };
+  };
+
   // ==== Stripe Integration ====
   public shared ({ caller }) func setStripeConfiguration(config : Stripe.StripeConfiguration) : async () {
     if (not AccessControl.isAdmin(accessControlState, caller)) {
@@ -762,3 +823,4 @@ actor {
     Runtime.trap("No distinguished service profiles available");
   };
 };
+

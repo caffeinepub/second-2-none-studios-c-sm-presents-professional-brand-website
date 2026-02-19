@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-attach-the-user-provided-training-document-3-pdf-noted-by-the-user-as-9-546kb-as-a-publicly-served-static-asset-under-the-frontend-assets-path-and-update-training-document-3-id-3-to-reference-that-pdf-via-its-documenturl-so-the-ui-link-opens-the-actual-pdf-file",
-      "featureTitle": "Attach the user-provided Training Document #3 PDF (noted by the user as ~9,546KB) as a publicly served static asset under the frontend /assets/ path, and update Training Document #3 (id=3) to reference that PDF via its documentUrl so the UI link opens the actual PDF file.",
+      "featureId": "feature-change-the-heading-text-about-dr-charbonnet-to-a-tidbit-about-dr-shane-jc-in-the-biography-section-located-above-the-second-profile-image",
+      "featureTitle": "Change the heading text 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC' in the biography section located above the second profile image",
       "files": [
-        "frontend/src/components/TrainingVideos.tsx"
+        "frontend/src/components/Biography.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -19,29 +19,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-the-training-documents-ui-does-not-require-hard-coded-url-overrides-for-training-document-3-if-a-mapping-is-used-like-the-existing-id-2-mapping-extend-adjust-it-so-training-document-3-reliably-opens-the-newly-attached-pdf-in-a-new-tab",
-      "featureTitle": "Ensure the Training Documents UI does not require hard-coded URL overrides for Training Document #3; if a mapping is used (like the existing id=2 mapping), extend/adjust it so Training Document #3 reliably opens the newly attached PDF in a new tab.",
-      "files": [
-        "frontend/src/components/TrainingVideos.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "http-outcalls@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
+        "REQ-1"
       ],
       "confidence": "high"
     }

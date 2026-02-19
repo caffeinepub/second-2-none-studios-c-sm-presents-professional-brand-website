@@ -1,5 +1,5 @@
 import { useInternetIdentity } from './hooks/useInternetIdentity';
-import { useGetCallerUserProfile } from './hooks/useQueries';
+import { useGetCallerUserProfile, useIsUserMember, useHasDisplayName } from './hooks/useQueries';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/sonner';
 import Header from './components/Header';
@@ -16,6 +16,8 @@ import TrainingVideos from './components/TrainingVideos';
 import SupportDonations from './components/SupportDonations';
 import Credentials from './components/Credentials';
 import ProfileSetupModal from './components/ProfileSetupModal';
+import DisplayNameSetupScreen from './components/DisplayNameSetupScreen';
+import MembersCommunity from './components/MembersCommunity';
 import PaymentSuccess from './components/PaymentSuccess';
 import PaymentFailure from './components/PaymentFailure';
 import { useEffect, useState } from 'react';
@@ -25,12 +27,26 @@ export default function App() {
   const {
     data: userProfile,
     isLoading: profileLoading,
-    isFetched,
+    isFetched: profileFetched,
   } = useGetCallerUserProfile();
+  const {
+    data: isMember,
+    isLoading: memberLoading,
+    isFetched: memberFetched,
+  } = useIsUserMember();
+  const {
+    data: hasDisplayName,
+    isLoading: displayNameLoading,
+    isFetched: displayNameFetched,
+  } = useHasDisplayName();
   const [paymentStatus, setPaymentStatus] = useState<'success' | 'failure' | null>(null);
+  const [showCommunity, setShowCommunity] = useState(false);
 
   const isAuthenticated = !!identity;
-  const showProfileSetup = isAuthenticated && !profileLoading && isFetched && userProfile === null;
+  const showProfileSetup = isAuthenticated && !profileLoading && profileFetched && userProfile === null;
+  const isPaidMember = isAuthenticated && !memberLoading && memberFetched && isMember === true;
+  const showDisplayNameSetup = isPaidMember && !displayNameLoading && displayNameFetched && hasDisplayName === false;
+  const canAccessCommunity = isPaidMember && !displayNameLoading && displayNameFetched && hasDisplayName === true;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -44,6 +60,12 @@ export default function App() {
       window.history.replaceState({}, '', window.location.pathname);
     }
   }, []);
+
+  useEffect(() => {
+    if (canAccessCommunity) {
+      setShowCommunity(true);
+    }
+  }, [canAccessCommunity]);
 
   if (isInitializing) {
     return (
@@ -80,6 +102,28 @@ export default function App() {
           <PaymentFailure onClose={() => setPaymentStatus(null)} />
           <Footer />
           <Credentials />
+          <Toaster />
+        </div>
+      </ThemeProvider>
+    );
+  }
+
+  if (showDisplayNameSetup) {
+    return (
+      <ThemeProvider attribute="class" forcedTheme="light">
+        <DisplayNameSetupScreen onSuccess={() => setShowCommunity(true)} />
+        <Toaster />
+      </ThemeProvider>
+    );
+  }
+
+  if (showCommunity && canAccessCommunity) {
+    return (
+      <ThemeProvider attribute="class" forcedTheme="light">
+        <div className="min-h-screen bg-background">
+          <Header showCommunityNav />
+          <MembersCommunity />
+          <Footer />
           <Toaster />
         </div>
       </ThemeProvider>

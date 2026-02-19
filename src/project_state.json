@@ -1,27 +1,19 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Manage and update in-app Training Documents (e.g., replace Training Document #3 title and associated PDF upload) and coordinate around platform credit/lockout constraints.",
-  "architectural_notes": [],
-  "known_issues": [
-    "Platform credit/usage lockout: remaining credits may freeze after a single build until the next daily reset.",
-    "File attachment/upload reliability: user attempted to upload Training Document #3 PDF but it was not received in at least one message."
+  "summary": "Members-only portal/community site for Dr. Shane JC with login access control",
+  "architectural_notes": [
+    "Login screen serves as front door to members-only portal",
+    "Access control: paid members only can enter private area"
   ],
+  "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-attach-the-user-provided-training-document-3-pdf-noted-by-the-user-as-9-546kb-as-a-publicly-served-static-asset-under-the-frontend-assets-path-and-update-training-document-3-id-3-to-reference-that-pdf-via-its-documenturl-so-the-ui-link-opens-the-actual-pdf-file",
-      "title": "Attach the user-provided Training Document #3 PDF (noted by the user as ~9,546KB) as a publicly served static asset under the frontend /assets/ path, and update Training Document #3 (id=3) to reference that PDF via its documentUrl so the UI link opens the actual PDF file.",
+      "id": "feature-change-the-heading-text-about-dr-charbonnet-to-a-tidbit-about-dr-shane-jc-in-the-biography-section-located-above-the-second-profile-image",
+      "title": "Change the heading text 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC' in the biography section located above the second profile image",
       "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-the-training-documents-ui-does-not-require-hard-coded-url-overrides-for-training-document-3-if-a-mapping-is-used-like-the-existing-id-2-mapping-extend-adjust-it-so-training-document-3-reliably-opens-the-newly-attached-pdf-in-a-new-tab",
-      "title": "Ensure the Training Documents UI does not require hard-coded URL overrides for Training Document #3; if a mapping is used (like the existing id=2 mapping), extend/adjust it so Training Document #3 reliably opens the newly attached PDF in a new tab.",
-      "reqIds": [
-        "REQ-3"
+        "REQ-1"
       ],
       "version": 1
     }
@@ -29,20 +21,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Replace Training Document #3 content: set line-1 title to \"Distinction Codex: Unveling the Markers of Authentic Mastery.\" and upload/attach the PDF as line-2 content",
+      "summary": "Change 'About Dr. Charbonnet' heading to 'A Tidbit About Dr. Shane JC'",
       "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Update Training Document #3 (id=3) to use the new line-1 title exactly as provided: \"Distinction Codex: Unveling the Markers of Authentic Mastery.\"",
-      "reqIds": [
-        "REQ-1"
-      ],
       "status": "pending"
     }
   ],
-  "projectName": "Update Training Document #3 title and attach the uploaded PDF as a static asset",
+  "projectName": "Dr. Shane JC Portal",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

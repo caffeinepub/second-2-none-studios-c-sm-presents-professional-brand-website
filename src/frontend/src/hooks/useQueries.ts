@@ -46,6 +46,48 @@ export function useSaveCallerUserProfile() {
   });
 }
 
+// ===== Display Name =====
+export function useHasDisplayName() {
+  const { actor, isFetching: actorFetching } = useActor();
+
+  const query = useQuery<boolean>({
+    queryKey: ['hasDisplayName'],
+    queryFn: async () => {
+      if (!actor) return false;
+      try {
+        return await actor.hasDisplayName();
+      } catch (error) {
+        console.error('Error checking display name:', error);
+        return false;
+      }
+    },
+    enabled: !!actor && !actorFetching,
+    retry: false,
+  });
+
+  return {
+    ...query,
+    isLoading: actorFetching || query.isLoading,
+    isFetched: !!actor && query.isFetched,
+  };
+}
+
+export function useSetDisplayName() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (name: string) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.setDisplayName(name);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['hasDisplayName'] });
+      queryClient.invalidateQueries({ queryKey: ['isUserMember'] });
+    },
+  });
+}
+
 // ===== Biography & Contact =====
 export function useGetBiographyContent() {
   const { actor, isFetching } = useActor();

@@ -247,6 +247,7 @@ export const idlService = IDL.Service({
       ['query'],
     ),
   'getCredentials' : IDL.Func([], [Credentials], ['query']),
+  'getDisplayName' : IDL.Func([], [IDL.Text], ['query']),
   'getDistinguishedServiceProfiles' : IDL.Func(
       [],
       [IDL.Vec(UserProfile)],
@@ -267,6 +268,7 @@ export const idlService = IDL.Service({
       ['query'],
     ),
   'getVideos' : IDL.Func([], [IDL.Vec(Video)], ['query']),
+  'hasDisplayName' : IDL.Func([], [IDL.Bool], ['query']),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'isStripeConfigured' : IDL.Func([], [IDL.Bool], ['query']),
   'isUserMember' : IDL.Func([], [IDL.Bool], ['query']),
@@ -276,6 +278,7 @@ export const idlService = IDL.Service({
       [],
     ),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'setDisplayName' : IDL.Func([IDL.Text], [], []),
   'setStripeConfiguration' : IDL.Func([StripeConfiguration], [], []),
   'submitContactForm' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [IDL.Nat], []),
   'transform' : IDL.Func(
@@ -522,6 +525,7 @@ export const idlFactory = ({ IDL }) => {
         ['query'],
       ),
     'getCredentials' : IDL.Func([], [Credentials], ['query']),
+    'getDisplayName' : IDL.Func([], [IDL.Text], ['query']),
     'getDistinguishedServiceProfiles' : IDL.Func(
         [],
         [IDL.Vec(UserProfile)],
@@ -546,6 +550,7 @@ export const idlFactory = ({ IDL }) => {
         ['query'],
       ),
     'getVideos' : IDL.Func([], [IDL.Vec(Video)], ['query']),
+    'hasDisplayName' : IDL.Func([], [IDL.Bool], ['query']),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'isStripeConfigured' : IDL.Func([], [IDL.Bool], ['query']),
     'isUserMember' : IDL.Func([], [IDL.Bool], ['query']),
@@ -555,6 +560,7 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'setDisplayName' : IDL.Func([IDL.Text], [], []),
     'setStripeConfiguration' : IDL.Func([StripeConfiguration], [], []),
     'submitContactForm' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text],

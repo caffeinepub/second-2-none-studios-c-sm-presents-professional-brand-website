@@ -1,70 +1,33 @@
 {
   "kind": "build_request",
-  "title": "Update Training Document #3 title and attach the uploaded PDF as a static asset",
+  "title": "Update biography section heading text",
+  "projectName": "Dr. Shane JC Portal",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update Training Document #3 (id=3) to use the new line-1 title exactly as provided: \"Distinction Codex: Unveling the Markers of Authentic Mastery.\"",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Let's continue, Aura. Training doc#3. (a) line-1: \"Distinction Codex: Unveling the Markers of Authentic Mastery.\""
-        ]
-      },
-      "acceptanceCriteria": [
-        "Calling getTrainingDocuments() returns a TrainingDocument with id=3 whose title is exactly \"Distinction Codex: Unveling the Markers of Authentic Mastery.\"",
-        "Calling getTrainingDocument(3) returns the same updated title"
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Attach the user-provided Training Document #3 PDF (noted by the user as ~9,546KB) as a publicly served static asset under the frontend /assets/ path, and update Training Document #3 (id=3) to reference that PDF via its documentUrl so the UI link opens the actual PDF file.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Note: file size @9,546KB. (b) line-2: actual Pdf File to attach or upload! Proceed!"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The Training Document #3 PDF file is present in the deployed frontend static assets (served from /assets/...).",
-        "The backend returns Training Document #3 (id=3) documentUrl pointing to that real /assets/...pdf path (not a route that serves index.html).",
-        "In the Training Documents section, clicking Training Document #3 line-2 link opens the PDF in a new browser tab (target=_blank) and displays the PDF content (not the SPA)."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Ensure the Training Documents UI does not require hard-coded URL overrides for Training Document #3; if a mapping is used (like the existing id=2 mapping), extend/adjust it so Training Document #3 reliably opens the newly attached PDF in a new tab.",
+      "text": "Change the heading text 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC' in the biography section located above the second profile image",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-10"
         ],
         "quotes": [
-          "Training doc#3... line-2: actual Pdf File to attach or upload!"
+          "Let's change it from 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC.'"
         ]
       },
       "acceptanceCriteria": [
-        "Training Document #3 link resolves to the correct PDF URL via getStaticAssetUrl(...) and opens in a new tab.",
-        "No navigation back to the SPA occurs when opening Training Document #3 PDF."
+        "The Biography section displays 'A Tidbit About Dr. Shane JC' instead of 'About Dr. Charbonnet'",
+        "The heading appears above the second profile image as described",
+        "The text styling and formatting remain consistent with the existing design"
       ]
     }
   ],
-  "constraints": [
-    "Backend must remain a single Motoko actor with all logic in backend/main.mo; only add a migration file if existing stable state must be upgraded.",
-    "Do not edit any files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or anything under frontend/src/components/ui (compose instead).",
-    "User-facing text must be in English."
-  ],
+  "constraints": [],
   "nonGoals": [
-    "Fixing platform credit/lockout issues.",
-    "Building a new admin upload UI for PDFs (unless required to satisfy the static asset attachment requirement).",
-    "Changing Training Video content or membership logic unrelated to Training Document #3."
+    "Modifying any other text or headings on the page",
+    "Changing the biography content below the heading",
+    "Altering image positioning or styling"
   ],
   "imageRequirements": {
     "required": [],

@@ -1,46 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Attach Training Document #3 PDF as static asset and ensure UI opens it reliably",
+  "title": "Update biography section heading text",
   "requirements": [
     {
-      "id": "REQ-2",
-      "summary": "Add the user-provided Training Document #3 PDF to frontend static assets and ensure the UI link opens the real PDF file.",
+      "id": "REQ-1",
+      "summary": "Change the Biography section heading from 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC'",
       "acceptanceCriteria": [
-        "The Training Document #3 PDF file is present in the deployed frontend static assets (served from /assets/...).",
-        "The backend returns Training Document #3 (id=3) documentUrl pointing to that real /assets/...pdf path (not a route that serves index.html).",
-        "In the Training Documents section, clicking Training Document #3 line-2 link opens the PDF in a new browser tab (target=_blank) and displays the PDF content (not the SPA)."
+        "The Biography section displays 'A Tidbit About Dr. Shane JC' instead of 'About Dr. Charbonnet'",
+        "The heading appears above the second profile image as described",
+        "The text styling and formatting remain consistent with the existing design"
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/Rise.Articulate 360 -- Course #5  Distinction Codex - Unveiling the Markers-Course Summary_JAN 18, 2026.pdf",
-          "operation": "create",
-          "description": "Add the user-provided Training Document #3 PDF to the publicly served static assets so it is accessible under the /assets/ path."
-        },
-        {
-          "path": "frontend/src/components/TrainingVideos.tsx",
+          "path": "frontend/src/components/Biography.tsx",
           "operation": "modify",
-          "description": "Ensure the Training Document #3 line-2 link uses getStaticAssetUrl(...) and opens the static PDF in a new tab (target=_blank) rather than navigating within the SPA, including handling spaces/special characters in the PDF filename."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Remove the need for hard-coded URL overrides for Training Document #3 by making the Training Documents link resolution robust and consistently based on getStaticAssetUrl(...).",
-      "acceptanceCriteria": [
-        "Training Document #3 link resolves to the correct PDF URL via getStaticAssetUrl(...) and opens in a new tab.",
-        "No navigation back to the SPA occurs when opening Training Document #3 PDF."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/TrainingVideos.tsx",
-          "operation": "modify",
-          "description": "Refactor the existing per-id document URL mapping (currently used for id=2) into a minimal fallback mechanism so Training Document #3 reliably resolves to the new /assets/...pdf when needed, while still preferring the backend-provided documentUrl when it already points to a valid /assets/ PDF."
-        },
-        {
-          "path": "frontend/src/utils/staticAssetUrl.ts",
-          "operation": "modify",
-          "description": "Confirm and, if needed, adjust getStaticAssetUrl(...) behavior to correctly handle inputs that already include '/assets/' and filenames with spaces/special characters, so Training Document #3 resolves to a real PDF asset URL without SPA routing interference."
+          "description": "Update the heading text in the Biography component from 'About Dr. Charbonnet' to 'A Tidbit About Dr. Shane JC'. Locate the heading element that appears above the second profile image and modify only the text content while preserving all existing styling, layout, and structure."
         }
       ]
     }

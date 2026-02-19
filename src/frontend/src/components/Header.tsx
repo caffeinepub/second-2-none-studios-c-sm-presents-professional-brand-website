@@ -4,7 +4,11 @@ import { Button } from '@/components/ui/button';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
 import { useQueryClient } from '@tanstack/react-query';
 
-export default function Header() {
+interface HeaderProps {
+  showCommunityNav?: boolean;
+}
+
+export default function Header({ showCommunityNav = false }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { login, clear, loginStatus, identity } = useInternetIdentity();
@@ -25,6 +29,7 @@ export default function Header() {
     if (isAuthenticated) {
       await clear();
       queryClient.clear();
+      window.location.reload();
     } else {
       try {
         await login();
@@ -46,17 +51,19 @@ export default function Header() {
     }
   };
 
-  const navLinks = [
-    { label: 'Home', id: 'hero' },
-    { label: 'About', id: 'biography' },
-    { label: 'Publications', id: 'publications' },
-    { label: 'Training Videos', id: 'training-videos' },
-    { label: 'Membership', id: 'membership' },
-    { label: 'Book Session', id: 'booking' },
-    { label: 'Store', id: 'store' },
-    { label: 'Media', id: 'media' },
-    { label: 'Contact', id: 'contact' },
-  ];
+  const navLinks = showCommunityNav
+    ? [{ label: 'Community Home', id: 'community' }]
+    : [
+        { label: 'Home', id: 'hero' },
+        { label: 'About', id: 'biography' },
+        { label: 'Publications', id: 'publications' },
+        { label: 'Training Videos', id: 'training-videos' },
+        { label: 'Membership', id: 'membership' },
+        { label: 'Book Session', id: 'booking' },
+        { label: 'Store', id: 'store' },
+        { label: 'Media', id: 'media' },
+        { label: 'Contact', id: 'contact' },
+      ];
 
   return (
     <header
@@ -67,7 +74,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <button
-            onClick={() => scrollToSection('hero')}
+            onClick={() => window.location.reload()}
             className="inline-block px-4 py-2 bg-card border-2 border-border rounded-lg backdrop-blur-sm hover:border-primary/50 hover:shadow-md transition-all duration-300"
           >
             <span className="text-xl font-serif font-bold text-orange-500 animate-orange-radiance hover:scale-105 transition-transform duration-300 inline-block">
@@ -91,6 +98,8 @@ export default function Header() {
               disabled={disabled}
               variant={isAuthenticated ? 'outline' : 'default'}
               size="sm"
+              data-testid="auth-button"
+              aria-label={isAuthenticated ? 'Log out from Internet Identity' : 'Log in with Internet Identity'}
             >
               {disabled ? 'Loading...' : isAuthenticated ? 'Log Out' : 'Log In'}
             </Button>
@@ -100,6 +109,7 @@ export default function Header() {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -123,6 +133,8 @@ export default function Header() {
               variant={isAuthenticated ? 'outline' : 'default'}
               size="sm"
               className="w-full"
+              data-testid="auth-button"
+              aria-label={isAuthenticated ? 'Log out from Internet Identity' : 'Log in with Internet Identity'}
             >
               {disabled ? 'Loading...' : isAuthenticated ? 'Log Out' : 'Log In'}
             </Button>
