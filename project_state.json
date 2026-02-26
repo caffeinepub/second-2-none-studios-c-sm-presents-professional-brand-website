@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-publish-the-current-draft-build-draft-version-106-to-production-making-it-publicly-accessible-as-the-live-production-deployment",
+      "title": "Publish the current draft build (Draft Version 106) to production, making it publicly accessible as the live production deployment.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [],
+  "projectName": "Second-2-None Studios",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

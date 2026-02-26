@@ -1,0 +1,38 @@
+{
+  "kind": "build_request",
+  "title": "Publish Draft Version 106 to Production",
+  "projectName": "Second-2-None Studios",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Publish the current draft build (Draft Version 106) to production, making it publicly accessible as the live production deployment.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "Great. Now, publish it for me!"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The application previously deployed as Draft Version 106 is now live in production.",
+        "The production URL serves the latest build without requiring a draft preview link.",
+        "All frontend assets, backend canisters, and configurations from Draft Version 106 are reflected in the production environment."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not introduce any code changes — this is a straight promotion of Draft Version 106 to production with no modifications."
+  ],
+  "nonGoals": [
+    "No new features or UI changes.",
+    "No backend schema migrations.",
+    "No content updates beyond what is already in Draft Version 106."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
