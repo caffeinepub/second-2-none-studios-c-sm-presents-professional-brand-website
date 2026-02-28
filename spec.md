@@ -1,9 +1,9 @@
 # Specification
 
 ## Summary
-**Goal:** Publish the current Draft Version 106 to production, making it the live deployment for the Second-2-None Studios application.
+**Goal:** Promote the current draft deployment to production so the live URL is officially active.
 
 **Planned changes:**
-- Promote Draft Version 106 to the production environment with no code modifications
+- Publish the current draft build to production at https://drsjc-studios-gdr.caffeine.xyz/
 
-**User-visible outcome:** The application is publicly accessible via the production URL, reflecting everything in Draft Version 106 without requiring a draft preview link.
+**User-visible outcome:** The production URL https://drsjc-studios-gdr.caffeine.xyz/ serves the latest published build with all assets and functionality live and accessible.

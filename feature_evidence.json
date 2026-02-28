@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-publish-the-current-draft-build-draft-version-106-to-production-making-it-publicly-accessible-as-the-live-production-deployment",
-      "featureTitle": "Publish the current draft build (Draft Version 106) to production, making it publicly accessible as the live production deployment.",
+      "featureId": "feature-publish-the-current-draft-deployment-to-production-making-https-drsjc-studios-gdr-caffeine-xyz-the-official-live-production-url",
+      "featureTitle": "Publish the current draft deployment to production, making https://drsjc-studios-gdr.caffeine.xyz/ the official live production URL.",
       "files": [
-        "frontend/BUILD_AND_DRAFT_DEPLOY.md"
+        "frontend/SMOKE_TEST_CHECKLIST.md"
       ],
       "components": [
         "authorization@4.0.0",

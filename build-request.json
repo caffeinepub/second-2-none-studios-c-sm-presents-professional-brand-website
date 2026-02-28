@@ -1,35 +1,31 @@
 {
   "kind": "build_request",
-  "title": "Publish Draft Version 106 to Production",
-  "projectName": "Second-2-None Studios",
-  "priority": "high",
+  "title": "Publish to production",
+  "projectName": "DRSJC Studios GDR",
+  "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Publish the current draft build (Draft Version 106) to production, making it publicly accessible as the live production deployment.",
+      "text": "Publish the current draft deployment to production, making https://drsjc-studios-gdr.caffeine.xyz/ the official live production URL.",
       "target": "both",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-1"
         ],
         "quotes": [
-          "Great. Now, publish it for me!"
+          "Publish."
         ]
       },
       "acceptanceCriteria": [
-        "The application previously deployed as Draft Version 106 is now live in production.",
-        "The production URL serves the latest build without requiring a draft preview link.",
-        "All frontend assets, backend canisters, and configurations from Draft Version 106 are reflected in the production environment."
+        "The current draft version is promoted to production.",
+        "The production URL https://drsjc-studios-gdr.caffeine.xyz/ serves the latest published build.",
+        "All frontend assets and backend canisters are live and accessible."
       ]
     }
   ],
-  "constraints": [
-    "Do not introduce any code changes — this is a straight promotion of Draft Version 106 to production with no modifications."
-  ],
+  "constraints": [],
   "nonGoals": [
-    "No new features or UI changes.",
-    "No backend schema migrations.",
-    "No content updates beyond what is already in Draft Version 106."
+    "Making any code or content changes during this publish step."
   ],
   "imageRequirements": {
     "required": [],

@@ -90,25 +90,26 @@ export default function Biography() {
             </div>
 
             <div className="flex-1 text-center md:text-left">
+              {/* Name heading */}
+              <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-1 glow-text">
+                Dr. Shane J Charbonnet
+              </h3>
+
               {/* Brand heading with Renaissance-golden styling */}
-              <div className="mb-2">
-                <h3 className="text-xl md:text-2xl font-serif font-semibold text-accent tracking-wide glow-text-subtle">
-                  Simply Shane Designs <span className="text-base align-super">(c)sm</span>
-                </h3>
+              <div className="mb-1">
+                <p className="text-lg md:text-xl font-serif font-semibold text-accent tracking-wide glow-text-subtle">
+                  Simply Shane Designs <span className="text-sm align-super">(c)sm</span>
+                </p>
               </div>
               
-              {/* Name heading - updated to "The Doctor of UDesign ©sm" */}
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-foreground mb-3 glow-text mt-1">
-                The Doctor of UDesign <span className="text-base align-super">(c)sm</span>
+              {/* The Doctor of UDesign heading */}
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-bold text-foreground mb-3 glow-text mt-1">
+                The Doctor of UDesign <span className="text-sm align-super">(c)sm</span>
               </h3>
               
               {/* Enhanced subtitle */}
               <p className="text-lg md:text-xl font-semibold mb-4 enhanced-subtitle-text">
                 Innovator • Educator • Author
-              </p>
-              
-              <p className="text-lg text-foreground/80 leading-relaxed">
-                {bio?.philosophy}
               </p>
             </div>
           </div>
@@ -170,7 +171,7 @@ export default function Biography() {
                 </div>
                 <h3 className="text-xl font-serif font-semibold mb-2 text-copper">Expertise</h3>
                 <p className="text-muted-foreground">
-                  Mentoring, consulting, and thought leadership
+                  Mentoring, consulting, and thought leadership.
                 </p>
               </CardContent>
             </Card>

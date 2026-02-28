@@ -7,8 +7,8 @@
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-publish-the-current-draft-build-draft-version-106-to-production-making-it-publicly-accessible-as-the-live-production-deployment",
-      "title": "Publish the current draft build (Draft Version 106) to production, making it publicly accessible as the live production deployment.",
+      "id": "feature-publish-the-current-draft-deployment-to-production-making-https-drsjc-studios-gdr-caffeine-xyz-the-official-live-production-url",
+      "title": "Publish the current draft deployment to production, making https://drsjc-studios-gdr.caffeine.xyz/ the official live production URL.",
       "reqIds": [
         "REQ-1"
       ],
@@ -16,7 +16,7 @@
     }
   ],
   "new_feature_requests": [],
-  "projectName": "Second-2-None Studios",
+  "projectName": "DRSJC Studios GDR",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

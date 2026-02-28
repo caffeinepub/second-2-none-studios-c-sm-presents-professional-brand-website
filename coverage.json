@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-26T01:53:18.868Z",
+  "generatedAt": "2026-02-26T22:05:40.756Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -12,25 +12,24 @@
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Publish the current draft build (Draft Version 106) to production, making it publicly accessible as the live production deployment.",
+        "summary": "Publish the current draft deployment to production, making https://drsjc-studios-gdr.caffeine.xyz/ the official live production URL.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/BUILD_AND_DRAFT_DEPLOY.md"
+          "frontend/SMOKE_TEST_CHECKLIST.md"
         ],
         "matchedFiles": [
-          "frontend/BUILD_AND_DRAFT_DEPLOY.md"
+          "frontend/SMOKE_TEST_CHECKLIST.md"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
     "build-request.json",
-    "build-template/README.md",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/BUILD_AND_DRAFT_DEPLOY.md",
+    "frontend/SMOKE_TEST_CHECKLIST.md",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

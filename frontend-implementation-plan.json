@@ -1,21 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Publish Draft Version 106 to Production",
+  "title": "Publish DRSJC Studios GDR to Production",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Promote Draft Version 106 to production deployment without code changes",
+      "summary": "Publish the current draft deployment to production at https://drsjc-studios-gdr.caffeine.xyz/",
       "acceptanceCriteria": [
-        "The application previously deployed as Draft Version 106 is now live in production.",
-        "The production URL serves the latest build without requiring a draft preview link.",
-        "All frontend assets, backend canisters, and configurations from Draft Version 106 are reflected in the production environment."
+        "The current draft version is promoted to production.",
+        "The production URL https://drsjc-studios-gdr.caffeine.xyz/ serves the latest published build.",
+        "All frontend assets and backend canisters are live and accessible."
       ],
       "file_operations": [
         {
-          "path": "frontend/BUILD_AND_DRAFT_DEPLOY.md",
+          "path": "frontend/SMOKE_TEST_CHECKLIST.md",
           "operation": "modify",
-          "description": "Update deployment documentation to reflect that Draft Version 106 has been promoted to production. Add a note documenting this deployment milestone with timestamp and version number for future reference."
+          "description": "Update the smoke test checklist to reference the production URL https://drsjc-studios-gdr.caffeine.xyz/ for post-deployment verification. Ensure all test steps reflect the production environment rather than draft deployment URLs."
         }
       ]
     }

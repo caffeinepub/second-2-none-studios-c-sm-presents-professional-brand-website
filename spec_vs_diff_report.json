@@ -1,25 +1,34 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-26T01:53:18.866Z",
-  "summary": "The diff shows only documentation/metadata file changes (frontend-file-summaries.txt, BUILD_AND_DRAFT_DEPLOY.md, project_state.json). There is no evidence of actual production deployment actions such as canister upgrades, asset uploads, CI/CD pipeline triggers, or configuration changes that would constitute publishing Draft Version 106 to production. The project_state.json marks the requirement as 'pending', confirming the deployment has not been completed.",
+  "generatedAt": "2026-02-26T22:05:40.752Z",
+  "summary": "The diff shows modifications to backend/main.mo, frontend-file-summaries.txt, frontend/SMOKE_TEST_CHECKLIST.md, and project_state.json. The smoke test checklist references the production URL https://drsjc-studios-gdr.caffeine.xyz/ and the project_state.json records REQ-1 as pending. However, the build request explicitly states its non-goal is making code or content changes — the sole requirement is publishing/promoting the draft to production. The diff contains code changes which appear to be content/code changes rather than a pure publish action. There is no evidence of a deployment promotion action that would promote the draft to production. The project_state.json still marks the feature as 'pending', suggesting the publish has not been completed.",
   "missing_requirements": [
     {
       "id": "REQ-1",
-      "requirement": "Publish the current draft build (Draft Version 106) to production, making it publicly accessible as the live production deployment.",
-      "reason": "No deployment artifacts, canister upgrade commands, CI/CD pipeline changes, or production configuration changes are present in the diff. The project_state.json explicitly marks the feature request as 'pending'. The diff only contains documentation/metadata updates, not an actual promotion of Draft Version 106 to production.",
+      "requirement": "Publish the current draft deployment to production, making https://drsjc-studios-gdr.caffeine.xyz/ the official live production URL.",
+      "reason": "No deployment promotion artifact, CI/CD configuration, or platform-specific publish command is present in the diff. The project_state.json marks AR-1 (REQ-1) as 'pending'. A smoke test checklist was added referencing the production URL, but this is preparatory documentation, not evidence of an actual publish action.",
       "evidence": [
         "project_state.json",
-        "frontend/BUILD_AND_DRAFT_DEPLOY.md",
+        "frontend/SMOKE_TEST_CHECKLIST.md"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Code and content changes to backend/main.mo and frontend file summaries were made during what should have been a publish-only step.",
+      "reason": "The build request explicitly states as a non-goal making any code or content changes during this publish step. The diff includes modifications to backend/main.mo and frontend-file-summaries.txt, which constitute code/content changes not requested.",
+      "evidence": [
+        "backend/main.mo",
         "frontend-file-summaries.txt"
       ]
     }
   ],
-  "hallucinated_features": [],
-  "confidence": 0.85,
+  "confidence": 0.72,
   "changed_files": [
+    "backend/main.mo",
     "frontend-file-summaries.txt",
-    "frontend/BUILD_AND_DRAFT_DEPLOY.md",
+    "frontend/SMOKE_TEST_CHECKLIST.md",
     "project_state.json"
   ]
 }
