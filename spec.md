@@ -1,9 +1,9 @@
 # Specification
 
 ## Summary
-**Goal:** Promote the current draft deployment to production so the live URL is officially active.
+**Goal:** Update the standalone name display on line 2 of the hero/tidbit intro block from "Dr. Shane J Charbonnet" (or any variant) to "Dr. Shane JC".
 
 **Planned changes:**
-- Publish the current draft build to production at https://drsjc-studios-gdr.caffeine.xyz/
+- Change the second line of the tidbit/intro block to read exactly "Dr. Shane JC"
 
-**User-visible outcome:** The production URL https://drsjc-studios-gdr.caffeine.xyz/ serves the latest published build with all assets and functionality live and accessible.
+**User-visible outcome:** The tidbit/intro block shows "Dr. Shane JC" as the standalone name on line 2, while all other text in that block remains unchanged.

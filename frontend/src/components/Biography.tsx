@@ -80,7 +80,7 @@ export default function Biography() {
                 <div className="absolute inset-0 metallic-gold rounded-full animate-shimmer opacity-60 blur-sm" />
                 <img
                   src="/assets/1.28.26-c.jpg"
-                  alt="Dr. Shane J Charbonnet"
+                  alt="Dr. Shane JC"
                   className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-accent/80 shadow-golden-halo object-cover ring-2 ring-glow/20 ring-offset-4 ring-offset-background"
                 />
                 
@@ -90,9 +90,9 @@ export default function Biography() {
             </div>
 
             <div className="flex-1 text-center md:text-left">
-              {/* Name heading */}
+              {/* Name heading - line 2 of tidbit block */}
               <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-1 glow-text">
-                Dr. Shane J Charbonnet
+                Dr. Shane JC
               </h3>
 
               {/* Brand heading with Renaissance-golden styling */}

@@ -1,22 +1,25 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
+  "summary": "Personal portfolio/profile site for Dr. Shane JC (Simply Shane Designs). Currently updating the hero/intro tidbit block to change 'Dr. Shane J Charbonnet' (line 2) to 'Dr. Shane JC'.",
   "architectural_notes": [],
-  "known_issues": [],
+  "known_issues": [
+    "Production deployment has been failing with 'Deployment error' on recent attempts."
+  ],
   "isFixRequest": false,
-  "existing_features": [
+  "existing_features": [],
+  "new_feature_requests": [
     {
-      "id": "feature-publish-the-current-draft-deployment-to-production-making-https-drsjc-studios-gdr-caffeine-xyz-the-official-live-production-url",
-      "title": "Publish the current draft deployment to production, making https://drsjc-studios-gdr.caffeine.xyz/ the official live production URL.",
+      "id": "AR-1",
+      "summary": "In the hero/intro tidbit block, update the second line — the standalone name display directly beneath 'A Tidbit About Dr. Shane JC' — from 'Dr. Shane J Charbonnet' (or any variant such as 'Dr. Shane J. Charbonnet') to 'Dr. Shane JC'. Only this specific line-2 instance should be changed; all other text in that block (title line, 'Simply Shane Designs (c)sm', tagline, bio paragraph) must remain exactly as-is.",
       "reqIds": [
         "REQ-1"
       ],
-      "version": 1
+      "status": "pending"
     }
   ],
-  "new_feature_requests": [],
-  "projectName": "DRSJC Studios GDR",
+  "gameProjectType": "none",
+  "projectName": "Simply Shane Designs",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

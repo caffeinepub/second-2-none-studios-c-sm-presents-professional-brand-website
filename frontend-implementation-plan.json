@@ -1,21 +1,22 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Publish DRSJC Studios GDR to Production",
+  "title": "Update hero/tidbit block: change 'Dr. Shane J Charbonnet' (line 2) to 'Dr. Shane JC'",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Publish the current draft deployment to production at https://drsjc-studios-gdr.caffeine.xyz/",
+      "summary": "Update the standalone name display on line 2 of the hero/intro tidbit block from 'Dr. Shane J Charbonnet' to 'Dr. Shane JC' without altering any other text in the block",
       "acceptanceCriteria": [
-        "The current draft version is promoted to production.",
-        "The production URL https://drsjc-studios-gdr.caffeine.xyz/ serves the latest published build.",
-        "All frontend assets and backend canisters are live and accessible."
+        "The second line of the tidbit/intro block reads exactly 'Dr. Shane JC'.",
+        "The heading line 'A Tidbit About Dr. Shane JC' is unchanged.",
+        "'Simply Shane Designs (c)sm', 'Innovator • Educator • Author', and the bio paragraph are unchanged.",
+        "No other component or page section is affected by this change."
       ],
       "file_operations": [
         {
-          "path": "frontend/SMOKE_TEST_CHECKLIST.md",
+          "path": "frontend/src/components/Hero.tsx",
           "operation": "modify",
-          "description": "Update the smoke test checklist to reference the production URL https://drsjc-studios-gdr.caffeine.xyz/ for post-deployment verification. Ensure all test steps reflect the production environment rather than draft deployment URLs."
+          "description": "Locate the tidbit/intro block within the Hero component and update the standalone name text on line 2 from 'Dr. Shane J Charbonnet' (or any variant such as 'Dr. Shane J. Charbonnet') to 'Dr. Shane JC'. Preserve all other text including the heading, tagline, copyright notice, and bio paragraph. Do not modify layout, styling, or any other visual properties."
         }
       ]
     }

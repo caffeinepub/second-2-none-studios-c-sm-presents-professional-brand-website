@@ -101,7 +101,7 @@ export default function Hero() {
             {/* Portrait with enhanced effects */}
             <div className="relative">
               <img
-                src="/assets/DrSJC-Grad.jpg"
+                src="/assets/DrSJC-Grad-PhD-1.jpg"
                 alt="Dr. Shane J Charbonnet"
                 className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-accent/70 shadow-golden-halo mx-auto ring-4 ring-glow/30 ring-offset-4 ring-offset-background object-cover"
               />
