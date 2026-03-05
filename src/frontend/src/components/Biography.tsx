@@ -62,8 +62,9 @@ export default function Biography() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-base md:text-lg font-serif italic text-accent mb-3 glow-text-subtle tracking-wide">
-              Masterfully Demonstration Exceptional Competency Back into a World
-              Hyper-captivated by Exceptional Mediocrity.
+              Masterfully Demonstrating Exceptional Competency in a World
+              Hyper-captivated by Exceptional Mediocrity. Undeniable #proof
+              vetted (via) Demonstration.!
             </p>
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 glow-text">
               A Tidbit About Dr. Shane JC
