@@ -1,23 +1,23 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useActor } from './useActor';
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type {
-  UserProfile,
-  Publication,
   Product,
+  Publication,
   ShoppingItem,
   StripeConfiguration,
-  TrainingVideo,
   TrainingDocument,
-} from '../backend';
+  TrainingVideo,
+  UserProfile,
+} from "../backend";
+import { useActor } from "./useActor";
 
 // ===== User Profile =====
 export function useGetCallerUserProfile() {
   const { actor, isFetching: actorFetching } = useActor();
 
   const query = useQuery<UserProfile | null>({
-    queryKey: ['currentUserProfile'],
+    queryKey: ["currentUserProfile"],
     queryFn: async () => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.getCallerUserProfile();
     },
     enabled: !!actor && !actorFetching,
@@ -37,11 +37,11 @@ export function useSaveCallerUserProfile() {
 
   return useMutation({
     mutationFn: async (profile: UserProfile) => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.saveCallerUserProfile(profile);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['currentUserProfile'] });
+      queryClient.invalidateQueries({ queryKey: ["currentUserProfile"] });
     },
   });
 }
@@ -51,13 +51,13 @@ export function useHasDisplayName() {
   const { actor, isFetching: actorFetching } = useActor();
 
   const query = useQuery<boolean>({
-    queryKey: ['hasDisplayName'],
+    queryKey: ["hasDisplayName"],
     queryFn: async () => {
       if (!actor) return false;
       try {
         return await actor.hasDisplayName();
       } catch (error) {
-        console.error('Error checking display name:', error);
+        console.error("Error checking display name:", error);
         return false;
       }
     },
@@ -78,12 +78,12 @@ export function useSetDisplayName() {
 
   return useMutation({
     mutationFn: async (name: string) => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.setDisplayName(name);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['hasDisplayName'] });
-      queryClient.invalidateQueries({ queryKey: ['isUserMember'] });
+      queryClient.invalidateQueries({ queryKey: ["hasDisplayName"] });
+      queryClient.invalidateQueries({ queryKey: ["isUserMember"] });
     },
   });
 }
@@ -93,9 +93,9 @@ export function useGetBiographyContent() {
   const { actor, isFetching } = useActor();
 
   return useQuery({
-    queryKey: ['biographyContent'],
+    queryKey: ["biographyContent"],
     queryFn: async () => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.getBiographyContent();
     },
     enabled: !!actor && !isFetching,
@@ -106,9 +106,9 @@ export function useGetContactInfo() {
   const { actor, isFetching } = useActor();
 
   return useQuery({
-    queryKey: ['contactInfo'],
+    queryKey: ["contactInfo"],
     queryFn: async () => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.getContactInfo();
     },
     enabled: !!actor && !isFetching,
@@ -120,7 +120,7 @@ export function useCheckBookingAccess() {
   const { actor, isFetching } = useActor();
 
   return useQuery<boolean>({
-    queryKey: ['bookingAccess'],
+    queryKey: ["bookingAccess"],
     queryFn: async () => {
       if (!actor) return false;
       return actor.checkBookingAccess();
@@ -134,7 +134,7 @@ export function useCheckStoreAccess() {
   const { actor, isFetching } = useActor();
 
   return useQuery<boolean>({
-    queryKey: ['storeAccess'],
+    queryKey: ["storeAccess"],
     queryFn: async () => {
       if (!actor) return false;
       return actor.checkStoreAccess();
@@ -148,9 +148,9 @@ export function useGetApparelItems() {
   const { actor, isFetching } = useActor();
 
   return useQuery<Product[]>({
-    queryKey: ['apparelItems'],
+    queryKey: ["apparelItems"],
     queryFn: async () => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.getAllApparel();
     },
     enabled: !!actor && !isFetching,
@@ -162,9 +162,9 @@ export function useGetPublications() {
   const { actor, isFetching } = useActor();
 
   return useQuery<Publication[]>({
-    queryKey: ['publications'],
+    queryKey: ["publications"],
     queryFn: async () => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.getPublications();
     },
     enabled: !!actor && !isFetching,
@@ -176,9 +176,9 @@ export function useGetTrainingVideos() {
   const { actor, isFetching } = useActor();
 
   return useQuery<TrainingVideo[]>({
-    queryKey: ['trainingVideos'],
+    queryKey: ["trainingVideos"],
     queryFn: async () => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.getTrainingVideos();
     },
     enabled: !!actor && !isFetching,
@@ -190,9 +190,9 @@ export function useGetTrainingDocuments() {
   const { actor, isFetching } = useActor();
 
   return useQuery<TrainingDocument[]>({
-    queryKey: ['trainingDocuments'],
+    queryKey: ["trainingDocuments"],
     queryFn: async () => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.getTrainingDocuments();
     },
     enabled: !!actor && !isFetching,
@@ -204,7 +204,7 @@ export function useCheckVideoAccess() {
   const { actor, isFetching } = useActor();
 
   return useQuery<boolean>({
-    queryKey: ['videoAccess'],
+    queryKey: ["videoAccess"],
     queryFn: async () => {
       if (!actor) return false;
       return actor.checkVideoAccess();
@@ -218,9 +218,9 @@ export function useIsStripeConfigured() {
   const { actor, isFetching } = useActor();
 
   return useQuery<boolean>({
-    queryKey: ['stripeConfigured'],
+    queryKey: ["stripeConfigured"],
     queryFn: async () => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.isStripeConfigured();
     },
     enabled: !!actor && !isFetching,
@@ -240,8 +240,12 @@ export function useCreateCheckoutSession() {
       successUrl: string;
       cancelUrl: string;
     }) => {
-      if (!actor) throw new Error('Actor not available');
-      const result = await actor.createCheckoutSession(items, successUrl, cancelUrl);
+      if (!actor) throw new Error("Actor not available");
+      const result = await actor.createCheckoutSession(
+        items,
+        successUrl,
+        cancelUrl,
+      );
       return JSON.parse(result) as { id: string; url: string };
     },
   });
@@ -253,11 +257,11 @@ export function useSetStripeConfiguration() {
 
   return useMutation({
     mutationFn: async (config: StripeConfiguration) => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.setStripeConfiguration(config);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['stripeConfigured'] });
+      queryClient.invalidateQueries({ queryKey: ["stripeConfigured"] });
     },
   });
 }
@@ -267,9 +271,9 @@ export function useGetMembershipPlans() {
   const { actor, isFetching } = useActor();
 
   return useQuery<ShoppingItem[]>({
-    queryKey: ['membershipPlans'],
+    queryKey: ["membershipPlans"],
     queryFn: async () => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.getMembershipPlans();
     },
     enabled: !!actor && !isFetching,
@@ -289,8 +293,12 @@ export function usePurchaseMembership() {
       successUrl: string;
       cancelUrl: string;
     }) => {
-      if (!actor) throw new Error('Actor not available');
-      const result = await actor.purchaseMembership(plan, successUrl, cancelUrl);
+      if (!actor) throw new Error("Actor not available");
+      const result = await actor.purchaseMembership(
+        plan,
+        successUrl,
+        cancelUrl,
+      );
       return JSON.parse(result) as { id: string; url: string };
     },
   });
@@ -300,7 +308,7 @@ export function useIsUserMember() {
   const { actor, isFetching } = useActor();
 
   return useQuery<boolean>({
-    queryKey: ['isUserMember'],
+    queryKey: ["isUserMember"],
     queryFn: async () => {
       if (!actor) return false;
       return actor.isUserMember();
@@ -314,7 +322,7 @@ export function useIsCallerAdmin() {
   const { actor, isFetching } = useActor();
 
   return useQuery<boolean>({
-    queryKey: ['isAdmin'],
+    queryKey: ["isAdmin"],
     queryFn: async () => {
       if (!actor) return false;
       return actor.isCallerAdmin();

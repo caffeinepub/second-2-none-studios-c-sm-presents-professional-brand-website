@@ -7,8 +7,8 @@ export default function SupportDonations() {
         className="absolute inset-0 opacity-5"
         style={{
           backgroundImage: `url('/assets/generated/celestial-pattern.dim_1600x900.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
 
@@ -19,7 +19,8 @@ export default function SupportDonations() {
             Support & Donations
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Your generous support helps continue the mission of education, innovation, and thought leadership.
+            Your generous support helps continue the mission of education,
+            innovation, and thought leadership.
           </p>
         </div>
 
@@ -35,7 +36,7 @@ export default function SupportDonations() {
             <div className="relative overflow-hidden rounded-xl border-2 border-primary/30 bg-card/50 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:scale-[1.02]">
               {/* Golden glow effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
+
               <div className="relative z-10">
                 {/* Venmo Image */}
                 <div className="mb-4 rounded-lg overflow-hidden border border-border/50">
@@ -71,7 +72,7 @@ export default function SupportDonations() {
             <div className="relative overflow-hidden rounded-xl border-2 border-primary/30 bg-card/50 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:scale-[1.02]">
               {/* Golden glow effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
+
               <div className="relative z-10">
                 {/* Cash App Image */}
                 <div className="mb-4 rounded-lg overflow-hidden border border-border/50">
@@ -101,7 +102,8 @@ export default function SupportDonations() {
         {/* Additional Message */}
         <div className="text-center mt-8">
           <p className="text-sm text-muted-foreground italic">
-            Thank you for your support and contribution to advancing knowledge and innovation.
+            Thank you for your support and contribution to advancing knowledge
+            and innovation.
           </p>
         </div>
       </div>

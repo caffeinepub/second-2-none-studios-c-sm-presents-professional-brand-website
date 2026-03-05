@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react';
-import { Sparkles, Lock } from 'lucide-react';
-import { SiPaypal } from 'react-icons/si';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { useCheckVideoAccess } from '../hooks/useQueries';
-import { useInternetIdentity } from '../hooks/useInternetIdentity';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Lock, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+import { SiPaypal } from "react-icons/si";
+import { useInternetIdentity } from "../hooks/useInternetIdentity";
+import { useCheckVideoAccess } from "../hooks/useQueries";
 
 export default function Media() {
   const { identity, login } = useInternetIdentity();
-  const { data: hasAccess, isLoading: accessLoading } = useCheckVideoAccess();
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { data: _hasAccess, isLoading: accessLoading } = useCheckVideoAccess();
+  const [_mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const isAuthenticated = !!identity;
-  const paypalUrl = 'https://paypal.me/drshanejc55';
+  const paypalUrl = "https://paypal.me/drshanejc55";
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -22,14 +22,14 @@ export default function Media() {
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   const scrollToMembership = () => {
-    const element = document.getElementById('membership');
+    const element = document.getElementById("membership");
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -49,7 +49,10 @@ export default function Media() {
     <section id="media" className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-glow/5 to-background" />
       <div className="absolute top-1/3 left-1/3 w-72 h-72 bg-neon/20 rounded-full blur-3xl animate-glow-pulse" />
-      <div className="absolute bottom-1/3 right-1/3 w-72 h-72 bg-glow/20 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '1s' }} />
+      <div
+        className="absolute bottom-1/3 right-1/3 w-72 h-72 bg-glow/20 rounded-full blur-3xl animate-glow-pulse"
+        style={{ animationDelay: "1s" }}
+      />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -77,11 +80,13 @@ export default function Media() {
                 <Lock className="w-10 h-10 text-glow" />
               </div>
               <div>
-                <h3 className="text-2xl font-serif font-bold mb-2">Members Only</h3>
+                <h3 className="text-2xl font-serif font-bold mb-2">
+                  Members Only
+                </h3>
                 <p className="text-muted-foreground max-w-md mx-auto">
                   {isAuthenticated
-                    ? 'Subscribe to a membership plan to access our exclusive training videos and educational content.'
-                    : 'Please log in and subscribe to a membership plan to access our training videos.'}
+                    ? "Subscribe to a membership plan to access our exclusive training videos and educational content."
+                    : "Please log in and subscribe to a membership plan to access our training videos."}
                 </p>
               </div>
               <div className="flex gap-4 justify-center">
@@ -90,7 +95,11 @@ export default function Media() {
                     Log In
                   </Button>
                 )}
-                <Button size="lg" variant="outline" onClick={scrollToMembership}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={scrollToMembership}
+                >
                   View Membership Plans
                 </Button>
               </div>
@@ -104,7 +113,7 @@ export default function Media() {
               <h3 className="text-xl md:text-2xl font-serif text-glow leading-relaxed">
                 PayPal Payment Portal
               </h3>
-              
+
               {/* Line 2: PayPal Button */}
               <div>
                 <Button
@@ -123,7 +132,7 @@ export default function Media() {
                   </a>
                 </Button>
               </div>
-              
+
               {/* Line 3: Clickable Hyperlink */}
               <div>
                 <a

@@ -5,21 +5,23 @@
  */
 export function getStaticAssetUrl(filename: string): string {
   // If already an absolute URL (http/https), return as-is
-  if (filename.startsWith('http://') || filename.startsWith('https://')) {
+  if (filename.startsWith("http://") || filename.startsWith("https://")) {
     return filename;
   }
-  
+
   // If already starts with /assets/, strip it to avoid duplication
-  const cleanFilename = filename.startsWith('/assets/') 
-    ? filename.substring(8) 
+  const cleanFilename = filename.startsWith("/assets/")
+    ? filename.substring(8)
     : filename;
-  
+
   // Split the filename into path segments
-  const segments = cleanFilename.split('/');
-  
+  const segments = cleanFilename.split("/");
+
   // URL-encode each segment (handles spaces, special chars, etc.)
-  const encodedSegments = segments.map(segment => encodeURIComponent(segment));
-  
+  const encodedSegments = segments.map((segment) =>
+    encodeURIComponent(segment),
+  );
+
   // Reconstruct the path with /assets/ prefix
-  return `/assets/${encodedSegments.join('/')}`;
+  return `/assets/${encodedSegments.join("/")}`;
 }

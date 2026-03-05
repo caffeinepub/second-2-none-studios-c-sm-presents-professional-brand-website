@@ -1,6 +1,6 @@
-import { XCircle, ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowLeft, XCircle } from "lucide-react";
 
 interface PaymentFailureProps {
   onClose: () => void;
@@ -10,9 +10,9 @@ export default function PaymentFailure({ onClose }: PaymentFailureProps) {
   const scrollToMembership = () => {
     onClose();
     setTimeout(() => {
-      const element = document.getElementById('membership');
+      const element = document.getElementById("membership");
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
       }
     }, 100);
   };
@@ -36,13 +36,15 @@ export default function PaymentFailure({ onClose }: PaymentFailureProps) {
                 Payment Cancelled
               </h1>
               <p className="text-xl text-muted-foreground max-w-md mx-auto">
-                Your payment was not completed. No charges have been made to your account.
+                Your payment was not completed. No charges have been made to
+                your account.
               </p>
             </div>
 
             <div className="bg-muted/50 rounded-lg p-6 max-w-md mx-auto">
               <p className="text-sm text-muted-foreground">
-                If you experienced any issues during checkout or have questions about our membership plans, please don't hesitate to contact us.
+                If you experienced any issues during checkout or have questions
+                about our membership plans, please don't hesitate to contact us.
               </p>
             </div>
 

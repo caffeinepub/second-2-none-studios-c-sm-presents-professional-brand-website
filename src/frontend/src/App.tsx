@@ -1,26 +1,30 @@
-import { useInternetIdentity } from './hooks/useInternetIdentity';
-import { useGetCallerUserProfile, useIsUserMember, useHasDisplayName } from './hooks/useQueries';
-import { ThemeProvider } from 'next-themes';
-import { Toaster } from '@/components/ui/sonner';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Hero from './components/Hero';
-import Biography from './components/Biography';
-import Booking from './components/Booking';
-import Store from './components/Store';
-import Media from './components/Media';
-import Contact from './components/Contact';
-import Membership from './components/Membership';
-import Publications from './components/Publications';
-import TrainingVideos from './components/TrainingVideos';
-import SupportDonations from './components/SupportDonations';
-import Credentials from './components/Credentials';
-import ProfileSetupModal from './components/ProfileSetupModal';
-import DisplayNameSetupScreen from './components/DisplayNameSetupScreen';
-import MembersCommunity from './components/MembersCommunity';
-import PaymentSuccess from './components/PaymentSuccess';
-import PaymentFailure from './components/PaymentFailure';
-import { useEffect, useState } from 'react';
+import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "next-themes";
+import { useEffect, useState } from "react";
+import Biography from "./components/Biography";
+import Booking from "./components/Booking";
+import Contact from "./components/Contact";
+import Credentials from "./components/Credentials";
+import DisplayNameSetupScreen from "./components/DisplayNameSetupScreen";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Media from "./components/Media";
+import MembersCommunity from "./components/MembersCommunity";
+import Membership from "./components/Membership";
+import PaymentFailure from "./components/PaymentFailure";
+import PaymentSuccess from "./components/PaymentSuccess";
+import ProfileSetupModal from "./components/ProfileSetupModal";
+import Publications from "./components/Publications";
+import Store from "./components/Store";
+import SupportDonations from "./components/SupportDonations";
+import TrainingVideos from "./components/TrainingVideos";
+import { useInternetIdentity } from "./hooks/useInternetIdentity";
+import {
+  useGetCallerUserProfile,
+  useHasDisplayName,
+  useIsUserMember,
+} from "./hooks/useQueries";
 
 export default function App() {
   const { identity, isInitializing } = useInternetIdentity();
@@ -39,25 +43,40 @@ export default function App() {
     isLoading: displayNameLoading,
     isFetched: displayNameFetched,
   } = useHasDisplayName();
-  const [paymentStatus, setPaymentStatus] = useState<'success' | 'failure' | null>(null);
+  const [paymentStatus, setPaymentStatus] = useState<
+    "success" | "failure" | null
+  >(null);
   const [showCommunity, setShowCommunity] = useState(false);
 
   const isAuthenticated = !!identity;
-  const showProfileSetup = isAuthenticated && !profileLoading && profileFetched && userProfile === null;
-  const isPaidMember = isAuthenticated && !memberLoading && memberFetched && isMember === true;
-  const showDisplayNameSetup = isPaidMember && !displayNameLoading && displayNameFetched && hasDisplayName === false;
-  const canAccessCommunity = isPaidMember && !displayNameLoading && displayNameFetched && hasDisplayName === true;
+  const showProfileSetup =
+    isAuthenticated &&
+    !profileLoading &&
+    profileFetched &&
+    userProfile === null;
+  const isPaidMember =
+    isAuthenticated && !memberLoading && memberFetched && isMember === true;
+  const showDisplayNameSetup =
+    isPaidMember &&
+    !displayNameLoading &&
+    displayNameFetched &&
+    hasDisplayName === false;
+  const canAccessCommunity =
+    isPaidMember &&
+    !displayNameLoading &&
+    displayNameFetched &&
+    hasDisplayName === true;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const payment = params.get('payment');
-    
-    if (payment === 'success') {
-      setPaymentStatus('success');
-      window.history.replaceState({}, '', window.location.pathname);
-    } else if (payment === 'cancelled') {
-      setPaymentStatus('failure');
-      window.history.replaceState({}, '', window.location.pathname);
+    const payment = params.get("payment");
+
+    if (payment === "success") {
+      setPaymentStatus("success");
+      window.history.replaceState({}, "", window.location.pathname);
+    } else if (payment === "cancelled") {
+      setPaymentStatus("failure");
+      window.history.replaceState({}, "", window.location.pathname);
     }
   }, []);
 
@@ -80,7 +99,7 @@ export default function App() {
     );
   }
 
-  if (paymentStatus === 'success') {
+  if (paymentStatus === "success") {
     return (
       <ThemeProvider attribute="class" forcedTheme="light">
         <div className="min-h-screen bg-background">
@@ -94,7 +113,7 @@ export default function App() {
     );
   }
 
-  if (paymentStatus === 'failure') {
+  if (paymentStatus === "failure") {
     return (
       <ThemeProvider attribute="class" forcedTheme="light">
         <div className="min-h-screen bg-background">

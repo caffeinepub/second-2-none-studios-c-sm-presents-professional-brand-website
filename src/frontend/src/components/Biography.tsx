@@ -1,10 +1,10 @@
-import { GraduationCap, Lightbulb, Target } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { useGetBiographyContent } from '../hooks/useQueries';
-import { useState, useEffect } from 'react';
+import { Card, CardContent } from "@/components/ui/card";
+import { GraduationCap, Lightbulb, Target } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useGetBiographyContent } from "../hooks/useQueries";
 
 export default function Biography() {
-  const { data: bio, isLoading } = useGetBiographyContent();
+  const { data: _bio, isLoading } = useGetBiographyContent();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -15,13 +15,16 @@ export default function Biography() {
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   if (isLoading) {
     return (
-      <section id="biography" className="py-20 bg-muted/30 relative overflow-hidden">
+      <section
+        id="biography"
+        className="py-20 bg-muted/30 relative overflow-hidden"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-glow border-t-transparent" />
@@ -35,7 +38,7 @@ export default function Biography() {
     <section id="biography" className="py-20 relative overflow-hidden">
       {/* Layered background with parallax */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
-      
+
       <div
         className="absolute inset-0 opacity-20 parallax-layer"
         style={{
@@ -50,7 +53,7 @@ export default function Biography() {
       </div>
 
       <div className="absolute inset-0 geometric-overlay opacity-20" />
-      
+
       {/* Glowing accent orbs */}
       <div className="absolute top-20 right-1/4 w-64 h-64 bg-copper/20 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-1/4 w-64 h-64 bg-glow/20 rounded-full blur-3xl" />
@@ -58,6 +61,10 @@ export default function Biography() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
+            <p className="text-base md:text-lg font-serif italic text-accent mb-3 glow-text-subtle tracking-wide">
+              Masterfully Demonstration Exceptional Competency Back into a World
+              Hyper-captivated by Exceptional Mediocrity.
+            </p>
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 glow-text">
               A Tidbit About Dr. Shane JC
             </h2>
@@ -74,41 +81,44 @@ export default function Biography() {
               {/* Soft bioluminescent depth lighting */}
               <div className="absolute -inset-4 bg-gradient-to-br from-glow/20 via-accent/20 to-copper/20 rounded-full blur-2xl" />
               <div className="absolute -inset-2 bg-glow/10 rounded-full blur-xl animate-glow-pulse" />
-              
+
               {/* Portrait with metallic gold shimmer border */}
               <div className="relative">
                 <div className="absolute inset-0 metallic-gold rounded-full animate-shimmer opacity-60 blur-sm" />
                 <img
-                  src="/assets/DrSJC-Grad.jpg"
-                  alt="Dr. Shane J Charbonnet"
+                  src="/assets/1.28.26-c.jpg"
+                  alt="Dr. Shane JC"
                   className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-accent/80 shadow-golden-halo object-cover ring-2 ring-glow/20 ring-offset-4 ring-offset-background"
                 />
-                
+
                 {/* Subtle depth lighting overlay */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-transparent via-transparent to-glow/10" />
               </div>
             </div>
 
             <div className="flex-1 text-center md:text-left">
-              {/* Brand heading with Renaissance-golden styling */}
-              <div className="mb-2">
-                <h3 className="text-xl md:text-2xl font-serif font-semibold text-accent tracking-wide glow-text-subtle">
-                  Simply Shane Designs <span className="text-base align-super">(c)sm</span>
-                </h3>
-              </div>
-              
-              {/* Name heading - updated to "The Doctor of UDesign ©sm" */}
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-foreground mb-3 glow-text mt-1">
-                The Doctor of UDesign <span className="text-base align-super">(c)sm</span>
+              {/* Name heading - line 2 of tidbit block */}
+              <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-1 glow-text">
+                Dr. Shane JC
               </h3>
-              
+
+              {/* Brand heading with Renaissance-golden styling */}
+              <div className="mb-1">
+                <p className="text-lg md:text-xl font-serif font-semibold text-accent tracking-wide glow-text-subtle">
+                  Simply Shane Designs{" "}
+                  <span className="text-sm align-super">(c)sm</span>
+                </p>
+              </div>
+
+              {/* The Doctor of UDesign heading */}
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-bold text-foreground mb-3 glow-text mt-1">
+                The Doctor of UDesign{" "}
+                <span className="text-sm align-super">(c)sm</span>
+              </h3>
+
               {/* Enhanced subtitle */}
               <p className="text-lg md:text-xl font-semibold mb-4 enhanced-subtitle-text">
                 Innovator • Educator • Author
-              </p>
-              
-              <p className="text-lg text-foreground/80 leading-relaxed">
-                {bio?.philosophy}
               </p>
             </div>
           </div>
@@ -122,12 +132,26 @@ export default function Biography() {
                     <GraduationCap className="h-8 w-8 text-accent-foreground" />
                   </div>
                 </div>
-                <h3 className="text-xl font-serif font-semibold mb-3 text-accent">Education</h3>
+                <h3 className="text-xl font-serif font-semibold mb-3 text-accent">
+                  Education
+                </h3>
                 <div className="text-muted-foreground space-y-2 text-sm md:text-base">
-                  <p className="leading-relaxed">Ph.D. in design and innovation.</p>
-                  <p className="leading-relaxed">Master's Degree in Adult Professional Development -- Leadership Studies.</p>
-                  <p className="leading-relaxed">Undergraduate degree in 'Computer Information Systems' (engineering).</p>
-                  <p className="leading-relaxed">Extensive postgrad credit hours in educational administration -- curriculum and instruction, and adult education -- instruction and facilitation.</p>
+                  <p className="leading-relaxed">
+                    Ph.D. in design and innovation.
+                  </p>
+                  <p className="leading-relaxed">
+                    Master's Degree in Adult Professional Development --
+                    Leadership Studies.
+                  </p>
+                  <p className="leading-relaxed">
+                    Undergraduate degree in 'Computer Information Systems'
+                    (engineering).
+                  </p>
+                  <p className="leading-relaxed">
+                    Extensive postgrad credit hours in educational
+                    administration -- curriculum and instruction, and adult
+                    education -- instruction and facilitation.
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -140,10 +164,32 @@ export default function Biography() {
                     <Lightbulb className="h-8 w-8 text-neon-foreground" />
                   </div>
                 </div>
-                <h3 className="text-xl font-serif font-semibold mb-2 text-neon">Philosophy</h3>
-                <p className="text-muted-foreground">
-                  Critical reasoning and design thinking for transformative solutions
+                <h3 className="text-xl font-serif font-semibold mb-2 text-neon">
+                  Philosophy
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Critical reasoning and design thinking for transformative
+                  solutions
                 </p>
+                <div className="text-muted-foreground text-sm md:text-base space-y-4 text-left">
+                  <p className="leading-relaxed">
+                    "The greatest benefit of having a matured posture of
+                    self-identity is that the recipient will never find oneself
+                    sitting at the feet of another whom is less masterful than
+                    oneself."
+                  </p>
+
+                  <p className="leading-relaxed">
+                    Master key: For a (green belt) is very-very unlikely to
+                    teach/train a (black belt).
+                  </p>
+
+                  <p className="leading-relaxed">
+                    Golden takeaway point/principle: Master thyself and others
+                    will become innately aligned!" (Nicholls, J.S., December 12,
+                    2025).
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
@@ -155,9 +201,11 @@ export default function Biography() {
                     <Target className="h-8 w-8 text-copper-foreground" />
                   </div>
                 </div>
-                <h3 className="text-xl font-serif font-semibold mb-2 text-copper">Expertise</h3>
+                <h3 className="text-xl font-serif font-semibold mb-2 text-copper">
+                  Expertise
+                </h3>
                 <p className="text-muted-foreground">
-                  Mentoring, consulting, and thought leadership
+                  Mentoring, consulting, and thought leadership.
                 </p>
               </CardContent>
             </Card>

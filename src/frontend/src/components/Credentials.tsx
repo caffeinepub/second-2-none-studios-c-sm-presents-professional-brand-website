@@ -45,6 +45,16 @@ export default function Credentials() {
               </div>
             </div>
           </div>
+          {/* Bottom Portrait */}
+          <div className="text-center space-y-6 mt-12">
+            <div className="flex justify-center">
+              <img
+                src="/assets/uploads/Dr-Shane-JC_Feb-26-2026-ii-1-1.jpg"
+                alt="Dr. Shane JC - Full Portrait"
+                className="w-64 md:w-80 h-auto rounded-md shadow-2xl"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

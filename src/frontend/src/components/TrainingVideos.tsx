@@ -1,13 +1,18 @@
-import { useGetTrainingVideos, useGetTrainingDocuments } from '../hooks/useQueries';
-import { Video, Loader2, ExternalLink, FileText } from 'lucide-react';
-import { SiPaypal } from 'react-icons/si';
-import { Button } from './ui/button';
-import { getStaticAssetUrl } from '../utils/staticAssetUrl';
+import { ExternalLink, FileText, Loader2, Video } from "lucide-react";
+import { SiPaypal } from "react-icons/si";
+import {
+  useGetTrainingDocuments,
+  useGetTrainingVideos,
+} from "../hooks/useQueries";
+import { getStaticAssetUrl } from "../utils/staticAssetUrl";
+import { Button } from "./ui/button";
 
 export default function TrainingVideos() {
-  const { data: trainingVideos, isLoading: videosLoading } = useGetTrainingVideos();
-  const { data: trainingDocuments, isLoading: documentsLoading } = useGetTrainingDocuments();
-  const paypalUrl = 'https://paypal.me/drshanejc55';
+  const { data: trainingVideos, isLoading: videosLoading } =
+    useGetTrainingVideos();
+  const { data: trainingDocuments, isLoading: documentsLoading } =
+    useGetTrainingDocuments();
+  const paypalUrl = "https://paypal.me/drshanejc55";
 
   const isLoading = videosLoading || documentsLoading;
 
@@ -15,11 +20,11 @@ export default function TrainingVideos() {
   const getDocumentUrl = (documentId: bigint, documentUrl: string): string => {
     // Training Document #2 should open C3.pdf
     if (documentId === 2n) {
-      return '/assets/C3.pdf';
+      return "/assets/C3.pdf";
     }
     // Training Document #3 should open the new Distinction Codex PDF
     if (documentId === 3n) {
-      return '/assets/Rise.Articulate 360 -- Course #5  Distinction Codex - Unveiling the Markers-Course Summary_JAN 18, 2026.pdf';
+      return "/assets/Rise.Articulate 360 -- Course #5  Distinction Codex - Unveiling the Markers-Course Summary_JAN 18, 2026.pdf";
     }
     return documentUrl;
   };
@@ -31,9 +36,10 @@ export default function TrainingVideos() {
       <div
         className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: 'url(/assets/generated/celestial-pattern.dim_1600x900.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundImage:
+            "url(/assets/generated/celestial-pattern.dim_1600x900.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-transparent" />
@@ -48,7 +54,8 @@ export default function TrainingVideos() {
             </h2>
           </div>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Watch Dr. Charbonnet's training videos covering essential topics in design thinking, innovation, and critical reasoning.
+            Watch Dr. Charbonnet's training videos covering essential topics in
+            design thinking, innovation, and critical reasoning.
           </p>
         </div>
 
@@ -63,7 +70,10 @@ export default function TrainingVideos() {
               trainingVideos.map((video, index) => (
                 <div key={video.id} className="text-center space-y-4">
                   <h3 className="text-xl md:text-2xl font-serif text-amber-300 leading-relaxed">
-                    <span className="font-bold">Training Video #{index + 1}:</span> {video.title}
+                    <span className="font-bold">
+                      Training Video #{index + 1}:
+                    </span>{" "}
+                    {video.title}
                   </h3>
                   {video.videoUrl && (
                     <div>
@@ -88,13 +98,17 @@ export default function TrainingVideos() {
             ) : (
               <div className="text-center py-10">
                 <Video className="w-16 h-16 text-amber-400/30 mx-auto mb-4" />
-                <p className="text-slate-400 text-lg">The Training Videos section is ready for new content.</p>
-                <p className="text-slate-500 text-sm mt-2">Videos will be displayed here as they are added.</p>
+                <p className="text-slate-400 text-lg">
+                  The Training Videos section is ready for new content.
+                </p>
+                <p className="text-slate-500 text-sm mt-2">
+                  Videos will be displayed here as they are added.
+                </p>
               </div>
             )}
 
             {/* Visual Double-Space Separator */}
-            <div className="py-8"></div>
+            <div className="py-8" />
 
             {/* Training Documents Header */}
             <div className="text-center mb-12">
@@ -109,7 +123,10 @@ export default function TrainingVideos() {
             {/* Training Documents (PDFs) - Strict Two-Line Format */}
             {trainingDocuments && trainingDocuments.length > 0 ? (
               trainingDocuments.map((document) => {
-                const actualDocumentUrl = getDocumentUrl(document.id, document.documentUrl);
+                const actualDocumentUrl = getDocumentUrl(
+                  document.id,
+                  document.documentUrl,
+                );
                 return (
                   <div key={document.id} className="text-center space-y-3">
                     {/* Line 1: Title only */}
@@ -135,8 +152,12 @@ export default function TrainingVideos() {
             ) : (
               <div className="text-center py-10">
                 <FileText className="w-16 h-16 text-amber-400/30 mx-auto mb-4" />
-                <p className="text-slate-400 text-lg">The Training Documents section is ready for new content.</p>
-                <p className="text-slate-500 text-sm mt-2">Documents will be displayed here as they are added.</p>
+                <p className="text-slate-400 text-lg">
+                  The Training Documents section is ready for new content.
+                </p>
+                <p className="text-slate-500 text-sm mt-2">
+                  Documents will be displayed here as they are added.
+                </p>
               </div>
             )}
 
@@ -146,7 +167,7 @@ export default function TrainingVideos() {
               <h3 className="text-xl md:text-2xl font-serif text-amber-300 leading-relaxed">
                 PayPal Payment Portal
               </h3>
-              
+
               {/* Line 2: PayPal Button */}
               <div>
                 <Button
@@ -164,7 +185,7 @@ export default function TrainingVideos() {
                   </a>
                 </Button>
               </div>
-              
+
               {/* Line 3: Clickable Hyperlink */}
               <div>
                 <a

@@ -1,21 +1,22 @@
-import { Lock, Clock } from 'lucide-react';
-import { SiPaypal } from 'react-icons/si';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { useCheckBookingAccess } from '../hooks/useQueries';
-import { useInternetIdentity } from '../hooks/useInternetIdentity';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Clock, Lock } from "lucide-react";
+import { SiPaypal } from "react-icons/si";
+import { useInternetIdentity } from "../hooks/useInternetIdentity";
+import { useCheckBookingAccess } from "../hooks/useQueries";
 
 export default function Booking() {
   const { identity, login } = useInternetIdentity();
-  const { data: hasAccess, isLoading: accessLoading } = useCheckBookingAccess();
+  const { data: _hasAccess, isLoading: accessLoading } =
+    useCheckBookingAccess();
 
   const isAuthenticated = !!identity;
-  const paypalUrl = 'https://paypal.me/drshanejc55';
+  const paypalUrl = "https://paypal.me/drshanejc55";
 
   const scrollToMembership = () => {
-    const element = document.getElementById('membership');
+    const element = document.getElementById("membership");
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -55,7 +56,9 @@ export default function Booking() {
           <div className="mb-8 p-6 bg-gradient-to-r from-glow/10 to-neon/10 border-2 border-glow/30 rounded-lg">
             <div className="flex items-center justify-center gap-3 mb-2">
               <Clock className="w-6 h-6 text-glow" />
-              <h3 className="text-2xl font-serif font-bold">One-on-One Consulting Sessions</h3>
+              <h3 className="text-2xl font-serif font-bold">
+                One-on-One Consulting Sessions
+              </h3>
             </div>
             <p className="text-center text-lg text-glow font-semibold">
               Rate: $515 per hour
@@ -68,11 +71,13 @@ export default function Booking() {
                 <Lock className="w-10 h-10 text-glow" />
               </div>
               <div>
-                <h3 className="text-2xl font-serif font-bold mb-2">Members Only</h3>
+                <h3 className="text-2xl font-serif font-bold mb-2">
+                  Members Only
+                </h3>
                 <p className="text-muted-foreground max-w-md mx-auto">
                   {isAuthenticated
-                    ? 'Subscribe to a membership plan to book one-on-one mentoring and consultation sessions.'
-                    : 'Please log in and subscribe to a membership plan to book sessions.'}
+                    ? "Subscribe to a membership plan to book one-on-one mentoring and consultation sessions."
+                    : "Please log in and subscribe to a membership plan to book sessions."}
                 </p>
               </div>
               <div className="flex gap-4 justify-center">
@@ -81,7 +86,11 @@ export default function Booking() {
                     Log In
                   </Button>
                 )}
-                <Button size="lg" variant="outline" onClick={scrollToMembership}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={scrollToMembership}
+                >
                   View Membership Plans
                 </Button>
               </div>
@@ -95,7 +104,7 @@ export default function Booking() {
               <h3 className="text-xl md:text-2xl font-serif text-glow leading-relaxed">
                 PayPal Payment Portal
               </h3>
-              
+
               {/* Line 2: PayPal Button */}
               <div>
                 <Button
@@ -114,7 +123,7 @@ export default function Booking() {
                   </a>
                 </Button>
               </div>
-              
+
               {/* Line 3: Clickable Hyperlink */}
               <div>
                 <a

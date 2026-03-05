@@ -1,11 +1,11 @@
-import { useGetPublications } from '../hooks/useQueries';
-import { BookOpen, Loader2, ExternalLink } from 'lucide-react';
-import { SiPaypal } from 'react-icons/si';
-import { Button } from './ui/button';
+import { BookOpen, ExternalLink, Loader2 } from "lucide-react";
+import { SiPaypal } from "react-icons/si";
+import { useGetPublications } from "../hooks/useQueries";
+import { Button } from "./ui/button";
 
 export default function Publications() {
   const { data: publications, isLoading } = useGetPublications();
-  const paypalUrl = 'https://paypal.me/drshanejc55';
+  const paypalUrl = "https://paypal.me/drshanejc55";
 
   return (
     <section id="publications" className="relative py-24 overflow-hidden">
@@ -14,9 +14,10 @@ export default function Publications() {
       <div
         className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: 'url(/assets/generated/celestial-pattern.dim_1600x900.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundImage:
+            "url(/assets/generated/celestial-pattern.dim_1600x900.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-transparent" />
@@ -30,7 +31,9 @@ export default function Publications() {
             </h2>
           </div>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Explore Dr. Charbonnet's collection of books covering critical reasoning, design thinking, and innovative problem-solving approaches.
+            Explore Dr. Charbonnet's collection of books covering critical
+            reasoning, design thinking, and innovative problem-solving
+            approaches.
           </p>
         </div>
 
@@ -43,7 +46,8 @@ export default function Publications() {
             {publications.map((publication, index) => (
               <div key={publication.id} className="text-center space-y-4">
                 <h3 className="text-xl md:text-2xl font-serif text-amber-300 leading-relaxed">
-                  <span className="font-bold">Book #{index + 1}:</span> {publication.title}
+                  <span className="font-bold">Book #{index + 1}:</span>{" "}
+                  {publication.title}
                 </h3>
                 {publication.amazonLink && (
                   <div>
@@ -72,7 +76,7 @@ export default function Publications() {
               <h3 className="text-xl md:text-2xl font-serif text-amber-300 leading-relaxed">
                 PayPal Payment Portal
               </h3>
-              
+
               {/* Line 2: PayPal Button */}
               <div>
                 <Button
@@ -90,7 +94,7 @@ export default function Publications() {
                   </a>
                 </Button>
               </div>
-              
+
               {/* Line 3: Clickable Hyperlink */}
               <div>
                 <a
@@ -107,8 +111,12 @@ export default function Publications() {
         ) : (
           <div className="text-center py-20">
             <BookOpen className="w-16 h-16 text-amber-400/30 mx-auto mb-4" />
-            <p className="text-slate-400 text-lg">The Publications section is ready for new content.</p>
-            <p className="text-slate-500 text-sm mt-2">Books will be displayed here as they are added.</p>
+            <p className="text-slate-400 text-lg">
+              The Publications section is ready for new content.
+            </p>
+            <p className="text-slate-500 text-sm mt-2">
+              Books will be displayed here as they are added.
+            </p>
           </div>
         )}
       </div>

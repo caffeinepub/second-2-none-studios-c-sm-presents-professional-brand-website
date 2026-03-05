@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,23 +6,24 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useSaveCallerUserProfile } from '../hooks/useQueries';
-import { toast } from 'sonner';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
+import { toast } from "sonner";
+import { useSaveCallerUserProfile } from "../hooks/useQueries";
 
 export default function ProfileSetupModal() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const saveProfile = useSaveCallerUserProfile();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!name.trim() || !email.trim()) {
-      toast.error('Please fill in required fields');
+      toast.error("Please fill in required fields");
       return;
     }
 
@@ -34,20 +34,24 @@ export default function ProfileSetupModal() {
         phone: phone.trim() || undefined,
         hasMembership: false,
       });
-      toast.success('Profile created successfully!');
+      toast.success("Profile created successfully!");
     } catch (error) {
-      toast.error('Failed to create profile');
+      toast.error("Failed to create profile");
       console.error(error);
     }
   };
 
   return (
     <Dialog open={true}>
-      <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()}>
+      <DialogContent
+        className="sm:max-w-md"
+        onPointerDownOutside={(e) => e.preventDefault()}
+      >
         <DialogHeader>
           <DialogTitle>Welcome!</DialogTitle>
           <DialogDescription>
-            Please set up your profile to continue. This helps us personalize your experience.
+            Please set up your profile to continue. This helps us personalize
+            your experience.
           </DialogDescription>
         </DialogHeader>
 
@@ -91,8 +95,12 @@ export default function ProfileSetupModal() {
           </div>
 
           <DialogFooter>
-            <Button type="submit" disabled={saveProfile.isPending} className="w-full">
-              {saveProfile.isPending ? 'Creating Profile...' : 'Create Profile'}
+            <Button
+              type="submit"
+              disabled={saveProfile.isPending}
+              className="w-full"
+            >
+              {saveProfile.isPending ? "Creating Profile..." : "Create Profile"}
             </Button>
           </DialogFooter>
         </form>

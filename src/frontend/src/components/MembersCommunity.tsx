@@ -1,8 +1,22 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { useInternetIdentity } from '../hooks/useInternetIdentity';
-import { useIsUserMember } from '../hooks/useQueries';
-import { Sparkles, BookOpen, ShoppingBag, Video, FileText, MessageCircle, Music } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  BookOpen,
+  FileText,
+  MessageCircle,
+  Music,
+  ShoppingBag,
+  Sparkles,
+  Video,
+} from "lucide-react";
+import { useInternetIdentity } from "../hooks/useInternetIdentity";
+import { useIsUserMember } from "../hooks/useQueries";
 
 export default function MembersCommunity() {
   const { identity, login } = useInternetIdentity();
@@ -18,7 +32,9 @@ export default function MembersCommunity() {
             <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Sparkles className="w-8 h-8 text-primary" />
             </div>
-            <CardTitle className="text-3xl font-serif">Members-Only Community</CardTitle>
+            <CardTitle className="text-3xl font-serif">
+              Members-Only Community
+            </CardTitle>
             <CardDescription className="text-base">
               Please log in to access the exclusive members community.
             </CardDescription>
@@ -52,20 +68,23 @@ export default function MembersCommunity() {
             <div className="mx-auto w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mb-4">
               <Sparkles className="w-8 h-8 text-destructive" />
             </div>
-            <CardTitle className="text-3xl font-serif">Membership Required</CardTitle>
+            <CardTitle className="text-3xl font-serif">
+              Membership Required
+            </CardTitle>
             <CardDescription className="text-base">
               This exclusive community is only accessible to paid members.
             </CardDescription>
           </CardHeader>
           <CardContent className="text-center space-y-4">
             <p className="text-muted-foreground">
-              Join our community to unlock exclusive content, training materials, and direct access to Dr. Shane J Charbonnet.
+              Join our community to unlock exclusive content, training
+              materials, and direct access to Dr. Shane J Charbonnet.
             </p>
             <Button
               onClick={() => {
-                const membershipSection = document.getElementById('membership');
+                const membershipSection = document.getElementById("membership");
                 if (membershipSection) {
-                  membershipSection.scrollIntoView({ behavior: 'smooth' });
+                  membershipSection.scrollIntoView({ behavior: "smooth" });
                 }
               }}
               size="lg"
@@ -90,7 +109,8 @@ export default function MembersCommunity() {
             Welcome to the Members Community
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Your exclusive gateway to premium content, resources, and direct engagement with Dr. Shane J Charbonnet.
+            Your exclusive gateway to premium content, resources, and direct
+            engagement with Dr. Shane J Charbonnet.
           </p>
         </div>
 
@@ -102,7 +122,8 @@ export default function MembersCommunity() {
               </div>
               <CardTitle className="text-xl">Books & Publications</CardTitle>
               <CardDescription>
-                Exclusive access to purchase Dr. Charbonnet's complete collection of books and publications.
+                Exclusive access to purchase Dr. Charbonnet's complete
+                collection of books and publications.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -114,7 +135,8 @@ export default function MembersCommunity() {
               </div>
               <CardTitle className="text-xl">Apparel Store</CardTitle>
               <CardDescription>
-                Shop exclusive branded apparel and merchandise available only to members.
+                Shop exclusive branded apparel and merchandise available only to
+                members.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -126,7 +148,8 @@ export default function MembersCommunity() {
               </div>
               <CardTitle className="text-xl">Training Videos</CardTitle>
               <CardDescription>
-                Access an expanded library of training videos and educational content.
+                Access an expanded library of training videos and educational
+                content.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -138,7 +161,8 @@ export default function MembersCommunity() {
               </div>
               <CardTitle className="text-xl">Training Documents</CardTitle>
               <CardDescription>
-                Download comprehensive training documents and resources for deeper learning.
+                Download comprehensive training documents and resources for
+                deeper learning.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -150,7 +174,8 @@ export default function MembersCommunity() {
               </div>
               <CardTitle className="text-xl">Direct Chat Access</CardTitle>
               <CardDescription>
-                Connect directly with Dr. Charbonnet and engage in meaningful conversations.
+                Connect directly with Dr. Charbonnet and engage in meaningful
+                conversations.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -162,7 +187,8 @@ export default function MembersCommunity() {
               </div>
               <CardTitle className="text-xl">Curated Music Library</CardTitle>
               <CardDescription>
-                Access hand-selected music for healing, focus, and optimal brain performance.
+                Access hand-selected music for healing, focus, and optimal brain
+                performance.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -174,7 +200,8 @@ export default function MembersCommunity() {
               More exclusive features and content coming soon!
             </p>
             <p className="text-sm text-muted-foreground">
-              Stay tuned for community chat rooms, member forums, and additional premium resources.
+              Stay tuned for community chat rooms, member forums, and additional
+              premium resources.
             </p>
           </CardContent>
         </Card>

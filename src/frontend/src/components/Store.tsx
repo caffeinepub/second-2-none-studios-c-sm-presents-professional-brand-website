@@ -1,29 +1,32 @@
-import { Shirt, ExternalLink } from 'lucide-react';
-import { SiPaypal } from 'react-icons/si';
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Shirt } from "lucide-react";
+import { SiPaypal } from "react-icons/si";
 
 export default function Store() {
-  const paypalUrl = 'https://paypal.me/drshanejc55';
+  const paypalUrl = "https://paypal.me/drshanejc55";
 
   // Hardcoded apparel items for public display (three-line format)
   const apparelItems = [
     {
       id: 1,
-      name: 'As Strong as Our Weak Link — t-shirt',
-      bonfireLink: 'https://www.bonfire.com/as-strong-as-our-weak-link/?utm_source=copy_link&utm_medium=campaign_page&utm_campaign=as-strong-as-our-weak-link&utm_content=default',
-      qrCodeImage: 'qr code-2_01.27.26.jpg',
+      name: "As Strong as Our Weak Link — t-shirt",
+      bonfireLink:
+        "https://www.bonfire.com/as-strong-as-our-weak-link/?utm_source=copy_link&utm_medium=campaign_page&utm_campaign=as-strong-as-our-weak-link&utm_content=default",
+      qrCodeImage: "qr code-2_01.27.26.jpg",
     },
     {
       id: 2,
-      name: 'The Potency of Us.',
-      bonfireLink: 'https://www.bonfire.com/the-potency-of-us/?utm_source=copy_link&utm_medium=campaign_page&utm_campaign=the-potency-of-us&utm_content=default',
-      qrCodeImage: 'The Potency of Us_.png',
+      name: "The Potency of Us.",
+      bonfireLink:
+        "https://www.bonfire.com/the-potency-of-us/?utm_source=copy_link&utm_medium=campaign_page&utm_campaign=the-potency-of-us&utm_content=default",
+      qrCodeImage: "The Potency of Us_.png",
     },
     {
       id: 3,
-      name: 'Resonating Within (c)(sm)',
-      bonfireLink: 'https://www.bonfire.com/resonating-within-csm/?utm_source=copy_link&utm_medium=campaign_page&utm_campaign=resonating-within-csm&utm_content=default',
-      qrCodeImage: 'qr code-3_01.31.26.jpg',
+      name: "Resonating Within (c)(sm)",
+      bonfireLink:
+        "https://www.bonfire.com/resonating-within-csm/?utm_source=copy_link&utm_medium=campaign_page&utm_campaign=resonating-within-csm&utm_content=default",
+      qrCodeImage: "qr code-3_01.31.26.jpg",
     },
   ];
 
@@ -34,9 +37,10 @@ export default function Store() {
       <div
         className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: 'url(/assets/generated/celestial-pattern.dim_1600x900.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundImage:
+            "url(/assets/generated/celestial-pattern.dim_1600x900.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-transparent" />
@@ -61,7 +65,7 @@ export default function Store() {
               <h3 className="text-xl md:text-2xl font-serif text-amber-300 leading-relaxed">
                 {item.name}
               </h3>
-              
+
               {/* Line 2: Order Button */}
               <div>
                 <Button
@@ -84,7 +88,7 @@ export default function Store() {
               {item.qrCodeImage && (
                 <div className="flex justify-center pt-4">
                   <div className="p-4 bg-white rounded-lg shadow-lg border-2 border-amber-400/50 hover:border-amber-400 transition-all duration-300">
-                    <img 
+                    <img
                       src={`/assets/${item.qrCodeImage}`}
                       alt={`QR code for ${item.name}`}
                       className="w-48 h-48 md:w-56 md:h-56"
@@ -101,7 +105,7 @@ export default function Store() {
             <h3 className="text-xl md:text-2xl font-serif text-amber-300 leading-relaxed">
               PayPal Payment Portal
             </h3>
-            
+
             {/* Line 2: PayPal Button */}
             <div>
               <Button
@@ -119,7 +123,7 @@ export default function Store() {
                 </a>
               </Button>
             </div>
-            
+
             {/* Line 3: Clickable Hyperlink */}
             <div>
               <a

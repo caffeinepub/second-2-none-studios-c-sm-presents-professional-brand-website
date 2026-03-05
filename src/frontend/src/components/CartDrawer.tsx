@@ -1,12 +1,21 @@
-import { Trash2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from '@/components/ui/sheet';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
-import { ShoppingItem } from '../backend';
-import { useCreateCheckoutSession, useIsStripeConfigured } from '../hooks/useQueries';
-import { toast } from 'sonner';
-import StripeSetupModal from './StripeSetupModal';
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { Trash2 } from "lucide-react";
+import { toast } from "sonner";
+import type { ShoppingItem } from "../backend";
+import {
+  useCreateCheckoutSession,
+  useIsStripeConfigured,
+} from "../hooks/useQueries";
+import StripeSetupModal from "./StripeSetupModal";
 
 interface CartItem {
   id: string;
@@ -32,7 +41,8 @@ export default function CartDrawer({
   onClearCart,
 }: CartDrawerProps) {
   const createCheckoutSession = useCreateCheckoutSession();
-  const { data: isStripeConfigured, isLoading: isCheckingStripe } = useIsStripeConfigured();
+  const { data: isStripeConfigured, isLoading: isCheckingStripe } =
+    useIsStripeConfigured();
 
   const formatPrice = (price: number) => {
     return `$${(price / 100).toFixed(2)}`;
@@ -44,12 +54,14 @@ export default function CartDrawer({
 
   const handleCheckout = async () => {
     if (cart.length === 0) {
-      toast.error('Your cart is empty');
+      toast.error("Your cart is empty");
       return;
     }
 
     if (!isStripeConfigured) {
-      toast.error('Payment system is not configured. Please contact the administrator.');
+      toast.error(
+        "Payment system is not configured. Please contact the administrator.",
+      );
       return;
     }
 
@@ -59,7 +71,7 @@ export default function CartDrawer({
         productDescription: product.description,
         priceInCents: BigInt(product.price),
         quantity: BigInt(1),
-        currency: 'usd',
+        currency: "usd",
       }));
 
       const baseUrl = `${window.location.protocol}//${window.location.host}`;
@@ -74,7 +86,7 @@ export default function CartDrawer({
 
       window.location.href = session.url;
     } catch (error) {
-      toast.error('Failed to initiate checkout. Please try again.');
+      toast.error("Failed to initiate checkout. Please try again.");
       console.error(error);
     }
   };
@@ -104,7 +116,10 @@ export default function CartDrawer({
               <ScrollArea className="h-[calc(100vh-250px)] pr-4 mt-6">
                 <div className="space-y-4">
                   {cart.map((item, index) => (
-                    <div key={index} className="flex gap-4 p-4 border rounded-lg">
+                    <div
+                      key={`${item.id}-${index}`}
+                      className="flex gap-4 p-4 border rounded-lg"
+                    >
                       {item.image && (
                         <div className="w-20 h-20 rounded-md overflow-hidden bg-muted flex-shrink-0">
                           <img
@@ -151,7 +166,9 @@ export default function CartDrawer({
                   onClick={handleCheckout}
                   disabled={createCheckoutSession.isPending || isCheckingStripe}
                 >
-                  {createCheckoutSession.isPending ? 'Processing...' : 'Proceed to Checkout'}
+                  {createCheckoutSession.isPending
+                    ? "Processing..."
+                    : "Proceed to Checkout"}
                 </Button>
               </SheetFooter>
             </>

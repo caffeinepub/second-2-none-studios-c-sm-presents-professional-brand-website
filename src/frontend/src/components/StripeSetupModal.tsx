@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { AlertCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,17 +7,21 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { useSetStripeConfiguration, useIsCallerAdmin } from '../hooks/useQueries';
-import { toast } from 'sonner';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { AlertCircle } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+import {
+  useIsCallerAdmin,
+  useSetStripeConfiguration,
+} from "../hooks/useQueries";
 
 export default function StripeSetupModal() {
   const [isOpen, setIsOpen] = useState(true);
-  const [secretKey, setSecretKey] = useState('');
-  const [countries, setCountries] = useState('US,CA,GB');
+  const [secretKey, setSecretKey] = useState("");
+  const [countries, setCountries] = useState("US,CA,GB");
   const setStripeConfig = useSetStripeConfiguration();
   const { data: isAdmin } = useIsCallerAdmin();
 
@@ -30,13 +33,13 @@ export default function StripeSetupModal() {
     e.preventDefault();
 
     if (!secretKey.trim()) {
-      toast.error('Please enter your Stripe secret key');
+      toast.error("Please enter your Stripe secret key");
       return;
     }
 
     try {
       const allowedCountries = countries
-        .split(',')
+        .split(",")
         .map((c) => c.trim().toUpperCase())
         .filter((c) => c.length === 2);
 
@@ -45,10 +48,10 @@ export default function StripeSetupModal() {
         allowedCountries,
       });
 
-      toast.success('Stripe configuration saved successfully');
+      toast.success("Stripe configuration saved successfully");
       setIsOpen(false);
     } catch (error) {
-      toast.error('Failed to save Stripe configuration');
+      toast.error("Failed to save Stripe configuration");
       console.error(error);
     }
   };
@@ -66,7 +69,8 @@ export default function StripeSetupModal() {
         <Alert>
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>
-            As an admin, you need to configure Stripe before customers can make purchases.
+            As an admin, you need to configure Stripe before customers can make
+            purchases.
           </AlertDescription>
         </Alert>
 
@@ -87,7 +91,9 @@ export default function StripeSetupModal() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="countries">Allowed Countries (comma-separated)</Label>
+            <Label htmlFor="countries">
+              Allowed Countries (comma-separated)
+            </Label>
             <Input
               id="countries"
               value={countries}
@@ -101,8 +107,12 @@ export default function StripeSetupModal() {
           </div>
 
           <DialogFooter>
-            <Button type="submit" disabled={setStripeConfig.isPending} className="w-full">
-              {setStripeConfig.isPending ? 'Saving...' : 'Save Configuration'}
+            <Button
+              type="submit"
+              disabled={setStripeConfig.isPending}
+              className="w-full"
+            >
+              {setStripeConfig.isPending ? "Saving..." : "Save Configuration"}
             </Button>
           </DialogFooter>
         </form>

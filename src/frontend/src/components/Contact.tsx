@@ -1,6 +1,6 @@
-import { Mail, Phone, MapPin } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGetContactInfo } from '../hooks/useQueries';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { useGetContactInfo } from "../hooks/useQueries";
 
 export default function Contact() {
   const { data: contactInfo } = useGetContactInfo();
@@ -57,7 +57,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">{contactInfo?.location}</p>
+                    <p className="text-muted-foreground">
+                      {contactInfo?.location}
+                    </p>
                   </div>
                 </div>
               </CardContent>

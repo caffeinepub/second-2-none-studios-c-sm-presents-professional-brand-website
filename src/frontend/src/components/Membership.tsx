@@ -1,38 +1,52 @@
-import { Crown, Check, Sparkles, Lock } from 'lucide-react';
-import { SiPaypal } from 'react-icons/si';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { useGetMembershipPlans, useIsUserMember, useIsStripeConfigured } from '../hooks/useQueries';
-import { useInternetIdentity } from '../hooks/useInternetIdentity';
-import { toast } from 'sonner';
-import StripeSetupModal from './StripeSetupModal';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Check, Crown, Lock, Sparkles } from "lucide-react";
+import { SiPaypal } from "react-icons/si";
+import { toast } from "sonner";
+import { useInternetIdentity } from "../hooks/useInternetIdentity";
+import {
+  useGetMembershipPlans,
+  useIsStripeConfigured,
+  useIsUserMember,
+} from "../hooks/useQueries";
+import StripeSetupModal from "./StripeSetupModal";
 
 export default function Membership() {
   const { data: plans, isLoading: plansLoading } = useGetMembershipPlans();
   const { data: isMember, isLoading: memberLoading } = useIsUserMember();
-  const { data: isStripeConfigured, isLoading: isCheckingStripe } = useIsStripeConfigured();
-  const { identity, login, loginStatus } = useInternetIdentity();
+  const { data: isStripeConfigured, isLoading: isCheckingStripe } =
+    useIsStripeConfigured();
+  const { identity } = useInternetIdentity();
 
-  const isAuthenticated = !!identity;
-  const paypalUrl = 'https://paypal.me/drshanejc55';
+  const _isAuthenticated = !!identity;
+  const paypalUrl = "https://paypal.me/drshanejc55";
 
   const handleSubscribe = () => {
     // Redirect directly to PayPal Payment Portal
-    window.open(paypalUrl, '_blank', 'noopener,noreferrer');
+    window.open(paypalUrl, "_blank", "noopener,noreferrer");
   };
 
   const features = [
-    'Access to all training videos',
-    'Purchase books and apparel',
-    'Book one-on-one sessions',
-    'Exclusive content and materials',
-    'Priority support',
+    "Access to all training videos",
+    "Purchase books and apparel",
+    "Book one-on-one sessions",
+    "Exclusive content and materials",
+    "Priority support",
   ];
 
   if (plansLoading || memberLoading) {
     return (
-      <section id="membership" className="py-20 bg-muted/30 relative overflow-hidden">
+      <section
+        id="membership"
+        className="py-20 bg-muted/30 relative overflow-hidden"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-glow border-t-transparent" />
@@ -43,11 +57,17 @@ export default function Membership() {
   }
 
   return (
-    <section id="membership" className="py-20 bg-muted/30 relative overflow-hidden">
+    <section
+      id="membership"
+      className="py-20 bg-muted/30 relative overflow-hidden"
+    >
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-glow/5 to-background" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-glow/10 rounded-full blur-3xl animate-glow-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon/10 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
+      <div
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon/10 rounded-full blur-3xl animate-glow-pulse"
+        style={{ animationDelay: "1.5s" }}
+      />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -65,7 +85,8 @@ export default function Membership() {
               <div className="h-px w-16 bg-gradient-to-r from-neon via-glow to-transparent" />
             </div>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Unlock exclusive access to premium content, training videos, and personalized sessions.
+              Unlock exclusive access to premium content, training videos, and
+              personalized sessions.
             </p>
           </div>
 
@@ -83,17 +104,19 @@ export default function Membership() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
             {plans?.map((plan, index) => {
-              const isMonthly = plan.productName.toLowerCase().includes('monthly');
+              const isMonthly = plan.productName
+                .toLowerCase()
+                .includes("monthly");
               const price = Number(plan.priceInCents) / 100;
               const pricePerMonth = isMonthly ? price : price / 12;
 
               return (
                 <Card
-                  key={index}
+                  key={`${plan.productName}-${index}`}
                   className={`border-2 ${
                     !isMonthly
-                      ? 'border-glow shadow-glow-lg bg-gradient-to-br from-card via-card to-glow/5'
-                      : 'border-glow/30 hover:border-glow/50'
+                      ? "border-glow shadow-glow-lg bg-gradient-to-br from-card via-card to-glow/5"
+                      : "border-glow/30 hover:border-glow/50"
                   } transition-all duration-300 relative overflow-hidden`}
                 >
                   {!isMonthly && (
@@ -107,18 +130,24 @@ export default function Membership() {
 
                   <CardHeader>
                     <CardTitle className="text-2xl font-serif flex items-center gap-2">
-                      <Crown className={`w-6 h-6 ${!isMonthly ? 'text-glow' : 'text-primary'}`} />
+                      <Crown
+                        className={`w-6 h-6 ${!isMonthly ? "text-glow" : "text-primary"}`}
+                      />
                       {plan.productName}
                     </CardTitle>
-                    <p className="text-muted-foreground">{plan.productDescription}</p>
+                    <p className="text-muted-foreground">
+                      {plan.productDescription}
+                    </p>
                   </CardHeader>
 
                   <CardContent className="space-y-6">
                     <div>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-5xl font-bold text-primary">${price}</span>
+                        <span className="text-5xl font-bold text-primary">
+                          ${price}
+                        </span>
                         <span className="text-muted-foreground">
-                          / {isMonthly ? 'month' : 'year'}
+                          / {isMonthly ? "month" : "year"}
                         </span>
                       </div>
                       {!isMonthly && (
@@ -129,8 +158,8 @@ export default function Membership() {
                     </div>
 
                     <div className="space-y-3">
-                      {features.map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-3">
+                      {features.map((feature) => (
+                        <div key={feature} className="flex items-start gap-3">
                           <Check className="w-5 h-5 text-glow flex-shrink-0 mt-0.5" />
                           <span className="text-sm">{feature}</span>
                         </div>
@@ -143,18 +172,27 @@ export default function Membership() {
                       size="lg"
                       className={`w-full ${
                         !isMonthly
-                          ? 'bg-gradient-to-r from-glow to-neon hover:from-glow/90 hover:to-neon/90 text-glow-foreground shadow-glow'
-                          : ''
+                          ? "bg-gradient-to-r from-glow to-neon hover:from-glow/90 hover:to-neon/90 text-glow-foreground shadow-glow"
+                          : ""
                       }`}
                       onClick={handleSubscribe}
                       disabled={isMember}
                     >
-                      {isMember ? 'Already a Member' : 'Subscribe Now'}
+                      {isMember ? "Already a Member" : "Subscribe Now"}
                     </Button>
                   </CardFooter>
                 </Card>
               );
             })}
+          </div>
+
+          {/* PayPal Image - below Yearly Membership, above PayPal Payment Portal */}
+          <div className="max-w-4xl mx-auto mb-8 flex justify-center">
+            <img
+              src="/assets/uploads/images-1.png"
+              alt="PayPal"
+              className="max-w-xs w-full rounded-xl shadow-lg"
+            />
           </div>
 
           {/* PayPal Payment Portal - Three Line Format */}
@@ -165,7 +203,7 @@ export default function Membership() {
                 <h3 className="text-xl md:text-2xl font-serif text-glow leading-relaxed">
                   PayPal Payment Portal
                 </h3>
-                
+
                 {/* Line 2: PayPal Button */}
                 <div>
                   <Button
@@ -184,7 +222,7 @@ export default function Membership() {
                     </a>
                   </Button>
                 </div>
-                
+
                 {/* Line 3: Clickable Hyperlink */}
                 <div>
                   <a
@@ -216,7 +254,8 @@ export default function Membership() {
                   </div>
                   <h4 className="font-semibold">Premium Videos</h4>
                   <p className="text-sm text-muted-foreground">
-                    Access our complete library of training videos and educational content.
+                    Access our complete library of training videos and
+                    educational content.
                   </p>
                 </div>
                 <div className="text-center space-y-2">
