@@ -18,15 +18,29 @@ export default function TrainingVideos() {
 
   // Map document URLs to actual static assets
   const getDocumentUrl = (documentId: bigint, documentUrl: string): string => {
-    // Training Document #2 should open C3.pdf
+    // Training Document #2: The Codex of Value
     if (documentId === 2n) {
       return "/assets/C3.pdf";
     }
-    // Training Document #3 should open the new Distinction Codex PDF
+    // Training Document #3: Distinction Codex
     if (documentId === 3n) {
-      return "/assets/Rise.Articulate 360 -- Course #5  Distinction Codex - Unveiling the Markers-Course Summary_JAN 18, 2026.pdf";
+      return "/assets/C5.pdf";
     }
     return documentUrl;
+  };
+
+  // Override document titles to match confirmed content
+  const getDocumentTitle = (
+    documentId: bigint,
+    originalTitle: string,
+  ): string => {
+    if (documentId === 2n) {
+      return "The Codex of Value: Determining what Truly Matters.";
+    }
+    if (documentId === 3n) {
+      return "Distinction Codex: Unveiling the Markers of Authentic Mastery.";
+    }
+    return originalTitle;
   };
 
   return (
@@ -127,23 +141,33 @@ export default function TrainingVideos() {
                   document.id,
                   document.documentUrl,
                 );
+                const actualTitle = getDocumentTitle(
+                  document.id,
+                  document.title,
+                );
                 return (
                   <div key={document.id} className="text-center space-y-3">
                     {/* Line 1: Title only */}
                     <h3 className="text-xl md:text-2xl font-serif text-amber-300 leading-relaxed">
-                      {document.title}
+                      {actualTitle}
                     </h3>
-                    {/* Line 2: Clickable shortDescription text (no button, no extra label) */}
-                    {actualDocumentUrl && document.shortDescription && (
+                    {/* Line 2: Download PDF button */}
+                    {actualDocumentUrl && (
                       <div>
-                        <a
-                          href={getStaticAssetUrl(actualDocumentUrl)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-amber-400 hover:text-amber-300 transition-colors duration-300 underline text-base md:text-lg"
+                        <Button
+                          asChild
+                          className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-semibold px-8 py-6 text-lg shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 transition-all duration-300"
                         >
-                          {document.shortDescription}
-                        </a>
+                          <a
+                            href={getStaticAssetUrl(actualDocumentUrl)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2"
+                          >
+                            <FileText className="w-5 h-5" />
+                            Download PDF
+                          </a>
+                        </Button>
                       </div>
                     )}
                   </div>
